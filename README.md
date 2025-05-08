@@ -75,8 +75,10 @@ Nuhser Atala:
 
 📅 GÜNCELLEME 
 
-+ Elazığ Tanıtım Projesi: pages klasörü eklendi
++ Elazığ Tanıtım Projesi: README güncellendi
 
 + Elazığ Projesinin Güncel Kodları: Son güncelleme yapıldı
 
 + Proje Planı Dosyası Yüklendi: Detaylar güncellendi
+
++ Vercel bağlantısı yapıldı
