@@ -1,28 +1,75 @@
-# Elazığ Tanıtım Projesi
-
+Elazığ Tanıtım Projesi
 Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır. Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları inceleyebilecektir.
 
-## 👥 Takım Bilgileri - FİN-TECH
+👥 Takım Bilgileri - FİN-TECH
+Fırat Yunus Yaşaroğlu (GitHub: firatysrgl)
 
-- **Firat Yunus Yaşaroğlu** ([GitHub: firatysrgl](https://github.com/firatysrgl))
-- **İlayda Memiş**  ([GitHub: ilaydamemiss](https://github.com/ilaydamemiss))
-- **Nuhser Atala**  ([GitHub: atalanuhser](https://github.com/atalanuhser))
+İlayda Memiş (GitHub: ilaydamemiss)
 
-## 📁 Proje İçeriği
+Nuhser Atala (GitHub: atalanuhser)
 
-- Elazığ hakkında genel bilgiler
-- İlçeler ve öne çıkan yerler
-- Doğal güzellikler ve tarihi mekanlar
-- Fotoğraf galerisi
+📁 Proje İçeriği
+Elazığ hakkında genel bilgiler
 
-## 🔧 Kullanılan Teknolojiler
+İlçeler ve öne çıkan yerler
 
-- HTML
-- CSS
-- JavaScript
-- Visual Studio Code
-- Git & GitHub
+Doğal güzellikler ve tarihi mekanlar
 
-## 🚀 Yayın
+Fotoğraf galerisi
 
-Proje geliştirme aşamasındadır. Tamamlandığında GitHub Pages üzerinden yayınlanacaktır.
+🔧 Kullanılan Teknolojiler
+HTML
+
+CSS
+
+JavaScript
+
+Visual Studio Code
+
+Git & GitHub
+
+🚀 Yayın
+Proje geliştirme aşamasındadır. Proje, Vercel üzerinden yayınlanmaktadır. Canlı Yayın Linki
+
+✅ Yapılanlar
+Firat Yunus Yaşaroğlu:
+
+Proje planının hazırlanması
+
+Sayfa yapılarının tasarlanması
+
+Git & GitHub entegrasyonu
+
+README dosyasının güncellenmesi
+
+İlayda Memiş:
+
+Arayüz taslağının oluşturulması
+
+Fotoğraf ve medya dosyalarının düzenlenmesi
+
+Kullanıcı senaryosu dosyasının hazırlanması
+
+Nuhser Atala:
+
+Gereksinim analizi dosyasının hazırlanması
+
+Arayüz taslağının geliştirilmesi
+
+Proje planı dosyasının yüklenmesi
+
+🔨 Yapılacaklar
+Arayüz geliştirmeye devam edilecek
+
+Elazığ'ın kültürel ve tarihi yerleri hakkında içerik eklenmesi
+
+Fotoğraf galerisi tasarımının tamamlanması
+
+GitHub Pages üzerinden yayınlama işleminin yapılması
+
+📅 Güncelleme
+Elazığ Tanıtım Projesi: pages klasörü eklendi
+
+Elazığ Projesinin Güncel Kodları: Son güncelleme yapıldı
+
+Proje Planı Dosyası Yüklendi: Detaylar güncellendi
