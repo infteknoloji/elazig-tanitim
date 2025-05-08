@@ -1,75 +1,82 @@
-Elazığ Tanıtım Projesi
+ELAZIĞ TANITIM PROJESİ
+
 Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır. Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları inceleyebilecektir.
 
-👥 Takım Bilgileri - FİN-TECH
-Fırat Yunus Yaşaroğlu (GitHub: firatysrgl)
+👥 TAKIM BİLGİLERİ / FİN-TECH
 
-İlayda Memiş (GitHub: ilaydamemiss)
++ Fırat Yunus Yaşaroğlu (GitHub: firatysrgl)
 
-Nuhser Atala (GitHub: atalanuhser)
++ İlayda Memiş (GitHub: ilaydamemiss)
 
-📁 Proje İçeriği
-Elazığ hakkında genel bilgiler
++ Nuhser Atala (GitHub: atalanuhser)
 
-İlçeler ve öne çıkan yerler
+📁 PROJE İÇERİĞİ
 
-Doğal güzellikler ve tarihi mekanlar
++ Elazığ hakkında genel bilgiler
 
-Fotoğraf galerisi
++ İlçeler ve öne çıkan yerler
 
-🔧 Kullanılan Teknolojiler
-HTML
++ Doğal güzellikler ve tarihi mekanlar
 
-CSS
++ Fotoğraf galerisi
 
-JavaScript
+🔧 KULLANILAN TEKNOLOJİLER
 
-Visual Studio Code
++ HTML
 
-Git & GitHub
++ CSS
+
++ JavaScript
+
++ Visual Studio Code
+
++ Git & GitHub
 
 🚀 Yayın
-Proje geliştirme aşamasındadır. Proje, Vercel üzerinden yayınlanmaktadır. Canlı Yayın Linki
 
-✅ Yapılanlar
-Firat Yunus Yaşaroğlu:
++ Proje geliştirme aşamasındadır. Proje, Vercel üzerinden yayınlanmaktadır. Canlı Yayın Linki:https://elazig-tanitim-2vi2.vercel.app/
 
-Proje planının hazırlanması
+✅ YAPILANLAR
 
-Sayfa yapılarının tasarlanması
+Fırat Yunus Yaşaroğlu:
 
-Git & GitHub entegrasyonu
++ Proje planının hazırlanması
 
-README dosyasının güncellenmesi
++ Sayfa yapılarının tasarlanması
+
++ Git & GitHub entegrasyonu
+
++ README dosyasının güncellenmesi
 
 İlayda Memiş:
 
-Arayüz taslağının oluşturulması
++ Arayüz taslağının oluşturulması
 
-Fotoğraf ve medya dosyalarının düzenlenmesi
++ Fotoğraf ve medya dosyalarının düzenlenmesi
 
-Kullanıcı senaryosu dosyasının hazırlanması
++ Kullanıcı senaryosu dosyasının hazırlanması
 
 Nuhser Atala:
 
-Gereksinim analizi dosyasının hazırlanması
++ Gereksinim analizi dosyasının hazırlanması
 
-Arayüz taslağının geliştirilmesi
++ Arayüz taslağının geliştirilmesi
 
-Proje planı dosyasının yüklenmesi
++ Proje planı dosyasının yüklenmesi
 
-🔨 Yapılacaklar
-Arayüz geliştirmeye devam edilecek
+🔨 YAPILACAKLAR
 
-Elazığ'ın kültürel ve tarihi yerleri hakkında içerik eklenmesi
++ Arayüz geliştirmeye devam edilecek
 
-Fotoğraf galerisi tasarımının tamamlanması
++ Elazığ'ın kültürel ve tarihi yerleri hakkında içerik eklenmesi
 
-GitHub Pages üzerinden yayınlama işleminin yapılması
++ Fotoğraf galerisi tasarımının tamamlanması
 
-📅 Güncelleme
-Elazığ Tanıtım Projesi: pages klasörü eklendi
 
-Elazığ Projesinin Güncel Kodları: Son güncelleme yapıldı
+📅 GÜNCELLEME 
 
-Proje Planı Dosyası Yüklendi: Detaylar güncellendi
++ Elazığ Tanıtım Projesi: pages klasörü eklendi
+
++ Elazığ Projesinin Güncel Kodları: Son güncelleme yapıldı
+
++ Proje Planı Dosyası Yüklendi: Detaylar güncellendi
