@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('img/elazig-giris.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.icon {
+  font-size: 2rem;
+}
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px; /* Yukarıdan boşluk, daha yukarı almak için azaltabilirsin */
+  text-align: center;
+}
