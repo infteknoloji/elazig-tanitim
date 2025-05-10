@@ -1,6 +1,6 @@
 ELAZIĞ TANITIM PROJESİ
 
-Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır. Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları inceleyebilecektir.
+Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır. Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları ve konum bilgisini inceleyebilecektir.
 
 👥 TAKIM BİLGİLERİ / FİN-TECH
 
@@ -42,7 +42,7 @@ Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak
 
 🚀 Yayın
 
-+ Proje geliştirme aşamasındadır. Proje, Vercel üzerinden yayınlanmaktadır. Canlı Yayın Linki:https://elazig-tanitim-2vi2.vercel.app/
++ Proje geliştirme aşamasındadır. Proje, Vercel üzerinden yayınlanmaktadır. Canlı Yayın Linki:https://elazig-tanitim.vercel.app/
 
 ✅ YAPILANLAR
 
