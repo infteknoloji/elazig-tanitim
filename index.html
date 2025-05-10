@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
         body {
             margin: 0;
             padding: 0;
@@ -23,6 +21,21 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.3);
             z-index: 1;
+        }
+        .lang-select {
+            position: absolute;
+            top: 18px;
+            right: 24px;
+            z-index: 10;
+            background: rgba(30,40,60,0.7);
+            border-radius: 8px;
+            padding: 6px 12px;
+            color: #fff;
+            border: none;
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         .giris {
             position: absolute;
@@ -142,6 +155,38 @@
             text-align: center;
             max-width: 800px;
             padding: 0 20px;
+            background: rgba(30,40,60,0.22);
+            border-radius: 8px;
+        }
+        .daha-fazla-btn {
+            display: block;
+            margin: 25px auto 0 auto;
+            background: #43a047;
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .daha-fazla-btn:hover {
+            background: #2e7031;
+        }
+        .ekstra-bilgi {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.7s cubic-bezier(0.4,0,0.2,1), opacity 0.5s;
+            background: rgba(33,150,243,0.12);
+            border-radius: 8px;
+            margin-top: 18px;
+            padding: 0 18px;
+        }
+        .ekstra-bilgi.active {
+            max-height: 600px;
+            opacity: 1;
+            padding: 18px;
         }
         @media (max-width: 768px) {
             .menu {
@@ -152,36 +197,213 @@
                 width: 90%;
                 max-width: 300px;
             }
+            .ekstra-bilgi, .ekstra-bilgi.active {
+                max-width: 98vw;
+                font-size: 1rem;
+                padding: 10px 5px;
+            }
+            .daha-fazla-btn {
+                width: 90%;
+                max-width: 300px;
+                font-size: 1rem;
+                padding: 10px 0;
+            }
+            .header .title {
+                font-size: 1.5rem;
+            }
+            .footer-text .main {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
+    <select class="lang-select" id="langSelect">
+        <option value="tr">Türkçe</option>
+        <option value="en">English</option>
+    </select>
     <div class="overlay"></div>
     <div class="giris" id="giris">
         <div class="header">
             <span class="pin">📍</span>
-            <span class="title">Elazığ</span>
+            <span class="title" id="mainTitle">Elazığ</span>
         </div>
         <div class="footer-text">
-            <span class="main">Elazığ seni bekliyor!</span>
-            <span class="sub">Her köşesinde bir hikaye, her adımda bir keşif,...</span>
+            <span class="main" id="mainSlogan">Elazığ seni bekliyor!</span>
+            <span class="sub" id="mainSub">Her köşesinde bir hikaye, her adımda bir keşif...</span>
         </div>
     </div>
     <div class="ana-sayfa" id="anaSayfa">
         <div class="menu">
-            <button onclick="showContent('hakkinda')">Elazığ Hakkında</button>
-            <button onclick="showContent('ilceler')">İlçeler ve Öne Çıkan Yerler</button>
-            <button onclick="showContent('dogal')">Doğal Güzellikler ve Tarihi Mekanlar</button>
-            <button onclick="showContent('galeri')">Fotoğraf Galerisi</button>
+            <button id="btnHakkinda" onclick="showContent('hakkinda')">Elazığ Hakkında</button>
+            <button id="btnIlceler" onclick="showContent('ilceler')">İlçeler ve Öne Çıkan Yerler</button>
+            <button id="btnDogal" onclick="showContent('dogal')">Doğal Güzellikler ve Tarihi Mekanlar</button>
+            <button id="btnGaleri" onclick="showContent('galeri')">Fotoğraf Galerisi</button>
         </div>
-        <button class="location-btn" onclick="showElazigLocation()">📍 Konumu Göster</button>
+        <button class="location-btn" id="btnKonum" onclick="showElazigLocation()">📍 Konumu Göster</button>
         <div class="icerik" id="icerik">
-            <h2>Hoşgeldiniz!</h2>
-            <p>Elazığ'ın güzelliklerini keşfetmek için yukarıdan bir bölüm seçin.</p>
+            <h2 id="welcomeTitle">Hoşgeldiniz!</h2>
+            <p id="welcomeText">Elazığ'ın güzelliklerini keşfetmek için yukarıdan bir bölüm seçin.</p>
         </div>
     </div>
 
     <script>
+        // Dil içerikleri
+        const contentData = {
+            tr: {
+                mainTitle: "Elazığ",
+                mainSlogan: "Elazığ seni bekliyor!",
+                mainSub: "Her köşesinde bir hikaye, her adımda bir keşif...",
+                btnHakkinda: "Elazığ Hakkında",
+                btnIlceler: "İlçeler ve Öne Çıkan Yerler",
+                btnDogal: "Doğal Güzellikler ve Tarihi Mekanlar",
+                btnGaleri: "Fotoğraf Galerisi",
+                btnKonum: "📍 Konumu Göster",
+                welcomeTitle: "Hoşgeldiniz!",
+                welcomeText: "Elazığ'ın güzelliklerini keşfetmek için yukarıdan bir bölüm seçin.",
+                hakkinda: `<h2>Elazığ Hakkında</h2>
+                <p>
+                    Elazığ, Doğu Anadolu Bölgesi'nin önemli şehirlerinden biridir ve köklü bir tarihe sahiptir. Şehir, eski Harput yerleşiminin devamı olarak kurulmuştur. 
+                    Harput Kalesi, Buzluk Mağarası ve tarihi camileriyle ünlüdür. Elazığ, aynı zamanda zengin mutfağı, geleneksel müzikleri ve misafirperver insanlarıyla bilinir.
+                </p>
+                <ul style="text-align:left; max-width:600px; margin: 0 auto;">
+                    <li><b>Nüfus:</b> Yaklaşık 600.000</li>
+                    <li><b>Kuruluşu:</b> M.Ö. 20. yüzyıla kadar uzanır</li>
+                    <li><b>Meşhur Yerleri:</b> Harput Kalesi, Hazar Gölü, Buzluk Mağarası</li>
+                    <li><b>Yöresel Lezzetler:</b> Orcik, Harput köftesi, İçli köfte</li>
+                    <li><b>Festivaller:</b> Uluslararası Hazar Şiir Akşamları, Çayda Çıra Festivali</li>
+                </ul>
+                <button class='daha-fazla-btn' onclick='toggleEkstraBilgi()'>Daha Fazla Bilgi</button>
+                <div class='ekstra-bilgi' id='ekstraBilgi'>
+                  <h3>Daha Fazla Bilgi</h3>
+                  <ul style='text-align:left; max-width:600px; margin: 0 auto;'>
+                    <li><b>Üniversite:</b> Fırat Üniversitesi, Türkiye'nin önde gelen üniversitelerindendir.</li>
+                    <li><b>Ulaşım:</b> Elazığ Havalimanı ve demiryolu ile ulaşım mümkündür.</li>
+                    <li><b>İklim:</b> Karasal iklim hakimdir, yazlar sıcak ve kurak, kışlar soğuk ve kar yağışlıdır.</li>
+                    <li><b>Ekonomi:</b> Tarım, hayvancılık ve sanayi gelişmiştir. Özellikle üzüm ve orcik üretimi meşhurdur.</li>
+                    <li><b>Kültür:</b> Çayda Çıra oyunu ve Harput müziği ile tanınır.</li>
+                  </ul>
+                  <p>Elazığ, tarihi ve kültürel mirasıyla her yıl binlerce turisti ağırlamaktadır. Şehirdeki sıcak insan ilişkileri ve doğal güzellikler, ziyaretçilerin unutamayacağı anılar bırakır.</p>
+                </div>`,
+                ilceler: `<h2>İlçeler ve Öne Çıkan Yerler</h2>
+                <p>Elazığ'ın ilçeleri, tarihi ve doğal güzellikleriyle öne çıkar. Her biri kendine özgü kültürel ve doğal zenginliklere sahiptir:</p>
+                <ul style="text-align:left; max-width:600px; margin: 0 auto;">
+                    <li><b>Merkez:</b> Harput Kalesi, Ulu Camii, Elazığ Kapalı Çarşısı</li>
+                    <li><b>Sivrice:</b> Hazar Gölü, Hazarbaba Kayak Merkezi</li>
+                    <li><b>Palu:</b> Palu Kalesi, Palu Köprüsü, tarihi hamamlar</li>
+                    <li><b>Kovancılar:</b> Doğal güzellikleri ve tarımsal üretimiyle bilinir</li>
+                    <li><b>Karakoçan:</b> Golan Kaplıcaları, Peri Suyu Vadisi</li>
+                    <li><b>Maden:</b> Tarihi maden ocakları ve doğal manzaralar</li>
+                    <li><b>Baskil:</b> Fırat Nehri kıyısında doğal güzellikler</li>
+                    <li><b>Alacakaya & Arıcak:</b> Dağ köyleri ve doğa yürüyüşü rotaları</li>
+                </ul>
+                <p>Her ilçe, kendine has lezzetleri ve misafirperver insanlarıyla ziyaretçilerini bekliyor.</p>`,
+                dogal: `<h2>Doğal Güzellikler ve Tarihi Mekanlar</h2>
+                <p>Elazığ, hem doğal güzellikleri hem de tarihi mekanlarıyla büyüleyici bir şehirdir:</p>
+                <ul style="text-align:left; max-width:600px; margin: 0 auto;">
+                    <li><b>Harput Kalesi:</b> Şehrin simgesi olan kale, muhteşem bir manzaraya sahiptir.</li>
+                    <li><b>Buzluk Mağarası:</b> Yazın serin, kışın sıcak olan ilginç bir mağara.</li>
+                    <li><b>Hazar Gölü:</b> Türkiye'nin en temiz göllerinden biri, plajları ve su sporlarıyla ünlü.</li>
+                    <li><b>Hazarbaba Kayak Merkezi:</b> Kış turizmi için önemli bir merkez.</li>
+                    <li><b>Palu Kalesi ve Köprüsü:</b> Tarihi dokusu ve doğal güzellikleriyle öne çıkar.</li>
+                    <li><b>Golan Kaplıcaları:</b> Şifalı sularıyla bilinen doğal bir kaplıca.</li>
+                    <li><b>Keban Barajı:</b> Türkiye'nin en büyük barajlarından biri, çevresi piknik ve balıkçılık için uygundur.</li>
+                </ul>
+                <p>Elazığ, doğa ve tarih tutkunları için keşfedilmeyi bekleyen birçok güzelliğe ev sahipliği yapar.</p>`,
+                galeri: `<h2>Fotoğraf Galerisi</h2>
+                <p>Burada Elazığ'ın eşsiz doğası ve tarihi mekanlarına ait fotoğraflar yer alacak.</p>`
+            },
+            en: {
+                mainTitle: "Elazığ",
+                mainSlogan: "Elazığ is waiting for you!",
+                mainSub: "A story in every corner, a discovery at every step...",
+                btnHakkinda: "About Elazığ",
+                btnIlceler: "Districts & Highlights",
+                btnDogal: "Natural Beauties & Historical Places",
+                btnGaleri: "Photo Gallery",
+                btnKonum: "📍 Show Location",
+                welcomeTitle: "Welcome!",
+                welcomeText: "Select a section above to discover the beauties of Elazığ.",
+                hakkinda: `<h2>About Elazığ</h2>
+                <p>
+                    Elazığ is one of the important cities of Eastern Anatolia with a deep-rooted history. The city was established as a continuation of the ancient Harput settlement.
+                    It is famous for Harput Castle, Buzluk Cave, and its historical mosques. Elazığ is also known for its rich cuisine, traditional music, and hospitable people.
+                </p>
+                <ul style="text-align:left; max-width:600px; margin: 0 auto;">
+                    <li><b>Population:</b> About 600,000</li>
+                    <li><b>Founded:</b> Dates back to the 20th century BC</li>
+                    <li><b>Famous Places:</b> Harput Castle, Lake Hazar, Buzluk Cave</li>
+                    <li><b>Local Delicacies:</b> Orcik, Harput meatballs, Stuffed meatballs</li>
+                    <li><b>Festivals:</b> International Hazar Poetry Nights, Çayda Çıra Festival</li>
+                </ul>
+                <button class='daha-fazla-btn' onclick='toggleEkstraBilgi()'>More Info</button>
+                <div class='ekstra-bilgi' id='ekstraBilgi'>
+                  <h3>More Info</h3>
+                  <ul style='text-align:left; max-width:600px; margin: 0 auto;'>
+                    <li><b>University:</b> Fırat University is one of Turkey's leading universities.</li>
+                    <li><b>Transportation:</b> Accessible by Elazığ Airport and railway.</li>
+                    <li><b>Climate:</b> Continental climate; hot, dry summers and cold, snowy winters.</li>
+                    <li><b>Economy:</b> Agriculture, livestock, and industry are developed. Especially famous for grapes and orcik.</li>
+                    <li><b>Culture:</b> Known for Çayda Çıra dance and Harput music.</li>
+                  </ul>
+                  <p>Elazığ welcomes thousands of tourists every year with its historical and cultural heritage. Warm human relations and natural beauties leave unforgettable memories for visitors.</p>
+                </div>`,
+                ilceler: `<h2>Districts & Highlights</h2>
+                <p>The districts of Elazığ stand out with their historical and natural beauties. Each has its own unique cultural and natural riches:</p>
+                <ul style="text-align:left; max-width:600px; margin: 0 auto;">
+                    <li><b>Center:</b> Harput Castle, Ulu Mosque, Elazığ Covered Bazaar</li>
+                    <li><b>Sivrice:</b> Lake Hazar, Hazarbaba Ski Center</li>
+                    <li><b>Palu:</b> Palu Castle, Palu Bridge, historical baths</li>
+                    <li><b>Kovancılar:</b> Known for its natural beauties and agricultural production</li>
+                    <li><b>Karakoçan:</b> Golan Hot Springs, Peri Suyu Valley</li>
+                    <li><b>Maden:</b> Historical mines and natural landscapes</li>
+                    <li><b>Baskil:</b> Natural beauties along the Euphrates River</li>
+                    <li><b>Alacakaya & Arıcak:</b> Mountain villages and hiking routes</li>
+                </ul>
+                <p>Each district awaits its visitors with unique flavors and hospitable people.</p>`,
+                dogal: `<h2>Natural Beauties & Historical Places</h2>
+                <p>Elazığ is a fascinating city with both natural beauties and historical sites:</p>
+                <ul style="text-align:left; max-width:600px; margin: 0 auto;">
+                    <li><b>Harput Castle:</b> The symbol of the city, offering a magnificent view.</li>
+                    <li><b>Buzluk Cave:</b> An interesting cave that is cool in summer and warm in winter.</li>
+                    <li><b>Lake Hazar:</b> One of Turkey's cleanest lakes, famous for its beaches and water sports.</li>
+                    <li><b>Hazarbaba Ski Center:</b> An important center for winter tourism.</li>
+                    <li><b>Palu Castle & Bridge:</b> Stands out with its historical texture and natural beauties.</li>
+                    <li><b>Golan Hot Springs:</b> A natural spa known for its healing waters.</li>
+                    <li><b>Keban Dam:</b> One of Turkey's largest dams, suitable for picnics and fishing.</li>
+                </ul>
+                <p>Elazığ hosts many beauties waiting to be discovered for nature and history enthusiasts.</p>`,
+                galeri: `<h2>Photo Gallery</h2>
+                <p>Here you will find photos of Elazığ's unique nature and historical sites.</p>`
+            }
+        };
+
+        let currentLang = 'tr';
+
+        // Dil değiştirici
+        document.getElementById('langSelect').addEventListener('change', function() {
+            currentLang = this.value;
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            const d = contentData[currentLang];
+            document.getElementById('mainTitle').textContent = d.mainTitle;
+            document.getElementById('mainSlogan').textContent = d.mainSlogan;
+            document.getElementById('mainSub').textContent = d.mainSub;
+            document.getElementById('btnHakkinda').textContent = d.btnHakkinda;
+            document.getElementById('btnIlceler').textContent = d.btnIlceler;
+            document.getElementById('btnDogal').textContent = d.btnDogal;
+            document.getElementById('btnGaleri').textContent = d.btnGaleri;
+            document.getElementById('btnKonum').textContent = d.btnKonum;
+            document.getElementById('welcomeTitle').textContent = d.welcomeTitle;
+            document.getElementById('welcomeText').textContent = d.welcomeText;
+            // Eğer içerik kutusunda başka bir bölüm açıksa, onu da güncelle
+            if (icerik.dataset.section) {
+                showContent(icerik.dataset.section);
+            }
+        }
+
         const giris = document.getElementById('giris');
         const anaSayfa = document.getElementById('anaSayfa');
         const icerik = document.getElementById('icerik');
@@ -194,19 +416,19 @@
         });
 
         function showContent(section) {
+            const d = contentData[currentLang];
+            let content = '';
             if(section === 'hakkinda') {
-                icerik.innerHTML = `<h2>Elazığ Hakkında</h2>
-                <p>Elazığ, Doğu Anadolu Bölgesi'nde yer alan tarihi ve kültürel zenginlikleriyle bilinen bir şehirdir. Harput Kalesi, geleneksel müzikleri ve mutfağıyla dikkat çeker.</p>`;
+                content = d.hakkinda;
             } else if(section === 'ilceler') {
-                icerik.innerHTML = `<h2>İlçeler ve Öne Çıkan Yerler</h2>
-                <p>Elazığ'ın başlıca ilçeleri arasında Kovancılar, Karakoçan, Palu ve Sivrice yer alır. Sivrice'deki Hazar Gölü, özellikle yaz aylarında yoğun ilgi görür.</p>`;
+                content = d.ilceler;
             } else if(section === 'dogal') {
-                icerik.innerHTML = `<h2>Doğal Güzellikler ve Tarihi Mekanlar</h2>
-                <p>Harput Kalesi, Buzluk Mağarası ve Hazar Gölü, Elazığ'ın en bilinen doğal ve tarihi yerlerindendir.</p>`;
+                content = d.dogal;
             } else if(section === 'galeri') {
-                icerik.innerHTML = `<h2>Fotoğraf Galerisi</h2>
-                <p>Burada Elazığ'ın eşsiz doğası ve tarihi mekanlarına ait fotoğraflar yer alacak.</p>`;
+                content = d.galeri;
             }
+            icerik.innerHTML = content;
+            icerik.dataset.section = section;
         }
 
         function showElazigLocation() {
@@ -215,6 +437,17 @@
             const mapsUrl = `https://www.google.com/maps?q=${elazigLat},${elazigLng}`;
             window.open(mapsUrl, '_blank');
         }
+
+        // Daha Fazla Bilgi kutusu için fonksiyon
+        function toggleEkstraBilgi() {
+            const ekstra = document.getElementById('ekstraBilgi');
+            if (ekstra) {
+                ekstra.classList.toggle('active');
+            }
+        }
+
+        // Sayfa ilk açıldığında Türkçe başlat
+        updateLanguage();
     </script>
 </body>
 </html>
