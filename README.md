@@ -20,7 +20,7 @@ Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak
 
 + Fotoğraf Galerisi
 
-+Konum Bilgisi 
++ Konum Bilgisi 
 
 🔧 KULLANILAN TEKNOLOJİLER
 
@@ -93,4 +93,4 @@ Nuhser Atala:
 
 + Konum bilgisi eklendi
 
-+Mobil uyumluluk sağlandı 
++ Mobil uyumluluk sağlandı 
