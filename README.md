@@ -1,14 +1,14 @@
 ELAZIĞ TANITIM PROJESİ
 
-Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır. Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları inceleyebilecektir.
+Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır. Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları ve konum bilgisini inceleyebilecektir.
 
 👥 TAKIM BİLGİLERİ / FİN-TECH
 
-+ Fırat Yunus Yaşaroğlu (GitHub: firatysrgl)
++ Fırat Yunus Yaşaroğlu (GitHub:https://github.com/firatysrgl)
 
-+ İlayda Memiş (GitHub: ilaydamemiss)
++ İlayda Memiş (GitHub:https://github.com/ilaydamemiss)
 
-+ Nuhser Atala (GitHub: atalanuhser)
++ Nuhser Atala (GitHub:https://github.com/atalanuhser)
 
 📁 PROJE İÇERİĞİ
 
@@ -18,7 +18,9 @@ Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak
 
 + Doğal güzellikler ve tarihi mekanlar
 
-+ Fotoğraf galerisi
++ Fotoğraf Galerisi
+
++ Konum Bilgisi 
 
 🔧 KULLANILAN TEKNOLOJİLER
 
@@ -32,9 +34,15 @@ Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak
 
 + Git & GitHub
 
++ Vercel
+
++ Cursor
+
++ ChatGPT 
+
 🚀 Yayın
 
-+ Proje geliştirme aşamasındadır. Proje, Vercel üzerinden yayınlanmaktadır. Canlı Yayın Linki:https://elazig-tanitim-2vi2.vercel.app/
++ Proje geliştirme aşamasındadır. Proje, Vercel üzerinden yayınlanmaktadır. Canlı Yayın Linki:https://elazig-tanitim.vercel.app/
 
 ✅ YAPILANLAR
 
@@ -82,3 +90,7 @@ Nuhser Atala:
 + Proje Planı Dosyası Yüklendi: Detaylar güncellendi
 
 + Vercel bağlantısı yapıldı
+
++ Konum bilgisi eklendi
+
++ Mobil uyumluluk sağlandı 
