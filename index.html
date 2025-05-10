@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Elazığ Tanıtım</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
             margin: 0;
             padding: 0;
@@ -92,6 +96,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 1s;
+            padding: 20px;
         }
         .ana-sayfa.active {
             opacity: 1;
@@ -117,12 +122,36 @@
         .menu button:hover {
             background: #b71c1c;
         }
+        .location-btn {
+            margin-top: 30px;
+            background: #2196f3;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .location-btn:hover {
+            background: #0d47a1;
+        }
         .icerik {
             margin-top: 40px;
             color: #fff;
             text-align: center;
             max-width: 800px;
             padding: 0 20px;
+        }
+        @media (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+                align-items: center;
+            }
+            .menu button, .location-btn {
+                width: 90%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
@@ -145,6 +174,7 @@
             <button onclick="showContent('dogal')">Doğal Güzellikler ve Tarihi Mekanlar</button>
             <button onclick="showContent('galeri')">Fotoğraf Galerisi</button>
         </div>
+        <button class="location-btn" onclick="showElazigLocation()">📍 Konumu Göster</button>
         <div class="icerik" id="icerik">
             <h2>Hoşgeldiniz!</h2>
             <p>Elazığ'ın güzelliklerini keşfetmek için yukarıdan bir bölüm seçin.</p>
@@ -177,6 +207,13 @@
                 icerik.innerHTML = `<h2>Fotoğraf Galerisi</h2>
                 <p>Burada Elazığ'ın eşsiz doğası ve tarihi mekanlarına ait fotoğraflar yer alacak.</p>`;
             }
+        }
+
+        function showElazigLocation() {
+            const elazigLat = 38.6743;
+            const elazigLng = 39.2220;
+            const mapsUrl = `https://www.google.com/maps?q=${elazigLat},${elazigLng}`;
+            window.open(mapsUrl, '_blank');
         }
     </script>
 </body>
