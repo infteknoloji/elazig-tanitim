@@ -1,14 +1,21 @@
-ELAZIĞ TANITIM PROJESİ
+🌍 ELAZIĞ TANITIM PROJESİ
 
-Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır. Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları ve konum bilgisini inceleyebilecektir.
++ Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır. Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları ve konum bilgisini inceleyebilecektir.
+
+🌐 Çok Dilli Destek
+
++ Web sitesinde artık İngilizce, Arapça, Rusça ve Almanca dillerinde içerik görüntülenebilmektedir.
 
 👥 TAKIM BİLGİLERİ / FİN-TECH
 
-+ Fırat Yunus Yaşaroğlu (GitHub:https://github.com/firatysrgl)
++ Fırat Yunus Yaşaroğlu
+  GitHub Profili: https://github.com/firatysrgl
 
-+ İlayda Memiş (GitHub:https://github.com/ilaydamemiss)
++ İlayda Memiş
+  GitHub Profili: https://github.com/ilaydamemiss
 
-+ Nuhser Atala (GitHub:https://github.com/atalanuhser)
++ Nuhser Atala
+  GitHub Profili: https://github.com/atalanuhser
 
 📁 PROJE İÇERİĞİ
 
@@ -20,7 +27,11 @@ Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak
 
 + Fotoğraf Galerisi
 
-+ Konum Bilgisi 
++ Konum Bilgisi
+
++ 360 Sanal Tur Gezileri
+
++ Çok dilli içerik desteği (TR / EN / AR / RU / DE)
 
 🔧 KULLANILAN TEKNOLOJİLER
 
@@ -38,13 +49,16 @@ Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak
 
 + Cursor
 
-+ ChatGPT 
++ ChatGPT
 
-🚀 Yayın
+🚀 YAYIN
 
-+ Proje geliştirme aşamasındadır. Proje, Vercel üzerinden yayınlanmaktadır. Canlı Yayın Linki:https://elazig-tanitim.vercel.app/
++ Proje geliştirme aşamasındadır.
++ Vercel üzerinden yayınlanmaktadır.
 
-✅ YAPILANLAR
+🔗 Canlı Yayın Linki: https://elazig-tanitim.vercel.app/
+
+✅ GÖREV DAĞILIMI 
 
 Fırat Yunus Yaşaroğlu:
 
@@ -55,6 +69,8 @@ Fırat Yunus Yaşaroğlu:
 + Git & GitHub entegrasyonu
 
 + README dosyasının güncellenmesi
+
++ 360 Sanal Tur Gezilerini Düzenleme 
 
 İlayda Memiş:
 
@@ -70,7 +86,9 @@ Nuhser Atala:
 
 + Arayüz taslağının geliştirilmesi
 
-+ Proje planı dosyasının yüklenmesi
++ Proje planı dosyasının yüklenmesi 
+
++ Dil Desteklerini sağlama 
 
 🔨 YAPILACAKLAR
 
@@ -80,17 +98,14 @@ Nuhser Atala:
 
 + Fotoğraf galerisi tasarımının tamamlanması
 
++ 360 sanal tur gezileri
 
-📅 GÜNCELLEME 
-
-+ Elazığ Tanıtım Projesi: README güncellendi
-
-+ Elazığ Projesinin Güncel Kodları: Son güncelleme yapıldı
-
-+ Proje Planı Dosyası Yüklendi: Detaylar güncellendi
+📅 GÜNCELLEME
 
 + Vercel bağlantısı yapıldı
 
 + Konum bilgisi eklendi
 
-+ Mobil uyumluluk sağlandı 
++ Mobil uyumluluk sağlandı
+
++ İngilizce, Arapça, Rusça ve Almanca dil desteği eklendi ✅
