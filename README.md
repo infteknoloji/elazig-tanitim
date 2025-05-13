@@ -84,8 +84,6 @@ Nuhser Atala:
 
 + Gereksinim analizi dosyasının hazırlanması
 
-+ Arayüz taslağının geliştirilmesi
-
 + Proje planı dosyasının yüklenmesi 
 
 + Dil Desteklerini sağlama 
