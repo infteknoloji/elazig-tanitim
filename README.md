@@ -107,3 +107,5 @@ Nuhser Atala:
 + Mobil uyumluluk sağlandı
 
 + İngilizce, Arapça, Rusça ve Almanca dil desteği eklendi ✅
+
++ 360 sanal geziler eklendi 
