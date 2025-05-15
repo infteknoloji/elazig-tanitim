@@ -17,7 +17,7 @@
 + Nuhser Atala
   GitHub Profili: https://github.com/atalanuhser
 
-📁 PROJE İÇERİĞİ
+📁  PROJE İÇERİĞİ
 
 + Elazığ hakkında genel bilgiler
 
