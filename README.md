@@ -92,13 +92,13 @@ Nuhser Atala:
 
 + Arayüz geliştirmeye devam edilecek
 
-+ Elazığ'ın kültürel ve tarihi yerleri hakkında içerik eklenmesi
-
 + Fotoğraf galerisi tasarımının tamamlanması
 
-+ 360 sanal tur gezileri
-
 📅 GÜNCELLEME
+
++ 360 sanal geziler eklendi
+
++ İngilizce, Arapça, Rusça ve Almanca dil desteği eklendi ✅
 
 + Vercel bağlantısı yapıldı
 
@@ -106,6 +106,4 @@ Nuhser Atala:
 
 + Mobil uyumluluk sağlandı
 
-+ İngilizce, Arapça, Rusça ve Almanca dil desteği eklendi ✅
 
-+ 360 sanal geziler eklendi 
