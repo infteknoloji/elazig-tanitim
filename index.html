@@ -297,9 +297,40 @@
             border: 0;
             border-radius: 8px;
         }
-        .gallery-container,
         .tour360-container {
-            display: none;
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .tour360-item {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 18px;
+            max-width: 500px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 900px) {
+            .tour360-container {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+            .tour360-item {
+                max-width: 98vw;
+                padding: 10px;
+            }
+        }
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .gallery-item {
             position: relative;
@@ -399,6 +430,7 @@
             <button id="btnIlceler" onclick="showContent('ilceler')">İlçeler ve Öne Çıkan Yerler</button>
             <button id="btnDogal" onclick="showContent('dogal')">Doğal Güzellikler ve Tarihi Mekanlar</button>
             <button id="btnGaleri" onclick="showContent('galeri')">Fotoğraf Galerisi</button>
+            <button id="btnTur360" onclick="showContent('tur360')">360° Sanal Tur</button>
         </div>
         <button class="location-btn" id="btnKonum" onclick="showElazigLocation()">📍 Konumu Göster</button>
         <div class="icerik" id="icerik">
@@ -419,6 +451,7 @@
                 btnDogal: "Doğal Güzellikler ve Tarihi Mekanlar",
                 btnGaleri: "Fotoğraf Galerisi",
                 btnKonum: "📍 Konumu Göster",
+                btnTur360: "360° Sanal Tur",
                 welcomeTitle: "Hoşgeldiniz!",
                 welcomeText: "Elazığ'ın güzelliklerini keşfetmek için yukarıdan bir bölüm seçin.",
                 hakkinda: `<h2>Elazığ Hakkında</h2>
@@ -479,24 +512,54 @@
                 </ul>
                 <p>Elazığ, doğa ve tarih tutkunları için keşfedilmeyi bekleyen birçok güzelliğe ev sahipliği yapar. Her mevsim farklı güzellikler sunan şehir, ziyaretçilerine unutulmaz deneyimler yaşatır.</p>`,
                 galeri: `<h2>Fotoğraf Galerisi</h2>
-                <p>Elazığ'ın güzelliklerini keşfetmek için burada bulunan fotoğrafları inceleyebilirsiniz.</p>
                 <div class="gallery-container">
                     <div class="gallery-item">
-                        <img src="harput_kalesi.jpg" alt="Harput Kalesi">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/harput-kalesi.jpg" alt="Harput Kalesi" loading="lazy">
                         <div class="gallery-caption">Harput Kalesi</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="buzluk_magarası.jpg" alt="Buzluk Mağarası">
-                        <div class="gallery-caption">Buzluk Mağarası</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="hazar_gölü.jpg" alt="Hazar Gölü">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazar-golu.jpg" alt="Hazar Gölü" loading="lazy">
                         <div class="gallery-caption">Hazar Gölü</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="harput_kalesi_2.jpg" alt="Harput Kalesi">
-                        <div class="gallery-caption">Harput Kalesi</div>
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/buzluk-magarasi.jpg" alt="Buzluk Mağarası" loading="lazy">
+                        <div class="gallery-caption">Buzluk Mağarası</div>
                     </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/keban-baraji.jpg" alt="Keban Barajı" loading="lazy">
+                        <div class="gallery-caption">Keban Barajı</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/elazig-merkez.jpg" alt="Elazığ Merkez" loading="lazy">
+                        <div class="gallery-caption">Elazığ Merkez</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazarbaba-kayak.jpg" alt="Hazarbaba Kayak Merkezi" loading="lazy">
+                        <div class="gallery-caption">Hazarbaba Kayak Merkezi</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/circir-selalesi.jpg" alt="Çırçır Şelalesi" loading="lazy">
+                        <div class="gallery-caption">Çırçır Şelalesi</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/kapali-carsi.jpg" alt="Elazığ Kapalı Çarşısı" loading="lazy">
+                        <div class="gallery-caption">Elazığ Kapalı Çarşısı</div>
+                    </div>
+                </div>`,
+                tur360: `<h2>360° Sanal Tur</h2>
+                <div class="tour360-container">
+                  <div class="tour360-item">
+                    <h3>Hazar Gölü 360° Turu</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030000!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.470676!2d39.301251!3f177.56!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
+                  <div class="tour360-item">
+                    <h3>Harput Kalesi 360° Turu</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030001!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.7042!2d39.2533!3f0!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
                 </div>`
             },
             en: {
@@ -508,6 +571,7 @@
                 btnDogal: "Natural Beauties & Historical Places",
                 btnGaleri: "Photo Gallery",
                 btnKonum: "📍 Show Location",
+                btnTur360: "360° Virtual Tour",
                 welcomeTitle: "Welcome!",
                 welcomeText: "Select a section above to discover the beauties of Elazığ.",
                 hakkinda: `<h2>About Elazığ</h2>
@@ -545,11 +609,12 @@
                     <li><b>Palu:</b> Palu Castle, Palu Bridge, historical baths, Palu Canyon, Peri Suyu Valley</li>
                     <li><b>Kovancılar:</b> Known for its natural beauties and agricultural production, Kovancılar Highlands, Kovancılar Waterfall</li>
                     <li><b>Karakoçan:</b> Golan Hot Springs, Peri Suyu Valley, Karakoçan Highlands, Historical Bridges</li>
-                    <li><b>Maden:</b> Tarihi maden ocakları and natural landscapes, Maden Waterfall, Maden Highlands</li>
-                    <li><b>Baskil:</b> Natural beauties along the Euphrates, Baskil Highlands, Historical Bridges</li>
-                    <li><b>Alacakaya & Arıcak:</b> Mountain villages and hiking routes, Highlands, Waterfalls</li>
-                    <li><b>Ağın:</b> Natural beauties along Keban Dam Lake, Ağın Highlands, Historical Settlements</li>
-                </ul>`,
+                    <li><b>Maden:</b> Tarihi maden ocakları ve doğal manzaralar, Maden Şelalesi, Maden Yaylaları</li>
+                    <li><b>Baskil:</b> Fırat Nehri kıyısında doğal güzellikler, Baskil Yaylaları, Tarihi Köprüler</li>
+                    <li><b>Alacakaya & Arıcak:</b> Dağ köyleri ve doğa yürüyüşü rotaları, Yaylalar, Şelaleler</li>
+                    <li><b>Ağın:</b> Keban Baraj Gölü kıyısında doğal güzellikler, Ağın Yaylaları, Tarihi Yerleşimler</li>
+                </ul>
+                <p>Each district awaits its visitors with unique flavors and hospitable people. Traditional handicrafts, local cuisine, and folkloric values are preserved in the districts.</p>`,
                 dogal: `<h2>Natural Beauties & Historical Places</h2>
                 <p>Elazığ is a fascinating city with both natural beauties and historical sites:</p>
                 <ul style="text-align:left; max-width:600px; margin: 0 auto;">
@@ -559,31 +624,62 @@
                     <li><b>Hazarbaba Ski Center:</b> An important center for winter tourism. Serves skiers with modern facilities and slopes.</li>
                     <li><b>Palu Castle & Bridge:</b> Stands out with its historical texture and natural beauties.</li>
                     <li><b>Golan Hot Springs:</b> A natural spa known for its healing waters. An important center for thermal tourism.</li>
-                    <li><b>Keban Dam:</b> One of Turkey's largest dams, suitable for picnics and fishing. Water sports can be enjoyed in the dam lake.</li>
-                    <li><b>Çırçır Waterfall:</b> One of Elazığ's natural beauties, the waterfall awaits visitors with its magnificent view and cool air. An ideal place for hiking and picnicking.</li>
-                    <li><b>Elazığ Covered Bazaar:</b> Located in the city center, this historical bazaar is an important shopping center where traditional crafts, local products, and souvenirs are sold. Welcomes visitors with its historical texture and lively atmosphere.</li>
-                    <li><b>Elazığ Museum:</b> A modern museum reflecting the city's culture, history, and daily life. Tells the story of the social, economic, and cultural development of Elazığ through interactive exhibits.</li>
-                    <li><b>Cip Picnic Area:</b> One of the city's natural beauties, this picnic area offers a peaceful environment with picnic spots, hiking trails, and magnificent views. An ideal place for spending time in nature.</li>
-                </ul>`,
+                    <li><b>Keban Barajı:</b> One of Turkey's largest dams, suitable for picnics and fishing. Water sports can be enjoyed in the dam lake.</li>
+                    <li><b>Çırçır Şelalesi:</b> Elazığ'ın doğal güzelliklerinden biri olan şelale, muhteşem manzarası ve serin havasıyla ziyaretçilerini bekliyor. Doğa yürüyüşü ve piknik için ideal bir mekan.</li>
+                    <li><b>Elazığ Kapalı Çarşısı:</b> Şehrin merkezinde bulunan tarihi çarşı, geleneksel el sanatları, yöresel ürünler ve hediyelik eşyaların satıldığı önemli bir alışveriş merkezidir. Tarihi dokusu ve canlı atmosferiyle ziyaretçilerini bekliyor.</li>
+                    <li><b>Elazığ Kent Müzesi:</b> Şehrin kültürel mirasını, tarihini ve günlük yaşamını yansıtan modern bir müze. Elazığ'ın sosyal, ekonomik ve kültürel gelişimini interaktif sergilerle anlatıyor.</li>
+                    <li><b>Cip Mesire Alanı:</b> Şehrin doğal güzelliklerinden biri olan mesire alanı, piknik alanları, yürüyüş parkurları ve muhteşem manzarasıyla ziyaretçilerine huzurlu bir ortam sunuyor. Doğa ile iç içe vakit geçirmek için ideal bir mekan.</li>
+                </ul>
+                <p>Elazığ, doğa ve tarih tutkunları için keşfedilmeyi bekleyen birçok güzelliğe ev sahipliği yapar. Her mevsim farklı güzellikler sunan şehir, ziyaretçilerine unutulmaz deneyimler yaşatır.</p>`,
                 galeri: `<h2>Photo Gallery</h2>
-                <p>You can explore the beauties of Elazığ through the photos here.</p>
                 <div class="gallery-container">
                     <div class="gallery-item">
-                        <img src="harput_kalesi.jpg" alt="Harput Castle">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/harput-kalesi.jpg" alt="Harput Castle" loading="lazy">
                         <div class="gallery-caption">Harput Castle</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="buzluk_magarası.jpg" alt="Buzluk Cave">
-                        <div class="gallery-caption">Buzluk Cave</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="hazar_gölü.jpg" alt="Lake Hazar">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazar-golu.jpg" alt="Lake Hazar" loading="lazy">
                         <div class="gallery-caption">Lake Hazar</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="harput_kalesi_2.jpg" alt="Harput Castle">
-                        <div class="gallery-caption">Harput Castle</div>
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/buzluk-magarasi.jpg" alt="Buzluk Cave" loading="lazy">
+                        <div class="gallery-caption">Buzluk Cave</div>
                     </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/keban-baraji.jpg" alt="Keban Dam" loading="lazy">
+                        <div class="gallery-caption">Keban Dam</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/elazig-merkez.jpg" alt="Elazığ Center" loading="lazy">
+                        <div class="gallery-caption">Elazığ Center</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazarbaba-kayak.jpg" alt="Hazarbaba Ski Center" loading="lazy">
+                        <div class="gallery-caption">Hazarbaba Ski Center</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/circir-selalesi.jpg" alt="Çırçır Waterfall" loading="lazy">
+                        <div class="gallery-caption">Çırçır Waterfall</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/kapali-carsi.jpg" alt="Elazığ Covered Bazaar" loading="lazy">
+                        <div class="gallery-caption">Elazığ Covered Bazaar</div>
+                    </div>
+                </div>`,
+                tur360: `<h2>360° Virtual Tour</h2>
+                <div class="tour360-container">
+                  <div class="tour360-item">
+                    <h3>Lake Hazar 360° Tour</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030000!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.470676!2d39.301251!3f177.56!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
+                  <div class="tour360-item">
+                    <h3>Harput Castle 360° Tour</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030001!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.7042!2d39.2533!3f0!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
                 </div>`
             },
             de: {
@@ -595,6 +691,7 @@
                 btnDogal: "Naturschönheiten & Historische Orte",
                 btnGaleri: "Fotogalerie",
                 btnKonum: "📍 Standort anzeigen",
+                btnTur360: "360° Virtuelle Tour",
                 welcomeTitle: "Willkommen!",
                 welcomeText: "Wählen Sie einen Abschnitt oben, um die Schönheiten von Elazığ zu entdecken.",
                 hakkinda: `<h2>Über Elazığ</h2>
@@ -606,7 +703,7 @@
                     <li><b>Bevölkerung:</b> Etwa 600,000</li>
                     <li><b>Gegründet:</b> tät zurück bis ins 20. Jahrhundert v. Chr.</li>
                     <li><b>Berühmte Orte:</b> Harput-Burg, Hazar-See, Buzluk-Höhle</li>
-                    <li><b>Lokale Spezialitäten:</b> Orcik, Harput-Frikadellen, Gefüllte Frikadellen, Keşkek, Siro, Patila, Frikadellen mit gebrannter Tomatenpaste</li>
+                    <li><b>Lokale Spezialitäten:</b> Orcik, Harput-Frikadellen, Gefüllte Frikadellen, Keşkek, Siron, Patila, Frikadellen mit gebrannter Tomatenpaste</li>
                     <li><b>Festivals:</b> Internationale Hazar-Dichtungsabende, Çayda Çıra Festival, Elazığ Kultur- und Kunstfestival</li>
                     <li><b>Handwerk:</b> Kupferarbeit, Silberarbeit, Weberei, Holzschnitzerei</li>
                 </ul>`,
@@ -617,7 +714,7 @@
                     <li><b>Sivrice:</b> Hazar-See, Hazarbaba Skizentrum, Hazar-See Strände, Sivrice Hochland</li>
                     <li><b>Palu:</b> Palu-Burg, Palu-Brücke, historische Bäder, Palu-Canyon</li>
                     <li><b>Kovancılar:</b> Bekannt für seine natürlichen Schönheiten und landwirtschaftliche Produktion, Kovancılar Highlands, Kovancılar Wasserfall</li>
-                    <li><b>Karakoçan:</b> Golan-Heißquellen, Karakoçan Highlands, Historische Brücken</li>
+                    <li><b>Karakoçan:</b> Golan-Heißquellen, Peri Suyu Valley, Karakoçan Highlands, Historische Brücken</li>
                     <li><b>Maden:</b> Tarihi maden ocakları und natürliche Landschaften, Maden Wasserfall, Maden Hochland</li>
                     <li><b>Baskil:</b> Natürliche Schönheiten entlang des Euphrat, Baskil Highlands, Historische Brücken</li>
                     <li><b>Alacakaya & Arıcak:</b> Bergdörfer und Wanderrouten, Hochland, Waterfalls</li>
@@ -639,24 +736,54 @@
                     <li><b>Cip Picnic Area:</b> Eine der natürlichen Schönheiten der Stadt, dieser Picknickplatz bietet Besuchern eine friedliche Umgebung mit Picknickplätzen, Wanderwegen und prächtiger Aussicht. Ein idealer Ort, um Zeit in der Natur zu verbringen.</li>
                 </ul>`,
                 galeri: `<h2>Fotogalerie</h2>
-                <p>Entdecken Sie die Schönheiten von Elazığ durch die hier gezeigten Fotos.</p>
                 <div class="gallery-container">
                     <div class="gallery-item">
-                        <img src="harput_kalesi.jpg" alt="Harput-Burg">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/harput-kalesi.jpg" alt="Harput-Burg" loading="lazy">
                         <div class="gallery-caption">Harput-Burg</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="buzluk_magarası.jpg" alt="Buzluk-Höhle">
-                        <div class="gallery-caption">Buzluk-Höhle</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="hazar_gölü.jpg" alt="Hazar-See">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazar-golu.jpg" alt="Hazar-See" loading="lazy">
                         <div class="gallery-caption">Hazar-See</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="harput_kalesi_2.jpg" alt="Harput-Burg">
-                        <div class="gallery-caption">Harput-Burg</div>
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/buzluk-magarasi.jpg" alt="Buzluk-Höhle" loading="lazy">
+                        <div class="gallery-caption">Buzluk-Höhle</div>
                     </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/keban-baraji.jpg" alt="Keban-Staudamm" loading="lazy">
+                        <div class="gallery-caption">Keban-Staudamm</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/elazig-merkez.jpg" alt="Elazığ Center" loading="lazy">
+                        <div class="gallery-caption">Elazığ Center</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazarbaba-kayak.jpg" alt="Hazarbaba Skizentrum" loading="lazy">
+                        <div class="gallery-caption">Hazarbaba Skizentrum</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/circir-selalesi.jpg" alt="Çırçır Waterfall" loading="lazy">
+                        <div class="gallery-caption">Çırçır Waterfall</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/kapali-carsi.jpg" alt="Elazığ Covered Bazaar" loading="lazy">
+                        <div class="gallery-caption">Elazığ Covered Bazaar</div>
+                    </div>
+                </div>`,
+                tur360: `<h2>360° Virtuelle Tour</h2>
+                <div class="tour360-container">
+                  <div class="tour360-item">
+                    <h3>Hazar-See 360° Tour</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030000!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.470676!2d39.301251!3f177.56!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
+                  <div class="tour360-item">
+                    <h3>Harput-Burg 360° Tour</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030001!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.7042!2d39.2533!3f0!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
                 </div>`
             },
             ru: {
@@ -668,6 +795,7 @@
                 btnDogal: "Природные красоты и Исторические места",
                 btnGaleri: "Фотогалерея",
                 btnKonum: "📍 Показать местоположение",
+                btnTur360: "360° Виртуальный тур",
                 welcomeTitle: "Добро пожаловать!",
                 welcomeText: "Выберите раздел выше, чтобы открыть красоты Элязыга.",
                 hakkinda: `<h2>О Элязыге</h2>
@@ -690,11 +818,11 @@
                     <li><b>Сивридже:</b> Побережье озера Хазар, Горнолыжный центр Хазарбаба, Пляжи озера Хазар, Сивридже Высокие горы</li>
                     <li><b>Палу:</b> Крепость Палу, Мост Палу, исторические бани, Каньон Палу</li>
                     <li><b>Кованджылар:</b> Известен своими природными красотами и сельскохозяйственным производством, Нагорье Кованджылар, Водопад Кованджылар</li>
-                    <li><b>Каракочан:</b> ينابيع غولان الحارة، مرتفعات كاراكوجان، الجسور التاريخية</li>
-                    <li><b>Маден:</b> المناجم التاريخية والمناظر الطبيعية، شلال مادين، مرتفعات مادين</li>
-                    <li><b>باسكيل:</b> الجمال الطبيعي على طول نهر الفرات، مرتفعات باسكيل، الجسور التاريخية</li>
-                    <li><b>ألاجاكايا وأريجاك:</b> القرى الجبلية ومسارات المشي، المرتفعات، الشلالات</li>
-                    <li><b>آغين:</b> الجمال الطبيعي على طول بحيرة سد كيبان، مرتفعات آغين، المستوطنات التاريخية</li>
+                    <li><b>Каракочан:</b> Горячие источники Голан, Нагорье Каракочан, Исторические мосты</li>
+                    <li><b>Маден:</b> Исторические шахты и природные ландшафты, Водопад Маден, Маден Высокие горы</li>
+                    <li><b>Баскил:</b> Природные красоты вдоль реки Евфрат, Нагорье Баскил, Исторические мосты</li>
+                    <li><b>Аладжакая и Арыджак:</b> Горные деревни и пешеходные маршруты, Нагорье, Водопады</li>
+                    <li><b>Агын:</b> Природные красоты вдоль водохранилища Кебан, Нагорье Агын, Исторические поселения</li>
                 </ul>`,
                 dogal: `<h2>Природные красоты и Исторические места</h2>
                 <p>Элязыг - увлекательный город с природными красотами и историческими местами:</p>
@@ -705,31 +833,61 @@
                     <li><b>Горнолыжный центр Хазарбаба:</b> Важный центр зимнего туризма. Обслуживает лыжников современными удобствами и трассами.</li>
                     <li><b>Крепость и Мост Палу:</b> Выделяется своей исторической текстурой и природными красотами.</li>
                     <li><b>Горячие источники Голан:</b> Природный спа, известный своими целебными водами. Важный центр термального туризма.</li>
-                    <li><b>Плотина Кебан:</b> Одно из крупнейших плотин Турции, подходящая для пикников и рыбалки. Водные виды спорта можно практиковать в водохранилище.</li>
+                    <li><b>Кeban-Став:</b> Одно из крупнейших плотин Турции, подходящая для пикников и рыбалки. Водные виды спорта можно практиковать в водохранилище.</li>
                     <li><b>Водопад Чирчир:</b> Одна из природных красот Элязыга, водопад ждет посетителей своим великолепным видом и прохладным воздухом. Идеальное место для пеших прогулок и пикников.</li>
                     <li><b>Крытый базар Элязыга:</b> Расположенный в центре города, этот исторический базар является важным торговым центром, где продаются традиционные ремесла, местные продукты и сувениры. Приветствует посетителей своей исторической текстурой и оживленной атмосферой.</li>
                     <li><b>Городской музей Элязыга:</b> Современный музей, отражающий культурное наследие, историю и повседневную жизнь города. Рассказывает историю социального, экономического и культурного развития Элязыга через интерактивные выставки.</li>
                     <li><b>Зона отдыха Чип:</b> Одна из природных красот города, эта зона отдыха предлагает посетителям спокойную обстановку с местами для пикника, пешеходными тропами и великолепным видом. Идеальное место для проведения времени на природе.</li>
                 </ul>`,
                 galeri: `<h2>Фотогалерея</h2>
-                <p>Откройте для себя красоты Элязыга через фотографии, представленные здесь.</p>
                 <div class="gallery-container">
                     <div class="gallery-item">
-                        <img src="harput_kalesi.jpg" alt="Крепость Харпут">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/harput-kalesi.jpg" alt="Крепость Харпут" loading="lazy">
                         <div class="gallery-caption">Крепость Харпут</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="buzluk_magarası.jpg" alt="Пещера Бузлук">
-                        <div class="gallery-caption">Пещера Бузлук</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="hazar_gölü.jpg" alt="Озеро Хазар">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazar-golu.jpg" alt="Озеро Хазар" loading="lazy">
                         <div class="gallery-caption">Озеро Хазар</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="harput_kalesi_2.jpg" alt="Крепость Харпут">
-                        <div class="gallery-caption">Крепость Харпут</div>
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/buzluk-magarasi.jpg" alt="Пещера Бузлук" loading="lazy">
+                        <div class="gallery-caption">Пещера Бузлук</div>
                     </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/keban-baraji.jpg" alt="Кебан-Плотина" loading="lazy">
+                        <div class="gallery-caption">Кебан-Плотина</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/elazig-merkez.jpg" alt="Элязыг Центр" loading="lazy">
+                        <div class="gallery-caption">Элязыг Центр</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazarbaba-kayak.jpg" alt="Горнолыжный центр Хазарбаба" loading="lazy">
+                        <div class="gallery-caption">Горнолыжный центр Хазарбаба</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/circir-selalesi.jpg" alt="Водопад Чирчир" loading="lazy">
+                        <div class="gallery-caption">Водопад Чирчир</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/kapali-carsi.jpg" alt="Крытый базар Элязыга" loading="lazy">
+                        <div class="gallery-caption">Крытый базар Элязыга</div>
+                    </div>
+                </div>`,
+                tur360: `<h2>360° Виртуальный тур</h2>
+                <div class="tour360-container">
+                  <div class="tour360-item">
+                    <h3>Озеро Хазар 360° Тур</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030000!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.470676!2d39.301251!3f177.56!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
+                  <div class="tour360-item">
+                    <h3>Крепость Харпут 360° Тур</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030001!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.7042!2d39.2533!3f0!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
                 </div>`
             },
             ar: {
@@ -741,6 +899,7 @@
                 btnDogal: "الجمال الطبيعي والأماكن التاريخية",
                 btnGaleri: "معرض الصور",
                 btnKonum: "📍 عرض الموقع",
+                btnTur360: "جولة افتراضية 360°",
                 welcomeTitle: "مرحباً بك!",
                 welcomeText: "اختر قسماً من أعلاه لاكتشاف جمال ألازيغ.",
                 hakkinda: `<h2>عن ألازيغ</h2>
@@ -780,27 +939,58 @@
                     <li><b>شلال تشيرتشير:</b> واحدة من جماليات ألازيغ الطبيعية، ينتظر الشلال الزوار بإطلالته الرائعة وهواءه البارد. مكان مثالي للمشي والنزهات.</li>
                     <li><b>البازار المسقوف:</b> يقع في مركز المدينة، هذا البازار التاريخي هو مركز تسوق مهم حيث تباع الحرف التقليدية والمنتجات المحلية والهدايا التذكارية. يرحب بالزوار بنسيجه التاريخي وأجوائه النابضة بالحياة.</li>
                     <li><b>متحف المدينة:</b> متحف حديث يعكس التراث الثقافي والتاريخ والحياة اليومية للمدينة. يروي قصة التطور الاجتماعي والاقتصادي والثقافي لألازيغ من خلال المعارض التفاعلية.</li>
+                    <li><b>المسجد الكبير:</b> مبنى ديني مهم من فترة السلاجقة، يقع في هاربوت التاريخية.</li>
                     <li><b>منطقة جيب للنزهات:</b> واحدة من جماليات المدينة الطبيعية، تقدم منطقة النزهات هذه للزوار بيئة هادئة مع مناطق للنزهات ومسارات للمشي وإطلالات رائعة. مكان مثالي لقضاء الوقت في الطبيعة.</li>
                 </ul>`,
                 galeri: `<h2>معرض الصور</h2>
-                <p>اكتشف جمال ألازيغ من خلال الصور المعروضة هنا.</p>
                 <div class="gallery-container">
                     <div class="gallery-item">
-                        <img src="harput_kalesi.jpg" alt="قلعة هاربوت">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/harput-kalesi.jpg" alt="قلعة هاربوت" loading="lazy">
                         <div class="gallery-caption">قلعة هاربوت</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="buzluk_magarası.jpg" alt="كهف بوزلوك">
-                        <div class="gallery-caption">كهف بوزلوك</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="hazar_gölü.jpg" alt="بحيرة هزار">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazar-golu.jpg" alt="بحيرة هزار" loading="lazy">
                         <div class="gallery-caption">بحيرة هزار</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="harput_kalesi_2.jpg" alt="قلعة هاربوت">
-                        <div class="gallery-caption">قلعة هاربوت</div>
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/buzluk-magarasi.jpg" alt="كهف بوزلوك" loading="lazy">
+                        <div class="gallery-caption">كهف بوزلوك</div>
                     </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/keban-baraji.jpg" alt="سد كيبان" loading="lazy">
+                        <div class="gallery-caption">سد كيبان</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/elazig-merkez.jpg" alt="مركز ألازيغ" loading="lazy">
+                        <div class="gallery-caption">مركز ألازيغ</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazarbaba-kayak.jpg" alt="مركز هزاربابا للتزلج" loading="lazy">
+                        <div class="gallery-caption">مركز هزاربابا للتزلج</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/circir-selalesi.jpg" alt="شلال تشيرتشير" loading="lazy">
+                        <div class="gallery-caption">شلال تشيرتشير</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/kapali-carsi.jpg" alt="البازار المسقوف" loading="lazy">
+                        <div class="gallery-caption">البازار المسقوف</div>
+                    </div>
+                </div>`,
+                tur360: `<h2>جولة افتراضية 360°</h2>
+                <div class="tour360-container">
+                  <div class="tour360-item">
+                    <h3>جولة بحيرة هزار 360°</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030000!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.470676!2d39.301251!3f177.56!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
+                  <div class="tour360-item">
+                    <h3>جولة قلعة هاربوت 360°</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030001!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.7042!2d39.2533!3f0!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
                 </div>`
             }
         };
@@ -823,6 +1013,7 @@
             document.getElementById('btnDogal').textContent = d.btnDogal;
             document.getElementById('btnGaleri').textContent = d.btnGaleri;
             document.getElementById('btnKonum').textContent = d.btnKonum;
+            document.getElementById('btnTur360').textContent = d.btnTur360;
             document.getElementById('welcomeTitle').textContent = d.welcomeTitle;
             document.getElementById('welcomeText').textContent = d.welcomeText;
             // Eğer içerik kutusunda başka bir bölüm açıksa, onu da güncelle
@@ -853,6 +1044,8 @@
                 content = d.dogal;
             } else if(section === 'galeri') {
                 content = d.galeri;
+            } else if(section === 'tur360') {
+                content = d.tur360;
             }
             icerik.innerHTML = content;
             icerik.dataset.section = section;
