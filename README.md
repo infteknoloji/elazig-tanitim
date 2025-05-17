@@ -92,9 +92,11 @@ Nuhser Atala:
 
 + Arayüz geliştirmeye devam edilecek
 
-+ Fotoğraf galerisi tasarımının tamamlanması
++ Hata Düzeltmeleri Yapılacak
 
 📅 GÜNCELLEME
+
++ Fotoğraf Galerisine Fotoğraflar Yüklendi
 
 + 360 sanal geziler eklendi
 
