@@ -59,6 +59,8 @@
             opacity: 1;
             cursor: pointer;
             top: 0; left: 0;
+            background: transparent;
+            pointer-events: auto;
         }
         .giris.fade-out {
             opacity: 0;
@@ -129,10 +131,12 @@
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 20px 0 20px 0;
             overflow-y: auto;
+            visibility: hidden;
         }
         .ana-sayfa.active {
             opacity: 1;
             pointer-events: auto;
+            visibility: visible;
         }
         .menu {
             margin-top: 60px;
@@ -326,22 +330,91 @@
         }
         .gallery-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 30px;
+            max-width: 1400px;
             margin: 0 auto;
+        }
+        .gallery-collection {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .gallery-collection:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+        .collection-title {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Pacifico', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .collection-title::after {
+            content: '▼';
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .gallery-collection.active .collection-title::after {
+            transform: rotate(180deg);
+        }
+        .collection-cover {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .collection-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .gallery-collection:hover .collection-cover img {
+            transform: scale(1.05);
+        }
+        .collection-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gallery-collection.active .collection-grid {
+            display: grid;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .gallery-item {
             position: relative;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             aspect-ratio: 4/3;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.2);
         }
         .gallery-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
         .gallery-item img {
             width: 100%;
@@ -368,18 +441,92 @@
         .gallery-item:hover .gallery-caption {
             transform: translateY(0);
         }
-        @media (max-width: 768px) {
-            .gallery-container {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 15px;
-                padding: 15px;
-            }
-            .gallery-caption {
-                transform: translateY(0);
-                background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
                 padding: 10px;
-                font-size: 1rem;
-            }
+            transition: transform 0.3s ease;
+        }
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+        .lightbox-caption {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            right: 0;
+            color: #fff;
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            padding: 15px 25px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+        }
+        .lightbox-nav button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
         .icerik ul {
             text-align: left;
@@ -513,37 +660,255 @@
                 <p>Elazığ, doğa ve tarih tutkunları için keşfedilmeyi bekleyen birçok güzelliğe ev sahipliği yapar. Her mevsim farklı güzellikler sunan şehir, ziyaretçilerine unutulmaz deneyimler yaşatır.</p>`,
                 galeri: `<h2>Fotoğraf Galerisi</h2>
                 <div class="gallery-container">
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/harput-kalesi.jpg" alt="Harput Kalesi" loading="lazy">
-                        <div class="gallery-caption">Harput Kalesi</div>
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Harput Kalesi</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(0)">
+                            <img src="images/harput8.jpg" alt="Harput Kalesi" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(0)">
+                                <img src="images/harput1.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(1)">
+                                <img src="images/harput2.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(2)">
+                                <img src="images/harput3.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(3)">
+                                <img src="images/harput4.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(4)">
+                                <img src="images/harput5.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(5)">
+                                <img src="images/harput6.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(6)">
+                                <img src="images/harput7.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(7)">
+                                <img src="images/harput8.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazar-golu.jpg" alt="Hazar Gölü" loading="lazy">
-                        <div class="gallery-caption">Hazar Gölü</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Buzluk Mağarası</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(8)">
+                            <img src="images/buzluk1.jpg" alt="Buzluk Mağarası" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(8)">
+                                <img src="images/buzluk1.jpg" alt="Buzluk Mağarası" loading="lazy">
+                                <div class="gallery-caption">Buzluk Mağarası</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(9)">
+                                <img src="images/buzluk2.jpg" alt="Buzluk Mağarası" loading="lazy">
+                                <div class="gallery-caption">Buzluk Mağarası</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(10)">
+                                <img src="images/buzluk3.jpg" alt="Buzluk Mağarası" loading="lazy">
+                                <div class="gallery-caption">Buzluk Mağarası</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(11)">
+                                <img src="images/buzluk4.jpg" alt="Buzluk Mağarası" loading="lazy">
+                                <div class="gallery-caption">Buzluk Mağarası</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/buzluk-magarasi.jpg" alt="Buzluk Mağarası" loading="lazy">
-                        <div class="gallery-caption">Buzluk Mağarası</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Hazar Gölü</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(12)">
+                            <img src="images/gol1.jpg" alt="Hazar Gölü" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(12)">
+                                <img src="images/gol1.jpg" alt="Hazar Gölü" loading="lazy">
+                                <div class="gallery-caption">Hazar Gölü</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(13)">
+                                <img src="images/gol2.jpg" alt="Hazar Gölü" loading="lazy">
+                                <div class="gallery-caption">Hazar Gölü</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(14)">
+                                <img src="images/gol3.jpg" alt="Hazar Gölü" loading="lazy">
+                                <div class="gallery-caption">Hazar Gölü</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(15)">
+                                <img src="images/gol4.jpg" alt="Hazar Gölü" loading="lazy">
+                                <div class="gallery-caption">Hazar Gölü</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/keban-baraji.jpg" alt="Keban Barajı" loading="lazy">
-                        <div class="gallery-caption">Keban Barajı</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Hazarbaba Kayak Merkezi</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(16)">
+                            <img src="images/kayak1.jpg" alt="Hazarbaba Kayak Merkezi" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(16)">
+                                <img src="images/kayak1.jpg" alt="Hazarbaba Kayak Merkezi" loading="lazy">
+                                <div class="gallery-caption">Hazarbaba Kayak Merkezi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(17)">
+                                <img src="images/kayak2.jpg" alt="Hazarbaba Kayak Merkezi" loading="lazy">
+                                <div class="gallery-caption">Hazarbaba Kayak Merkezi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(18)">
+                                <img src="images/kayak3.jpg" alt="Hazarbaba Kayak Merkezi" loading="lazy">
+                                <div class="gallery-caption">Hazarbaba Kayak Merkezi</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/elazig-merkez.jpg" alt="Elazığ Merkez" loading="lazy">
-                        <div class="gallery-caption">Elazığ Merkez</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Çırçır Şelalesi</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(19)">
+                            <img src="images/circir1.jpg" alt="Çırçır Şelalesi" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(19)">
+                                <img src="images/circir1.jpg" alt="Çırçır Şelalesi" loading="lazy">
+                                <div class="gallery-caption">Çırçır Şelalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(20)">
+                                <img src="images/circir2.jpg" alt="Çırçır Şelalesi" loading="lazy">
+                                <div class="gallery-caption">Çırçır Şelalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(21)">
+                                <img src="images/circir3.jpg" alt="Çırçır Şelalesi" loading="lazy">
+                                <div class="gallery-caption">Çırçır Şelalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(22)">
+                                <img src="images/circir4.jpg" alt="Çırçır Şelalesi" loading="lazy">
+                                <div class="gallery-caption">Çırçır Şelalesi</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazarbaba-kayak.jpg" alt="Hazarbaba Kayak Merkezi" loading="lazy">
-                        <div class="gallery-caption">Hazarbaba Kayak Merkezi</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Palu Köprüsü</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(23)">
+                            <img src="images/palu1.jpg" alt="Palu Köprüsü" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(23)">
+                                <img src="images/palu1.jpg" alt="Palu Köprüsü" loading="lazy">
+                                <div class="gallery-caption">Palu Köprüsü</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(24)">
+                                <img src="images/palu2.jpg" alt="Palu Köprüsü" loading="lazy">
+                                <div class="gallery-caption">Palu Köprüsü</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(25)">
+                                <img src="images/palu3.jpg" alt="Palu Köprüsü" loading="lazy">
+                                <div class="gallery-caption">Palu Köprüsü</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/circir-selalesi.jpg" alt="Çırçır Şelalesi" loading="lazy">
-                        <div class="gallery-caption">Çırçır Şelalesi</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Golan</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(26)">
+                            <img src="images/golan1.jpg" alt="Golan" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(26)">
+                                <img src="images/golan1.jpg" alt="Golan" loading="lazy">
+                                <div class="gallery-caption">Golan</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(27)">
+                                <img src="images/golan2.jpg" alt="Golan" loading="lazy">
+                                <div class="gallery-caption">Golan</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(28)">
+                                <img src="images/golan3.jpg" alt="Golan" loading="lazy">
+                                <div class="gallery-caption">Golan</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/kapali-carsi.jpg" alt="Elazığ Kapalı Çarşısı" loading="lazy">
-                        <div class="gallery-caption">Elazığ Kapalı Çarşısı</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Keban Barajı</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(29)">
+                            <img src="images/keban1.jpg" alt="Keban Barajı" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(29)">
+                                <img src="images/keban1.jpg" alt="Keban Barajı" loading="lazy">
+                                <div class="gallery-caption">Keban Barajı</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(30)">
+                                <img src="images/keban2.jpg" alt="Keban Barajı" loading="lazy">
+                                <div class="gallery-caption">Keban Barajı</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Kapalı Çarşı</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(31)">
+                            <img src="images/carsi1.jpg" alt="Kapalı Çarşı" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(31)">
+                                <img src="images/carsi1.jpg" alt="Kapalı Çarşı" loading="lazy">
+                                <div class="gallery-caption">Kapalı Çarşı</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(32)">
+                                <img src="images/carsi2.jpg" alt="Kapalı Çarşı" loading="lazy">
+                                <div class="gallery-caption">Kapalı Çarşı</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Cip Mesire Alanı</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(33)">
+                            <img src="images/cip1.jpg" alt="Cip Mesire Alanı" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(33)">
+                                <img src="images/cip1.jpg" alt="Cip Mesire Alanı" loading="lazy">
+                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(34)">
+                                <img src="images/cip2.jpg" alt="Cip Mesire Alanı" loading="lazy">
+                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(35)">
+                                <img src="images/cip3.jpg" alt="Cip Mesire Alanı" loading="lazy">
+                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(36)">
+                                <img src="images/cip4.jpg" alt="Cip Mesire Alanı" loading="lazy">
+                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lightbox HTML -->
+                <div class="lightbox" id="lightbox">
+                    <div class="lightbox-content">
+                        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                        <img id="lightbox-img" src="" alt="">
+                        <div class="lightbox-caption" id="lightbox-caption"></div>
+                        <div class="lightbox-nav">
+                            <button onclick="prevImage()">❮</button>
+                            <button onclick="nextImage()">❯</button>
+                        </div>
                     </div>
                 </div>`,
                 tur360: `<h2>360° Sanal Tur</h2>
@@ -633,37 +998,255 @@
                 <p>Elazığ, doğa ve tarih tutkunları için keşfedilmeyi bekleyen birçok güzelliğe ev sahipliği yapar. Her mevsim farklı güzellikler sunan şehir, ziyaretçilerine unutulmaz deneyimler yaşatır.</p>`,
                 galeri: `<h2>Photo Gallery</h2>
                 <div class="gallery-container">
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/harput-kalesi.jpg" alt="Harput Castle" loading="lazy">
-                        <div class="gallery-caption">Harput Castle</div>
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Harput Castle</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(0)">
+                            <img src="images/harput8.jpg" alt="Harput Castle" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(0)">
+                                <img src="images/harput1.jpg" alt="Harput Castle" loading="lazy">
+                                <div class="gallery-caption">Harput Castle</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(1)">
+                                <img src="images/harput2.jpg" alt="Harput Castle" loading="lazy">
+                                <div class="gallery-caption">Harput Castle</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(2)">
+                                <img src="images/harput3.jpg" alt="Harput Castle" loading="lazy">
+                                <div class="gallery-caption">Harput Castle</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(3)">
+                                <img src="images/harput4.jpg" alt="Harput Castle" loading="lazy">
+                                <div class="gallery-caption">Harput Castle</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(4)">
+                                <img src="images/harput5.jpg" alt="Harput Castle" loading="lazy">
+                                <div class="gallery-caption">Harput Castle</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(5)">
+                                <img src="images/harput6.jpg" alt="Harput Castle" loading="lazy">
+                                <div class="gallery-caption">Harput Castle</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(6)">
+                                <img src="images/harput7.jpg" alt="Harput Castle" loading="lazy">
+                                <div class="gallery-caption">Harput Castle</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(7)">
+                                <img src="images/harput8.jpg" alt="Harput Castle" loading="lazy">
+                                <div class="gallery-caption">Harput Castle</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazar-golu.jpg" alt="Lake Hazar" loading="lazy">
-                        <div class="gallery-caption">Lake Hazar</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Buzluk Cave</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(8)">
+                            <img src="images/buzluk1.jpg" alt="Buzluk Cave" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(8)">
+                                <img src="images/buzluk1.jpg" alt="Buzluk Cave" loading="lazy">
+                                <div class="gallery-caption">Buzluk Cave</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(9)">
+                                <img src="images/buzluk2.jpg" alt="Buzluk Cave" loading="lazy">
+                                <div class="gallery-caption">Buzluk Cave</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(10)">
+                                <img src="images/buzluk3.jpg" alt="Buzluk Cave" loading="lazy">
+                                <div class="gallery-caption">Buzluk Cave</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(11)">
+                                <img src="images/buzluk4.jpg" alt="Buzluk Cave" loading="lazy">
+                                <div class="gallery-caption">Buzluk Cave</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/buzluk-magarasi.jpg" alt="Buzluk Cave" loading="lazy">
-                        <div class="gallery-caption">Buzluk Cave</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Lake Hazar</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(12)">
+                            <img src="images/gol1.jpg" alt="Lake Hazar" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(12)">
+                                <img src="images/gol1.jpg" alt="Lake Hazar" loading="lazy">
+                                <div class="gallery-caption">Lake Hazar</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(13)">
+                                <img src="images/gol2.jpg" alt="Lake Hazar" loading="lazy">
+                                <div class="gallery-caption">Lake Hazar</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(14)">
+                                <img src="images/gol3.jpg" alt="Lake Hazar" loading="lazy">
+                                <div class="gallery-caption">Lake Hazar</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(15)">
+                                <img src="images/gol4.jpg" alt="Lake Hazar" loading="lazy">
+                                <div class="gallery-caption">Lake Hazar</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/keban-baraji.jpg" alt="Keban Dam" loading="lazy">
-                        <div class="gallery-caption">Keban Dam</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Hazarbaba Ski Center</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(16)">
+                            <img src="images/kayak1.jpg" alt="Hazarbaba Ski Center" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(16)">
+                                <img src="images/kayak1.jpg" alt="Hazarbaba Ski Center" loading="lazy">
+                                <div class="gallery-caption">Hazarbaba Ski Center</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(17)">
+                                <img src="images/kayak2.jpg" alt="Hazarbaba Ski Center" loading="lazy">
+                                <div class="gallery-caption">Hazarbaba Ski Center</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(18)">
+                                <img src="images/kayak3.jpg" alt="Hazarbaba Ski Center" loading="lazy">
+                                <div class="gallery-caption">Hazarbaba Ski Center</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/elazig-merkez.jpg" alt="Elazığ Center" loading="lazy">
-                        <div class="gallery-caption">Elazığ Center</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Çırçır Waterfall</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(19)">
+                            <img src="images/circir1.jpg" alt="Çırçır Waterfall" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(19)">
+                                <img src="images/circir1.jpg" alt="Çırçır Waterfall" loading="lazy">
+                                <div class="gallery-caption">Çırçır Waterfall</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(20)">
+                                <img src="images/circir2.jpg" alt="Çırçır Waterfall" loading="lazy">
+                                <div class="gallery-caption">Çırçır Waterfall</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(21)">
+                                <img src="images/circir3.jpg" alt="Çırçır Waterfall" loading="lazy">
+                                <div class="gallery-caption">Çırçır Waterfall</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(22)">
+                                <img src="images/circir4.jpg" alt="Çırçır Waterfall" loading="lazy">
+                                <div class="gallery-caption">Çırçır Waterfall</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazarbaba-kayak.jpg" alt="Hazarbaba Ski Center" loading="lazy">
-                        <div class="gallery-caption">Hazarbaba Ski Center</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Palu Bridge</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(23)">
+                            <img src="images/palu1.jpg" alt="Palu Bridge" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(23)">
+                                <img src="images/palu1.jpg" alt="Palu Bridge" loading="lazy">
+                                <div class="gallery-caption">Palu Bridge</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(24)">
+                                <img src="images/palu2.jpg" alt="Palu Bridge" loading="lazy">
+                                <div class="gallery-caption">Palu Bridge</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(25)">
+                                <img src="images/palu3.jpg" alt="Palu Bridge" loading="lazy">
+                                <div class="gallery-caption">Palu Bridge</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/circir-selalesi.jpg" alt="Çırçır Waterfall" loading="lazy">
-                        <div class="gallery-caption">Çırçır Waterfall</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Golan</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(26)">
+                            <img src="images/golan1.jpg" alt="Golan" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(26)">
+                                <img src="images/golan1.jpg" alt="Golan" loading="lazy">
+                                <div class="gallery-caption">Golan</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(27)">
+                                <img src="images/golan2.jpg" alt="Golan" loading="lazy">
+                                <div class="gallery-caption">Golan</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(28)">
+                                <img src="images/golan3.jpg" alt="Golan" loading="lazy">
+                                <div class="gallery-caption">Golan</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/kapali-carsi.jpg" alt="Elazığ Covered Bazaar" loading="lazy">
-                        <div class="gallery-caption">Elazığ Covered Bazaar</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Keban Dam</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(29)">
+                            <img src="images/keban1.jpg" alt="Keban Dam" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(29)">
+                                <img src="images/keban1.jpg" alt="Keban Dam" loading="lazy">
+                                <div class="gallery-caption">Keban Dam</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(30)">
+                                <img src="images/keban2.jpg" alt="Keban Dam" loading="lazy">
+                                <div class="gallery-caption">Keban Dam</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Covered Bazaar</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(31)">
+                            <img src="images/carsi1.jpg" alt="Covered Bazaar" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(31)">
+                                <img src="images/carsi1.jpg" alt="Covered Bazaar" loading="lazy">
+                                <div class="gallery-caption">Covered Bazaar</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(32)">
+                                <img src="images/carsi2.jpg" alt="Covered Bazaar" loading="lazy">
+                                <div class="gallery-caption">Covered Bazaar</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Cip Picnic Area</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(33)">
+                            <img src="images/cip1.jpg" alt="Cip Picnic Area" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(33)">
+                                <img src="images/cip1.jpg" alt="Cip Picnic Area" loading="lazy">
+                                <div class="gallery-caption">Cip Picnic Area</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(34)">
+                                <img src="images/cip2.jpg" alt="Cip Picnic Area" loading="lazy">
+                                <div class="gallery-caption">Cip Picnic Area</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(35)">
+                                <img src="images/cip3.jpg" alt="Cip Picnic Area" loading="lazy">
+                                <div class="gallery-caption">Cip Picnic Area</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(36)">
+                                <img src="images/cip4.jpg" alt="Cip Picnic Area" loading="lazy">
+                                <div class="gallery-caption">Cip Picnic Area</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lightbox HTML -->
+                <div class="lightbox" id="lightbox">
+                    <div class="lightbox-content">
+                        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                        <img id="lightbox-img" src="" alt="">
+                        <div class="lightbox-caption" id="lightbox-caption"></div>
+                        <div class="lightbox-nav">
+                            <button onclick="prevImage()">❮</button>
+                            <button onclick="nextImage()">❯</button>
+                        </div>
                     </div>
                 </div>`,
                 tur360: `<h2>360° Virtual Tour</h2>
@@ -737,153 +1320,267 @@
                 </ul>`,
                 galeri: `<h2>Fotogalerie</h2>
                 <div class="gallery-container">
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/harput-kalesi.jpg" alt="Harput-Burg" loading="lazy">
-                        <div class="gallery-caption">Harput-Burg</div>
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Harput-Burg</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(0)">
+                            <img src="images/harput8.jpg" alt="Harput-Burg" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(0)">
+                                <img src="images/harput1.jpg" alt="Harput-Burg" loading="lazy">
+                                <div class="gallery-caption">Harput-Burg</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(1)">
+                                <img src="images/harput2.jpg" alt="Harput-Burg" loading="lazy">
+                                <div class="gallery-caption">Harput-Burg</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(2)">
+                                <img src="images/harput3.jpg" alt="Harput-Burg" loading="lazy">
+                                <div class="gallery-caption">Harput-Burg</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(3)">
+                                <img src="images/harput4.jpg" alt="Harput-Burg" loading="lazy">
+                                <div class="gallery-caption">Harput-Burg</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(4)">
+                                <img src="images/harput5.jpg" alt="Harput-Burg" loading="lazy">
+                                <div class="gallery-caption">Harput-Burg</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(5)">
+                                <img src="images/harput6.jpg" alt="Harput-Burg" loading="lazy">
+                                <div class="gallery-caption">Harput-Burg</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(6)">
+                                <img src="images/harput7.jpg" alt="Harput-Burg" loading="lazy">
+                                <div class="gallery-caption">Harput-Burg</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(7)">
+                                <img src="images/harput8.jpg" alt="Harput-Burg" loading="lazy">
+                                <div class="gallery-caption">Harput-Burg</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazar-golu.jpg" alt="Hazar-See" loading="lazy">
-                        <div class="gallery-caption">Hazar-See</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Buzluk-Höhle</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(8)">
+                            <img src="images/buzluk1.jpg" alt="Buzluk-Höhle" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(8)">
+                                <img src="images/buzluk1.jpg" alt="Buzluk-Höhle" loading="lazy">
+                                <div class="gallery-caption">Buzluk-Höhle</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(9)">
+                                <img src="images/buzluk2.jpg" alt="Buzluk-Höhle" loading="lazy">
+                                <div class="gallery-caption">Buzluk-Höhle</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(10)">
+                                <img src="images/buzluk3.jpg" alt="Buzluk-Höhle" loading="lazy">
+                                <div class="gallery-caption">Buzluk-Höhle</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(11)">
+                                <img src="images/buzluk4.jpg" alt="Buzluk-Höhle" loading="lazy">
+                                <div class="gallery-caption">Buzluk-Höhle</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/buzluk-magarasi.jpg" alt="Buzluk-Höhle" loading="lazy">
-                        <div class="gallery-caption">Buzluk-Höhle</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Hazar-See</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(12)">
+                            <img src="images/gol1.jpg" alt="Hazar-See" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(12)">
+                                <img src="images/gol1.jpg" alt="Hazar-See" loading="lazy">
+                                <div class="gallery-caption">Hazar-See</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(13)">
+                                <img src="images/gol2.jpg" alt="Hazar-See" loading="lazy">
+                                <div class="gallery-caption">Hazar-See</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(14)">
+                                <img src="images/gol3.jpg" alt="Hazar-See" loading="lazy">
+                                <div class="gallery-caption">Hazar-See</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(15)">
+                                <img src="images/gol4.jpg" alt="Hazar-See" loading="lazy">
+                                <div class="gallery-caption">Hazar-See</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/keban-baraji.jpg" alt="Keban-Staudamm" loading="lazy">
-                        <div class="gallery-caption">Keban-Staudamm</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Hazarbaba Skizentrum</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(16)">
+                            <img src="images/kayak1.jpg" alt="Hazarbaba Skizentrum" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(16)">
+                                <img src="images/kayak1.jpg" alt="Hazarbaba Skizentrum" loading="lazy">
+                                <div class="gallery-caption">Hazarbaba Skizentrum</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(17)">
+                                <img src="images/kayak2.jpg" alt="Hazarbaba Skizentrum" loading="lazy">
+                                <div class="gallery-caption">Hazarbaba Skizentrum</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(18)">
+                                <img src="images/kayak3.jpg" alt="Hazarbaba Skizentrum" loading="lazy">
+                                <div class="gallery-caption">Hazarbaba Skizentrum</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/elazig-merkez.jpg" alt="Elazığ Center" loading="lazy">
-                        <div class="gallery-caption">Elazığ Center</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Çırçır Wasserfall</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(19)">
+                            <img src="images/circir1.jpg" alt="Çırçır Wasserfall" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(19)">
+                                <img src="images/circir1.jpg" alt="Çırçır Wasserfall" loading="lazy">
+                                <div class="gallery-caption">Çırçır Wasserfall</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(20)">
+                                <img src="images/circir2.jpg" alt="Çırçır Wasserfall" loading="lazy">
+                                <div class="gallery-caption">Çırçır Wasserfall</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(21)">
+                                <img src="images/circir3.jpg" alt="Çırçır Wasserfall" loading="lazy">
+                                <div class="gallery-caption">Çırçır Wasserfall</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(22)">
+                                <img src="images/circir4.jpg" alt="Çırçır Wasserfall" loading="lazy">
+                                <div class="gallery-caption">Çırçır Wasserfall</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazarbaba-kayak.jpg" alt="Hazarbaba Skizentrum" loading="lazy">
-                        <div class="gallery-caption">Hazarbaba Skizentrum</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Palu-Brücke</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(23)">
+                            <img src="images/palu1.jpg" alt="Palu-Brücke" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(23)">
+                                <img src="images/palu1.jpg" alt="Palu-Brücke" loading="lazy">
+                                <div class="gallery-caption">Palu-Brücke</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(24)">
+                                <img src="images/palu2.jpg" alt="Palu-Brücke" loading="lazy">
+                                <div class="gallery-caption">Palu-Brücke</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(25)">
+                                <img src="images/palu3.jpg" alt="Palu-Brücke" loading="lazy">
+                                <div class="gallery-caption">Palu-Brücke</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/circir-selalesi.jpg" alt="Çırçır Waterfall" loading="lazy">
-                        <div class="gallery-caption">Çırçır Waterfall</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Golan</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(26)">
+                            <img src="images/golan1.jpg" alt="Golan" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(26)">
+                                <img src="images/golan1.jpg" alt="Golan" loading="lazy">
+                                <div class="gallery-caption">Golan</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(27)">
+                                <img src="images/golan2.jpg" alt="Golan" loading="lazy">
+                                <div class="gallery-caption">Golan</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(28)">
+                                <img src="images/golan3.jpg" alt="Golan" loading="lazy">
+                                <div class="gallery-caption">Golan</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/kapali-carsi.jpg" alt="Elazığ Covered Bazaar" loading="lazy">
-                        <div class="gallery-caption">Elazığ Covered Bazaar</div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Keban-Staudamm</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(29)">
+                            <img src="images/keban1.jpg" alt="Keban-Staudamm" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(29)">
+                                <img src="images/keban1.jpg" alt="Keban-Staudamm" loading="lazy">
+                                <div class="gallery-caption">Keban-Staudamm</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(30)">
+                                <img src="images/keban2.jpg" alt="Keban-Staudamm" loading="lazy">
+                                <div class="gallery-caption">Keban-Staudamm</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Gedeckter Basar</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(31)">
+                            <img src="images/carsi1.jpg" alt="Gedeckter Basar" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(31)">
+                                <img src="images/carsi1.jpg" alt="Gedeckter Basar" loading="lazy">
+                                <div class="gallery-caption">Gedeckter Basar</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(32)">
+                                <img src="images/carsi2.jpg" alt="Gedeckter Basar" loading="lazy">
+                                <div class="gallery-caption">Gedeckter Basar</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Cip Picknickplatz</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(33)">
+                            <img src="images/cip1.jpg" alt="Cip Picknickplatz" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(33)">
+                                <img src="images/cip1.jpg" alt="Cip Picknickplatz" loading="lazy">
+                                <div class="gallery-caption">Cip Picknickplatz</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(34)">
+                                <img src="images/cip2.jpg" alt="Cip Picknickplatz" loading="lazy">
+                                <div class="gallery-caption">Cip Picknickplatz</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(35)">
+                                <img src="images/cip3.jpg" alt="Cip Picknickplatz" loading="lazy">
+                                <div class="gallery-caption">Cip Picknickplatz</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(36)">
+                                <img src="images/cip4.jpg" alt="Cip Picknickplatz" loading="lazy">
+                                <div class="gallery-caption">Cip Picknickplatz</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lightbox HTML -->
+                <div class="lightbox" id="lightbox">
+                    <div class="lightbox-content">
+                        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                        <img id="lightbox-img" src="" alt="">
+                        <div class="lightbox-caption" id="lightbox-caption"></div>
+                        <div class="lightbox-nav">
+                            <button onclick="prevImage()">❮</button>
+                            <button onclick="nextImage()">❯</button>
+                        </div>
                     </div>
                 </div>`,
                 tur360: `<h2>360° Virtuelle Tour</h2>
                 <div class="tour360-container">
                   <div class="tour360-item">
-                    <h3>Hazar-See 360° Tour</h3>
+                    <h3>Ozean 360° Tour</h3>
                     <div class="iframe-wrapper">
                       <iframe src="https://www.google.com/maps/embed?pb=!4v1718030000!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.470676!2d39.301251!3f177.56!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                   </div>
                   <div class="tour360-item">
                     <h3>Harput-Burg 360° Tour</h3>
-                    <div class="iframe-wrapper">
-                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030001!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.7042!2d39.2533!3f0!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                  </div>
-                </div>`
-            },
-            ru: {
-                mainTitle: "Элязыг",
-                mainSlogan: "Элязыг ждет вас!",
-                mainSub: "История на каждом углу, открытие на каждом шагу...",
-                btnHakkinda: "О Элязыге",
-                btnIlceler: "Районы и Достопримечательности",
-                btnDogal: "Природные красоты и Исторические места",
-                btnGaleri: "Фотогалерея",
-                btnKonum: "📍 Показать местоположение",
-                btnTur360: "360° Виртуальный тур",
-                welcomeTitle: "Добро пожаловать!",
-                welcomeText: "Выберите раздел выше, чтобы открыть красоты Элязыга.",
-                hakkinda: `<h2>О Элязыге</h2>
-                <p>
-                    Элязыг - один из важных городов Восточной Анатолии с богатой историей. Город был основан как продолжение древнего поселения Харпут.
-                    Он известен крепостью Харпут, пещерой Бузлук и историческими мечетями. Элязыг также славится своей богатой кухней, традиционной музыкой и гостеприимными людьми.
-                </p>
-                <ul style="text-align:left; max-width:600px; margin: 0 auto;">
-                    <li><b>Население:</b> Около 600 000</li>
-                    <li><b>Основан:</b> Относится к 20 веку до нашей эры</li>
-                    <li><b>Известные места:</b> Крепость Харпут, Озеро Хазар, Пещера Бузлук</li>
-                    <li><b>Местные деликатесы:</b> Орджик, Котлеты Харпут, Фаршированные котлеты, Кешкек, Сирон, Патила, Котлеты с жженой томатной пастой</li>
-                    <li><b>Фестивали:</b> Международные вечера поэзии Хазар, Фестиваль Чайда Чира, Фестиваль культуры и искусства Элязыга</li>
-                    <li><b>Ремесла:</b> Медные изделия, Серебряные изделия, Ткачество, Резьба по дереву</li>
-                </ul>`,
-                ilceler: `<h2>Районы и Достопримечательности</h2>
-                <p>Районы Элязыга выделяются своими историческими и природными красотами. Каждый имеет свои уникальные культурные и природные богатства:</p>
-                <ul style="text-align:left; max-width:600px; margin: 0 auto;">
-                    <li><b>Центр:</b> Крепость Харпут, Мечеть Улу, Крытый базар Элязыга, Плотина Кебан, Кампус Университета Фырат, Городской музей Элязыга</li>
-                    <li><b>Сивридже:</b> Побережье озера Хазар, Горнолыжный центр Хазарбаба, Пляжи озера Хазар, Сивридже Высокие горы</li>
-                    <li><b>Палу:</b> Крепость Палу, Мост Палу, исторические бани, Каньон Палу</li>
-                    <li><b>Кованджылар:</b> Известен своими природными красотами и сельскохозяйственным производством, Нагорье Кованджылар, Водопад Кованджылар</li>
-                    <li><b>Каракочан:</b> Горячие источники Голан, Нагорье Каракочан, Исторические мосты</li>
-                    <li><b>Маден:</b> Исторические шахты и природные ландшафты, Водопад Маден, Маден Высокие горы</li>
-                    <li><b>Баскил:</b> Природные красоты вдоль реки Евфрат, Нагорье Баскил, Исторические мосты</li>
-                    <li><b>Аладжакая и Арыджак:</b> Горные деревни и пешеходные маршруты, Нагорье, Водопады</li>
-                    <li><b>Агын:</b> Природные красоты вдоль водохранилища Кебан, Нагорье Агын, Исторические поселения</li>
-                </ul>`,
-                dogal: `<h2>Природные красоты и Исторические места</h2>
-                <p>Элязыг - увлекательный город с природными красотами и историческими местами:</p>
-                <ul style="text-align:left; max-width:600px; margin: 0 auto;">
-                    <li><b>Крепость Харпут:</b> Символ города, предлагающий великолепный вид. Приветствует посетителей своими историческими стенами и башнями.</li>
-                    <li><b>Пещера Бузлук:</b> Интересная пещера, прохладная летом и теплая зимой. Известна своей естественной системой кондиционирования.</li>
-                    <li><b>Озеро Хазар:</b> Одно из самых чистых озер Турции, известное своими пляжами и водными видами спорта. Предлагает места для пикника и пешеходные тропы вокруг озера.</li>
-                    <li><b>Горнолыжный центр Хазарбаба:</b> Важный центр зимнего туризма. Обслуживает лыжников современными удобствами и трассами.</li>
-                    <li><b>Крепость и Мост Палу:</b> Выделяется своей исторической текстурой и природными красотами.</li>
-                    <li><b>Горячие источники Голан:</b> Природный спа, известный своими целебными водами. Важный центр термального туризма.</li>
-                    <li><b>Кeban-Став:</b> Одно из крупнейших плотин Турции, подходящая для пикников и рыбалки. Водные виды спорта можно практиковать в водохранилище.</li>
-                    <li><b>Водопад Чирчир:</b> Одна из природных красот Элязыга, водопад ждет посетителей своим великолепным видом и прохладным воздухом. Идеальное место для пеших прогулок и пикников.</li>
-                    <li><b>Крытый базар Элязыга:</b> Расположенный в центре города, этот исторический базар является важным торговым центром, где продаются традиционные ремесла, местные продукты и сувениры. Приветствует посетителей своей исторической текстурой и оживленной атмосферой.</li>
-                    <li><b>Городской музей Элязыга:</b> Современный музей, отражающий культурное наследие, историю и повседневную жизнь города. Рассказывает историю социального, экономического и культурного развития Элязыга через интерактивные выставки.</li>
-                    <li><b>Зона отдыха Чип:</b> Одна из природных красот города, эта зона отдыха предлагает посетителям спокойную обстановку с местами для пикника, пешеходными тропами и великолепным видом. Идеальное место для проведения времени на природе.</li>
-                </ul>`,
-                galeri: `<h2>Фотогалерея</h2>
-                <div class="gallery-container">
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/harput-kalesi.jpg" alt="Крепость Харпут" loading="lazy">
-                        <div class="gallery-caption">Крепость Харпут</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazar-golu.jpg" alt="Озеро Хазар" loading="lazy">
-                        <div class="gallery-caption">Озеро Хазар</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/buzluk-magarasi.jpg" alt="Пещера Бузлук" loading="lazy">
-                        <div class="gallery-caption">Пещера Бузлук</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/keban-baraji.jpg" alt="Кебан-Плотина" loading="lazy">
-                        <div class="gallery-caption">Кебан-Плотина</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/elazig-merkez.jpg" alt="Элязыг Центр" loading="lazy">
-                        <div class="gallery-caption">Элязыг Центр</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazarbaba-kayak.jpg" alt="Горнолыжный центр Хазарбаба" loading="lazy">
-                        <div class="gallery-caption">Горнолыжный центр Хазарбаба</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/circir-selalesi.jpg" alt="Водопад Чирчир" loading="lazy">
-                        <div class="gallery-caption">Водопад Чирчир</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/kapali-carsi.jpg" alt="Крытый базар Элязыга" loading="lazy">
-                        <div class="gallery-caption">Крытый базар Элязыга</div>
-                    </div>
-                </div>`,
-                tur360: `<h2>360° Виртуальный тур</h2>
-                <div class="tour360-container">
-                  <div class="tour360-item">
-                    <h3>Озеро Хазар 360° Тур</h3>
-                    <div class="iframe-wrapper">
-                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030000!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.470676!2d39.301251!3f177.56!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                  </div>
-                  <div class="tour360-item">
-                    <h3>Крепость Харпут 360° Тур</h3>
                     <div class="iframe-wrapper">
                       <iframe src="https://www.google.com/maps/embed?pb=!4v1718030001!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.7042!2d39.2533!3f0!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
@@ -944,37 +1641,149 @@
                 </ul>`,
                 galeri: `<h2>معرض الصور</h2>
                 <div class="gallery-container">
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/harput-kalesi.jpg" alt="قلعة هاربوت" loading="lazy">
-                        <div class="gallery-caption">قلعة هاربوت</div>
+                    <div class="gallery-collection">
+                        <h3 class="collection-title">قلعة هاربوت</h3>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(0)">
+                                <img src="images/harput8.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazar-golu.jpg" alt="بحيرة هزار" loading="lazy">
-                        <div class="gallery-caption">بحيرة هزار</div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/buzluk-magarasi.jpg" alt="كهف بوزلوك" loading="lazy">
-                        <div class="gallery-caption">كهف بوزلوك</div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/keban-baraji.jpg" alt="سد كيبان" loading="lazy">
-                        <div class="gallery-caption">سد كيبان</div>
+
+                    <div class="gallery-collection">
+                        <h3 class="collection-title">كهف بوزلوك</h3>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(1)">
+                                <img src="images/harput1.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/elazig-merkez.jpg" alt="مركز ألازيغ" loading="lazy">
-                        <div class="gallery-caption">مركز ألازيغ</div>
+                            <div class="gallery-item" onclick="openLightbox(2)">
+                                <img src="images/harput2.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/hazarbaba-kayak.jpg" alt="مركز هزاربابا للتزلج" loading="lazy">
+                            <div class="gallery-item" onclick="openLightbox(3)">
+                                <img src="images/harput3.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(4)">
+                                <img src="images/harput4.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(5)">
+                                <img src="images/harput5.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(6)">
+                                <img src="images/harput6.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(7)">
+                                <img src="images/harput7.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(8)">
+                                <img src="images/harput8.jpg" alt="Harput Kalesi" loading="lazy">
+                                <div class="gallery-caption">Harput Kalesi</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection">
+                        <h3 class="collection-title">بحيرة هزار</h3>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(5)">
+                                <img src="images/placeholder.jpg" alt="بحيرة هزار" loading="lazy">
+                                <div class="gallery-caption">بحيرة هزار</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection">
+                        <h3 class="collection-title">مركز هزاربابا للتزلج</h3>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(6)">
+                                <img src="images/placeholder.jpg" alt="مركز هزاربابا للتزلج" loading="lazy">
                         <div class="gallery-caption">مركز هزاربابا للتزلج</div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/circir-selalesi.jpg" alt="شلال تشيرتشير" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection">
+                        <h3 class="collection-title">بالو غولان</h3>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(7)">
+                                <img src="images/placeholder.jpg" alt="بالو غولان" loading="lazy">
+                                <div class="gallery-caption">بالو غولان</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection">
+                        <h3 class="collection-title">شلال تشيرتشير</h3>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(8)">
+                                <img src="images/placeholder.jpg" alt="شلال تشيرتشير" loading="lazy">
                         <div class="gallery-caption">شلال تشيرتشير</div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://www.elazig.gov.tr/upload/medya/2023/01/16/kapali-carsi.jpg" alt="البازار المسقوف" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection">
+                        <h3 class="collection-title">سد كيبان</h3>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(9)">
+                                <img src="images/placeholder.jpg" alt="سد كيبان" loading="lazy">
+                                <div class="gallery-caption">سد كيبان</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection">
+                        <h3 class="collection-title">متحف ألازيغ</h3>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(10)">
+                                <img src="images/placeholder.jpg" alt="متحف ألازيغ" loading="lazy">
+                                <div class="gallery-caption">متحف ألازيغ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection">
+                        <h3 class="collection-title">البازار المسقوف</h3>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(11)">
+                                <img src="images/carsi1.jpg" alt="البازار المسقوف" loading="lazy">
                         <div class="gallery-caption">البازار المسقوف</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(12)">
+                                <img src="images/carsi2.jpg" alt="البازار المسقوف" loading="lazy">
+                                <div class="gallery-caption">البازار المسقوف</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection">
+                        <h3 class="collection-title">منطقة جيب للنزهات</h3>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(12)">
+                                <img src="images/placeholder.jpg" alt="منطقة جيب للنزهات" loading="lazy">
+                                <div class="gallery-caption">منطقة جيب للنزهات</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lightbox HTML -->
+                <div class="lightbox" id="lightbox">
+                    <div class="lightbox-content">
+                        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                        <img id="lightbox-img" src="" alt="">
+                        <div class="lightbox-caption" id="lightbox-caption"></div>
+                        <div class="lightbox-nav">
+                            <button onclick="prevImage()">❮</button>
+                            <button onclick="nextImage()">❯</button>
+                        </div>
                     </div>
                 </div>`,
                 tur360: `<h2>جولة افتراضية 360°</h2>
@@ -987,6 +1796,287 @@
                   </div>
                   <div class="tour360-item">
                     <h3>جولة قلعة هاربوت 360°</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030001!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.7042!2d39.2533!3f0!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
+                </div>`
+            },
+            ru: {
+                mainTitle: "Элязыг",
+                mainSlogan: "Элязыг ждет вас!",
+                mainSub: "История на каждом углу, открытие на каждом шагу...",
+                btnHakkinda: "О Элязыге",
+                btnIlceler: "Районы и достопримечательности",
+                btnDogal: "Природные красоты и исторические места",
+                btnGaleri: "Фотогалерея",
+                btnKonum: "📍 Показать местоположение",
+                btnTur360: "360° Виртуальный тур",
+                welcomeTitle: "Добро пожаловать!",
+                welcomeText: "Выберите раздел выше, чтобы открыть красоты Элязыга.",
+                galeri: `<h2>Фотогалерея</h2>
+                <div class="gallery-container">
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Крепость Харпут</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(0)">
+                            <img src="images/harput8.jpg" alt="Крепость Харпут" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(0)">
+                                <img src="images/harput1.jpg" alt="Крепость Харпут" loading="lazy">
+                                <div class="gallery-caption">Крепость Харпут</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(1)">
+                                <img src="images/harput2.jpg" alt="Крепость Харпут" loading="lazy">
+                                <div class="gallery-caption">Крепость Харпут</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(2)">
+                                <img src="images/harput3.jpg" alt="Крепость Харпут" loading="lazy">
+                                <div class="gallery-caption">Крепость Харпут</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(3)">
+                                <img src="images/harput4.jpg" alt="Крепость Харпут" loading="lazy">
+                                <div class="gallery-caption">Крепость Харпут</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(4)">
+                                <img src="images/harput5.jpg" alt="Крепость Харпут" loading="lazy">
+                                <div class="gallery-caption">Крепость Харпут</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(5)">
+                                <img src="images/harput6.jpg" alt="Крепость Харпут" loading="lazy">
+                                <div class="gallery-caption">Крепость Харпут</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(6)">
+                                <img src="images/harput7.jpg" alt="Крепость Харпут" loading="lazy">
+                                <div class="gallery-caption">Крепость Харпут</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(7)">
+                                <img src="images/harput8.jpg" alt="Крепость Харпут" loading="lazy">
+                                <div class="gallery-caption">Крепость Харпут</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Пещера Бузлук</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(8)">
+                            <img src="images/buzluk1.jpg" alt="Пещера Бузлук" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(8)">
+                                <img src="images/buzluk1.jpg" alt="Пещера Бузлук" loading="lazy">
+                                <div class="gallery-caption">Пещера Бузлук</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(9)">
+                                <img src="images/buzluk2.jpg" alt="Пещера Бузлук" loading="lazy">
+                                <div class="gallery-caption">Пещера Бузлук</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(10)">
+                                <img src="images/buzluk3.jpg" alt="Пещера Бузлук" loading="lazy">
+                                <div class="gallery-caption">Пещера Бузлук</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(11)">
+                                <img src="images/buzluk4.jpg" alt="Пещера Бузлук" loading="lazy">
+                                <div class="gallery-caption">Пещера Бузлук</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Озеро Хазар</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(12)">
+                            <img src="images/gol1.jpg" alt="Озеро Хазар" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(12)">
+                                <img src="images/gol1.jpg" alt="Озеро Хазар" loading="lazy">
+                                <div class="gallery-caption">Озеро Хазар</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(13)">
+                                <img src="images/gol2.jpg" alt="Озеро Хазар" loading="lazy">
+                                <div class="gallery-caption">Озеро Хазар</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(14)">
+                                <img src="images/gol3.jpg" alt="Озеро Хазар" loading="lazy">
+                                <div class="gallery-caption">Озеро Хазар</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(15)">
+                                <img src="images/gol4.jpg" alt="Озеро Хазар" loading="lazy">
+                                <div class="gallery-caption">Озеро Хазар</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Горнолыжный центр Хазарбаба</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(16)">
+                            <img src="images/kayak1.jpg" alt="Горнолыжный центр Хазарбаба" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(16)">
+                                <img src="images/kayak1.jpg" alt="Горнолыжный центр Хазарбаба" loading="lazy">
+                                <div class="gallery-caption">Горнолыжный центр Хазарбаба</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(17)">
+                                <img src="images/kayak2.jpg" alt="Горнолыжный центр Хазарбаба" loading="lazy">
+                                <div class="gallery-caption">Горнолыжный центр Хазарбаба</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(18)">
+                                <img src="images/kayak3.jpg" alt="Горнолыжный центр Хазарбаба" loading="lazy">
+                                <div class="gallery-caption">Горнолыжный центр Хазарбаба</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Водопад Чирчир</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(19)">
+                            <img src="images/circir1.jpg" alt="Водопад Чирчир" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(19)">
+                                <img src="images/circir1.jpg" alt="Водопад Чирчир" loading="lazy">
+                                <div class="gallery-caption">Водопад Чирчир</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(20)">
+                                <img src="images/circir2.jpg" alt="Водопад Чирчир" loading="lazy">
+                                <div class="gallery-caption">Водопад Чирчир</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(21)">
+                                <img src="images/circir3.jpg" alt="Водопад Чирчир" loading="lazy">
+                                <div class="gallery-caption">Водопад Чирчир</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(22)">
+                                <img src="images/circir4.jpg" alt="Водопад Чирчир" loading="lazy">
+                                <div class="gallery-caption">Водопад Чирчир</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Мост Палу</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(23)">
+                            <img src="images/palu1.jpg" alt="Мост Палу" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(23)">
+                                <img src="images/palu1.jpg" alt="Мост Палу" loading="lazy">
+                                <div class="gallery-caption">Мост Палу</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(24)">
+                                <img src="images/palu2.jpg" alt="Мост Палу" loading="lazy">
+                                <div class="gallery-caption">Мост Палу</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(25)">
+                                <img src="images/palu3.jpg" alt="Мост Палу" loading="lazy">
+                                <div class="gallery-caption">Мост Палу</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Голан</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(26)">
+                            <img src="images/golan1.jpg" alt="Голан" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(26)">
+                                <img src="images/golan1.jpg" alt="Голан" loading="lazy">
+                                <div class="gallery-caption">Голан</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(27)">
+                                <img src="images/golan2.jpg" alt="Голан" loading="lazy">
+                                <div class="gallery-caption">Голан</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(28)">
+                                <img src="images/golan3.jpg" alt="Голан" loading="lazy">
+                                <div class="gallery-caption">Голан</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Плотина Кебан</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(29)">
+                            <img src="images/keban1.jpg" alt="Плотина Кебан" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(29)">
+                                <img src="images/keban1.jpg" alt="Плотина Кебан" loading="lazy">
+                                <div class="gallery-caption">Плотина Кебан</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(30)">
+                                <img src="images/keban2.jpg" alt="Плотина Кебан" loading="lazy">
+                                <div class="gallery-caption">Плотина Кебан</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Крытый базар</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(31)">
+                            <img src="images/carsi1.jpg" alt="Крытый базар" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(31)">
+                                <img src="images/carsi1.jpg" alt="Крытый базар" loading="lazy">
+                                <div class="gallery-caption">Крытый базар</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(32)">
+                                <img src="images/carsi2.jpg" alt="Крытый базар" loading="lazy">
+                                <div class="gallery-caption">Крытый базар</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Зона отдыха Джип</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(33)">
+                            <img src="images/cip1.jpg" alt="Зона отдыха Джип" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(33)">
+                                <img src="images/cip1.jpg" alt="Зона отдыха Джип" loading="lazy">
+                                <div class="gallery-caption">Зона отдыха Джип</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(34)">
+                                <img src="images/cip2.jpg" alt="Зона отдыха Джип" loading="lazy">
+                                <div class="gallery-caption">Зона отдыха Джип</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(35)">
+                                <img src="images/cip3.jpg" alt="Зона отдыха Джип" loading="lazy">
+                                <div class="gallery-caption">Зона отдыха Джип</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(36)">
+                                <img src="images/cip4.jpg" alt="Зона отдыха Джип" loading="lazy">
+                                <div class="gallery-caption">Зона отдыха Джип</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lightbox HTML -->
+                <div class="lightbox" id="lightbox">
+                    <div class="lightbox-content">
+                        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                        <img id="lightbox-img" src="" alt="">
+                        <div class="lightbox-caption" id="lightbox-caption"></div>
+                        <div class="lightbox-nav">
+                            <button onclick="prevImage()">❮</button>
+                            <button onclick="nextImage()">❯</button>
+                        </div>
+                    </div>
+                </div>`,
+                tur360: `<h2>360° Виртуальный тур</h2>
+                <div class="tour360-container">
+                  <div class="tour360-item">
+                    <h3>Озеро Хазар 360° Тур</h3>
+                    <div class="iframe-wrapper">
+                      <iframe src="https://www.google.com/maps/embed?pb=!4v1718030000!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.470676!2d39.301251!3f177.56!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
+                  <div class="tour360-item">
+                    <h3>Харпут 360° Тур</h3>
                     <div class="iframe-wrapper">
                       <iframe src="https://www.google.com/maps/embed?pb=!4v1718030001!6m8!1m7!1sCAoSLEFGMVFpcE1wZ2Z2b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6b2Z6!2m2!1d38.7042!2d39.2533!3f0!4f0!5f0.7820865974627469" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
@@ -1030,6 +2120,7 @@
             giris.classList.add('fade-out');
             setTimeout(() => {
                 anaSayfa.classList.add('active');
+                giris.style.display = 'none';
             }, 1000);
         });
 
@@ -1049,6 +2140,7 @@
             }
             icerik.innerHTML = content;
             icerik.dataset.section = section;
+            icerik.scrollTop = 0;
         }
 
         function showElazigLocation() {
@@ -1068,6 +2160,135 @@
 
         // Sayfa ilk açıldığında Türkçe başlat
         updateLanguage();
+
+        // Lightbox functionality
+        let currentImageIndex = 0;
+        let currentCollection = '';
+        const galleryItems = [
+            // Harput Castle Collection
+            { src: 'images/harput1.jpg', alt: 'Harput Castle', caption: 'Harput Castle' },
+            { src: 'images/harput2.jpg', alt: 'Harput Castle', caption: 'Harput Castle' },
+            { src: 'images/harput3.jpg', alt: 'Harput Castle', caption: 'Harput Castle' },
+            { src: 'images/harput4.jpg', alt: 'Harput Castle', caption: 'Harput Castle' },
+            { src: 'images/harput5.jpg', alt: 'Harput Castle', caption: 'Harput Castle' },
+            { src: 'images/harput6.jpg', alt: 'Harput Castle', caption: 'Harput Castle' },
+            { src: 'images/harput7.jpg', alt: 'Harput Castle', caption: 'Harput Castle' },
+            { src: 'images/harput8.jpg', alt: 'Harput Castle', caption: 'Harput Castle' },
+            
+            // Buzluk Cave Collection
+            { src: 'images/buzluk1.jpg', alt: 'Buzluk Cave', caption: 'Buzluk Cave' },
+            { src: 'images/buzluk2.jpg', alt: 'Buzluk Cave', caption: 'Buzluk Cave' },
+            { src: 'images/buzluk3.jpg', alt: 'Buzluk Cave', caption: 'Buzluk Cave' },
+            { src: 'images/buzluk4.jpg', alt: 'Buzluk Cave', caption: 'Buzluk Cave' },
+            
+            // Lake Hazar Collection
+            { src: 'images/gol1.jpg', alt: 'Lake Hazar', caption: 'Lake Hazar' },
+            { src: 'images/gol2.jpg', alt: 'Lake Hazar', caption: 'Lake Hazar' },
+            { src: 'images/gol3.jpg', alt: 'Lake Hazar', caption: 'Lake Hazar' },
+            { src: 'images/gol4.jpg', alt: 'Lake Hazar', caption: 'Lake Hazar' },
+            
+            // Hazarbaba Ski Center Collection
+            { src: 'images/kayak1.jpg', alt: 'Hazarbaba Ski Center', caption: 'Hazarbaba Ski Center' },
+            { src: 'images/kayak2.jpg', alt: 'Hazarbaba Ski Center', caption: 'Hazarbaba Ski Center' },
+            { src: 'images/kayak3.jpg', alt: 'Hazarbaba Ski Center', caption: 'Hazarbaba Ski Center' },
+            
+            // Çırçır Waterfall Collection
+            { src: 'images/circir1.jpg', alt: 'Çırçır Waterfall', caption: 'Çırçır Waterfall' },
+            { src: 'images/circir2.jpg', alt: 'Çırçır Waterfall', caption: 'Çırçır Waterfall' },
+            { src: 'images/circir3.jpg', alt: 'Çırçır Waterfall', caption: 'Çırçır Waterfall' },
+            { src: 'images/circir4.jpg', alt: 'Çırçır Waterfall', caption: 'Çırçır Waterfall' },
+            
+            // Palu Bridge Collection
+            { src: 'images/palu1.jpg', alt: 'Palu Bridge', caption: 'Palu Bridge' },
+            { src: 'images/palu2.jpg', alt: 'Palu Bridge', caption: 'Palu Bridge' },
+            { src: 'images/palu3.jpg', alt: 'Palu Bridge', caption: 'Palu Bridge' },
+            
+            // Golan Collection
+            { src: 'images/golan1.jpg', alt: 'Golan', caption: 'Golan' },
+            { src: 'images/golan2.jpg', alt: 'Golan', caption: 'Golan' },
+            { src: 'images/golan3.jpg', alt: 'Golan', caption: 'Golan' },
+            
+            // Keban Dam Collection
+            { src: 'images/keban1.jpg', alt: 'Keban Dam', caption: 'Keban Dam' },
+            { src: 'images/keban2.jpg', alt: 'Keban Dam', caption: 'Keban Dam' },
+            
+            // Covered Bazaar Collection
+            { src: 'images/carsi1.jpg', alt: 'Covered Bazaar', caption: 'Covered Bazaar' },
+            { src: 'images/carsi2.jpg', alt: 'Covered Bazaar', caption: 'Covered Bazaar' },
+            
+            // Cip Picnic Area Collection
+            { src: 'images/cip1.jpg', alt: 'Cip Picnic Area', caption: 'Cip Picnic Area' },
+            { src: 'images/cip2.jpg', alt: 'Cip Picnic Area', caption: 'Cip Picnic Area' },
+            { src: 'images/cip3.jpg', alt: 'Cip Picnic Area', caption: 'Cip Picnic Area' },
+            { src: 'images/cip4.jpg', alt: 'Cip Picnic Area', caption: 'Cip Picnic Area' }
+        ];
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            currentCollection = galleryItems[index].collection;
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            const item = galleryItems[currentImageIndex];
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightboxImg.src = item.src;
+            lightboxCaption.textContent = item.caption;
+        }
+
+        function nextImage() {
+            let nextIndex = currentImageIndex + 1;
+            while (nextIndex < galleryItems.length && galleryItems[nextIndex].collection !== currentCollection) {
+                nextIndex++;
+            }
+            if (nextIndex < galleryItems.length) {
+                currentImageIndex = nextIndex;
+                updateLightbox();
+            }
+        }
+
+        function prevImage() {
+            let prevIndex = currentImageIndex - 1;
+            while (prevIndex >= 0 && galleryItems[prevIndex].collection !== currentCollection) {
+                prevIndex--;
+            }
+            if (prevIndex >= 0) {
+                currentImageIndex = prevIndex;
+                updateLightbox();
+            }
+        }
+
+        // Close lightbox with Escape key or clicking outside
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+
+        // Close lightbox when clicking outside the image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Update the JavaScript functions
+        function toggleCollection(element) {
+            element.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
