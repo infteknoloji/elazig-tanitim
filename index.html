@@ -578,11 +578,453 @@
             <button id="btnDogal" onclick="showContent('dogal')">Doğal Güzellikler ve Tarihi Mekanlar</button>
             <button id="btnGaleri" onclick="showContent('galeri')">Fotoğraf Galerisi</button>
             <button id="btnTur360" onclick="showContent('tur360')">360° Sanal Tur</button>
+            <button onclick="gosterIcerik('firat-universitesi')">Fırat Üniversitesi</button>
         </div>
         <button class="location-btn" id="btnKonum" onclick="showElazigLocation()">📍 Konumu Göster</button>
         <div class="icerik" id="icerik">
             <h2 id="welcomeTitle">Hoşgeldiniz!</h2>
             <p id="welcomeText">Elazığ'ın güzelliklerini keşfetmek için yukarıdan bir bölüm seçin.</p>
+        </div>
+        <div class="icerik" id="firat-universitesi" style="display: none;">
+            <h2>Fırat Üniversitesi</h2>
+            <p>1975 yılında kurulan Fırat Üniversitesi, Doğu Anadolu Bölgesi'nin en köklü yükseköğretim kurumlarından biridir. 3.5 milyon metrekarelik modern kampüsü ile Türkiye'nin en büyük kampüslerinden birine sahiptir.</p>
+            
+            <p>Üniversitemiz, 40.000'i aşkın öğrencisi, 2000'den fazla akademik personeli ve 3000'e yakın idari personeliyle bölgenin en dinamik eğitim kurumudur.</p>
+
+            <div class="fakulteler-menu">
+                <h3>Fakülteler ve Meslek Yüksekokulları</h3>
+                <div class="fakulte-butonlar">
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('muhendislik')">Mühendislik Fakültesi</button>
+                        <div id="muhendislik" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Bilgisayar Mühendisliği</li>
+                                <li>Çevre Mühendisliği</li>
+                                <li>Elektrik-Elektronik Mühendisliği</li>
+                                <li>İnşaat Mühendisliği</li>
+                                <li>Jeoloji Mühendisliği</li>
+                                <li>Kimya Mühendisliği</li>
+                                <li>Makine Mühendisliği</li>
+                                <li>Mekatronik Mühendisliği</li>
+                                <li>Metalurji ve Malzeme Mühendisliği</li>
+                                <li>Yazılım Mühendisliği</li>
+                                <li>Yapay Zeka ve Veri Mühendisliği</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('teknoloji')">Teknoloji Fakültesi</button>
+                        <div id="teknoloji" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Adli Bilişim Mühendisliği</li>
+                                <li>Elektrik-Elektronik Mühendisliği</li>
+                                <li>Enerji Sistemleri Mühendisliği</li>
+                                <li>İnşaat Mühendisliği</li>
+                                <li>Makine Mühendisliği</li>
+                                <li>Mekatronik Mühendisliği</li>
+                                <li>Metalurji ve Malzeme Mühendisliği</li>
+                                <li>Otomotiv Mühendisliği</li>
+                                <li>Yazılım Mühendisliği</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('tip')">Tıp Fakültesi</button>
+                        <div id="tip" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Tıp</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('saglik')">Sağlık Bilimleri Fakültesi</button>
+                        <div id="saglik" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Beslenme ve Diyetetik</li>
+                                <li>Ebelik</li>
+                                <li>Fizyoterapi ve Rehabilitasyon</li>
+                                <li>Hemşirelik</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('fen')">Fen Fakültesi</button>
+                        <div id="fen" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Biyoloji</li>
+                                <li>Fizik</li>
+                                <li>İstatistik</li>
+                                <li>Kimya</li>
+                                <li>Matematik</li>
+                                <li>Moleküler Biyoloji ve Genetik</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('egitim')">Eğitim Fakültesi</button>
+                        <div id="egitim" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Fen Bilgisi Öğretmenliği</li>
+                                <li>İlköğretim Matematik Öğretmenliği</li>
+                                <li>İngilizce Öğretmenliği</li>
+                                <li>Okul Öncesi Öğretmenliği</li>
+                                <li>Rehberlik ve Psikolojik Danışmanlık</li>
+                                <li>Sınıf Öğretmenliği</li>
+                                <li>Sosyal Bilgiler Öğretmenliği</li>
+                                <li>Türkçe Öğretmenliği</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('iibf')">İktisadi ve İdari Bilimler Fakültesi</button>
+                        <div id="iibf" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Çalışma Ekonomisi ve Endüstri İlişkileri</li>
+                                <li>İktisat</li>
+                                <li>İşletme</li>
+                                <li>Maliye</li>
+                                <li>Siyaset Bilimi ve Kamu Yönetimi</li>
+                                <li>Sosyal Hizmet</li>
+                                <li>Yönetim Bilişim Sistemleri</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('insanvetoplum')">İnsan ve Toplum Bilimleri Fakültesi</button>
+                        <div id="insanvetoplum" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Alman Dili ve Edebiyatı</li>
+                                <li>Coğrafya</li>
+                                <li>Çağdaş Türk Lehçeleri ve Edebiyatları</li>
+                                <li>İngiliz Dili ve Edebiyatı</li>
+                                <li>Sanat Tarihi</li>
+                                <li>Sosyoloji</li>
+                                <li>Tarih</li>
+                                <li>Türk Dili ve Edebiyatı</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('iletisim')">İletişim Fakültesi</button>
+                        <div id="iletisim" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Gazetecilik</li>
+                                <li>Görsel İletişim Tasarımı</li>
+                                <li>Halkla İlişkiler ve Tanıtım</li>
+                                <li>Radyo, Televizyon ve Sinema</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('ilahiyat')">İlahiyat Fakültesi</button>
+                        <div id="ilahiyat" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>İlahiyat</li>
+                                <li>İlahiyat (M.T.O.K.)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('spor')">Spor Bilimleri Fakültesi</button>
+                        <div id="spor" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Spor Yöneticiliği</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('su')">Su Ürünleri Fakültesi</button>
+                        <div id="su" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Su Ürünleri Mühendisliği</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('veteriner')">Veteriner Fakültesi</button>
+                        <div id="veteriner" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Veterinerlik</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('sosyal-myo')">Sosyal Bilimler Meslek Yüksekokulu</button>
+                        <div id="sosyal-myo" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Aşçılık</li>
+                                <li>Bankacılık ve Sigortacılık</li>
+                                <li>Büro Yönetimi ve Yönetici Asistanlığı</li>
+                                <li>Dış Ticaret</li>
+                                <li>Halkla İlişkiler ve Tanıtım</li>
+                                <li>İşletme Yönetimi</li>
+                                <li>Muhasebe ve Vergi Uygulamaları</li>
+                                <li>Pazarlama</li>
+                                <li>Turizm ve Otel İşletmeciliği</li>
+                                <li>Yerel Yönetimler</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('teknik-myo')">Teknik Bilimler Meslek Yüksekokulu</button>
+                        <div id="teknik-myo" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Bilgisayar Programcılığı</li>
+                                <li>Biyomedikal Cihaz Teknolojisi</li>
+                                <li>Elektrik</li>
+                                <li>Elektronik Teknolojisi</li>
+                                <li>Grafik Tasarımı</li>
+                                <li>Hibrid ve Elektrikli Taşıtlar Teknolojisi</li>
+                                <li>İç Mekan Tasarımı</li>
+                                <li>İnşaat Teknolojisi</li>
+                                <li>İş Sağlığı ve Güvenliği</li>
+                                <li>Makine</li>
+                                <li>Mekatronik</li>
+                                <li>Mimari Restorasyon</li>
+                                <li>Otomotiv Teknolojisi</li>
+                                <li>Radyo ve Televizyon Programcılığı</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('saglik-myo')">Sağlık Hizmetleri Meslek Yüksekokulu</button>
+                        <div id="saglik-myo" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Anestezi</li>
+                                <li>Fizyoterapi</li>
+                                <li>Odyometri</li>
+                                <li>Otopsi Yardımcılığı</li>
+                                <li>Tıbbi Dokümantasyon ve Sekreterlik</li>
+                                <li>Tıbbi Görüntüleme Teknikleri</li>
+                                <li>Tıbbi Laboratuvar Teknikleri</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('organize-myo')">Elazığ OSB Meslek Yüksekokulu</button>
+                        <div id="organize-myo" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Bilgisayar Programcılığı</li>
+                                <li>Doğalgaz ve Tesisatı Teknolojisi</li>
+                                <li>Elektronik Teknolojisi</li>
+                                <li>Endüstri Ürünleri Tasarımı</li>
+                                <li>Giyim Üretim Teknolojisi</li>
+                                <li>İnşaat Teknolojisi</li>
+                                <li>Kaynak Teknolojisi</li>
+                                <li>Kimya Teknolojisi</li>
+                                <li>Yapı Denetimi</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('keban-myo')">Keban Meslek Yüksekokulu</button>
+                        <div id="keban-myo" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Çevre Koruma ve Kontrol</li>
+                                <li>Elektrik Enerjisi Üretim, İletim ve Dağıtımı</li>
+                                <li>Geoteknik</li>
+                                <li>Gıda Teknolojisi</li>
+                                <li>İş Sağlığı ve Güvenliği</li>
+                                <li>Peyzaj ve Süs Bitkileri Yetiştiriciliği</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('karakocan-myo')">Karakoçan Meslek Yüksekokulu</button>
+                        <div id="karakocan-myo" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Bilgisayar Programcılığı</li>
+                                <li>Çocuk Gelişimi</li>
+                                <li>Gıda Teknolojisi</li>
+                                <li>Tapu ve Kadastro</li>
+                                <li>Yapı Denetimi</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('kovancılar-myo')">Kovancılar Meslek Yüksekokulu</button>
+                        <div id="kovancılar-myo" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Bilgisayar Programcılığı</li>
+                                <li>Eczane Hizmetleri</li>
+                                <li>Evde Hasta Bakımı</li>
+                                <li>İlk ve Acil Yardım</li>
+                                <li>İşletme Yönetimi</li>
+                                <li>Optisyenlik</li>
+                                <li>Sağlık Kurumları İşletmeciliği</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('baskil-myo')">Baskil Meslek Yüksekokulu</button>
+                        <div id="baskil-myo" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Alternatif Enerji Kaynakları Teknolojisi</li>
+                                <li>Bahçe Tarımı</li>
+                                <li>Organik Tarım</li>
+                                <li>Raylı Sistemler Makinistliği</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fakulte-container">
+                        <button onclick="toggleFakulte('sivrice-myo')">Sivrice Meslek Yüksekokulu</button>
+                        <div id="sivrice-myo" class="fakulte-icerik" style="display: none;">
+                            <ul>
+                                <li>Atçılık ve Antrenörlüğü</li>
+                                <li>Harita ve Kadastro</li>
+                                <li>Laborant ve Veteriner Sağlık</li>
+                                <li>Turizm ve Otel İşletmeciliği</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .fakulteler-menu {
+                    margin: 20px 0;
+                    padding: 20px;
+                    background-color: rgba(0, 0, 0, 0.3);
+                    border-radius: 10px;
+                }
+
+                .fakulte-butonlar {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                }
+
+                .fakulte-container {
+                    width: 100%;
+                }
+
+                .fakulte-container button {
+                    width: 100%;
+                    background-color: #003366;
+                    color: white;
+                    padding: 12px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                    text-align: left;
+                    font-size: 1.1rem;
+                }
+
+                .fakulte-container button:hover {
+                    background-color: #004d99;
+                }
+
+                .fakulte-icerik {
+                    margin-top: 10px;
+                    padding: 15px;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    border-radius: 5px;
+                }
+
+                .fakulte-icerik ul {
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .fakulte-icerik li {
+                    padding: 8px 0;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                    color: #fff;
+                }
+
+                .fakulte-icerik li:last-child {
+                    border-bottom: none;
+                }
+            </style>
+
+            <script>
+                function toggleFakulte(id) {
+                    const element = document.getElementById(id);
+                    if (element.style.display === "none") {
+                        element.style.display = "block";
+                    } else {
+                        element.style.display = "none";
+                    }
+                }
+            </script>
+
+            <button class="daha-fazla-btn" onclick="gosterEkstraBilgi('firat-universitesi-ekstra')">Detaylı Bilgi</button>
+            
+            <div class="ekstra-bilgi" id="firat-universitesi-ekstra">
+                <h3>Akademik Birimler</h3>
+                <ul style="text-align: left;">
+                    <li>18 Fakülte</li>
+                    <li>3 Yüksekokul</li>
+                    <li>7 Meslek Yüksekokulu</li>
+                    <li>6 Enstitü</li>
+                    <li>28 Araştırma ve Uygulama Merkezi</li>
+                </ul>
+
+                <h3>Öne Çıkan Özellikler</h3>
+                <ul style="text-align: left;">
+                    <li>1.7 milyon cilt kapasiteli Merkezi Kütüphane</li>
+                    <li>Teknokent ve AR-GE merkezleri</li>
+                    <li>Fırat Üniversitesi Hastanesi (850 yatak kapasiteli)</li>
+                    <li>Olimpik yüzme havuzu ve modern spor tesisleri</li>
+                    <li>Kongre ve Kültür Merkezi</li>
+                </ul>
+
+                <h3>Eğitim ve Araştırma</h3>
+                <p>Üniversitemiz:</p>
+                <ul style="text-align: left;">
+                    <li>300'den fazla lisans ve lisansüstü program</li>
+                    <li>100'ü aşkın öğrenci kulübü ve topluluğu</li>
+                    <li>Erasmus+ ve Mevlana gibi uluslararası değişim programları</li>
+                    <li>TÜBİTAK destekli çok sayıda araştırma projesi</li>
+                    <li>Ulusal ve uluslararası akreditasyona sahip programlar</li>
+                </ul>
+
+                <h3>Kampüs Yaşamı</h3>
+                <p>Öğrencilerimize sunulan imkanlar:</p>
+                <ul style="text-align: left;">
+                    <li>Modern yurt binaları ve misafirhaneler</li>
+                    <li>Çeşitli sosyal ve kültürel etkinlik alanları</li>
+                    <li>24 saat açık çalışma salonları</li>
+                    <li>Ücretsiz ring servisleri</li>
+                    <li>Kablosuz internet erişimi</li>
+                    <li>Öğrenci yaşam merkezi ve kafeteryalar</li>
+                </ul>
+
+                <h3>Başarılar ve Sıralamalar</h3>
+                <ul style="text-align: left;">
+                    <li>Times Higher Education (THE) 2024 Dünya Üniversiteler Sıralamasında 1201-1500 bandında</li>
+                    <li>URAP (University Ranking by Academic Performance) 2023-2024 Türkiye Sıralamasında ilk 40 içerisinde</li>
+                    <li>UI GreenMetric Dünya Sürdürülebilir Kampüs Sıralamasında son 3 yılda sürekli yükselen başarı grafiği</li>
+                    <li>Webometrics Dünya Üniversiteler Sıralamasında Türkiye'den ilk 50 üniversite arasında</li>
+                    <li>TÜBİTAK ARDEB projelerinde Doğu Anadolu Bölgesi'nde lider üniversite</li>
+                    <li>Scopus veri tabanında taranan bilimsel yayın sayısında son 5 yılda %40 artış</li>
+                    <li>YÖK 100/2000 Doktora Burs Programında en çok kontenjan alan üniversiteler arasında</li>
+                    <li>Teknokent performans endeksinde Türkiye'de ilk 20'de</li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -2453,6 +2895,37 @@
         // Обновление функций JavaScript
         function toggleCollection(element) {
             element.classList.toggle('active');
+        }
+
+        function gosterIcerik(id) {
+            // Tüm içerikleri gizle
+            document.querySelectorAll('.icerik').forEach(element => {
+                element.style.display = 'none';
+            });
+            // Seçilen içeriği göster
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function gosterEkstraBilgi(id) {
+            const ekstraBilgi = document.getElementById(id);
+            if (ekstraBilgi.classList.contains('active')) {
+                ekstraBilgi.classList.remove('active');
+                ekstraBilgi.style.maxHeight = '0';
+                ekstraBilgi.style.opacity = '0';
+            } else {
+                ekstraBilgi.classList.add('active');
+                ekstraBilgi.style.maxHeight = ekstraBilgi.scrollHeight + 'px';
+                ekstraBilgi.style.opacity = '1';
+            }
+        }
+
+        function toggleFakulte(id) {
+            const element = document.getElementById(id);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
         }
     </script>
 </body>
