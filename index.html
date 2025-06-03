@@ -1083,6 +1083,58 @@
     </footer>
 
     <script>
+        // Orijinal fonksiyonları yedekle
+        const originalShowContent = window.showContent;
+        const originalToggleContent = window.toggleContent;
+
+        // showContent fonksiyonunu güncelle
+        window.showContent = function(section) {
+            // Orijinal fonksiyonu çağır
+            originalShowContent(section);
+            // URL'yi güncelle
+            history.pushState({ section: section }, '', '#' + section);
+        };
+
+        // toggleContent fonksiyonunu güncelle
+        window.toggleContent = function(section) {
+            // Orijinal fonksiyonu çağır
+            originalToggleContent(section);
+            // Fakülteler için URL'yi güncelle
+            if (section === 'fakulteler') {
+                history.pushState({ section: section }, '', '#' + section);
+            }
+        };
+
+        // Tarayıcının geri/ileri tuşları için
+        window.addEventListener('popstate', function(event) {
+            const section = window.location.hash.slice(1);
+            if (section) {
+                if (section === 'fakulteler') {
+                    originalToggleContent('fakulteler');
+                } else {
+                    originalShowContent(section);
+                }
+            } else {
+                // Ana sayfaya dön
+                document.querySelectorAll('.icerik-bolum').forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.getElementById('icerik').innerHTML = '';
+            }
+        });
+
+        // Sayfa yüklendiğinde URL'deki bölümü kontrol et
+        window.addEventListener('load', function() {
+            const section = window.location.hash.slice(1);
+            if (section) {
+                if (section === 'fakulteler') {
+                    toggleContent('fakulteler');
+                } else {
+                    showContent(section);
+                }
+            }
+        });
+
         // Dil içerikleri
         const contentData = {
             tr: {
