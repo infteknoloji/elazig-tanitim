@@ -2474,10 +2474,14 @@
         }
 
         function showElazigLocation() {
-            const elazigLat = 38.6743;
-            const elazigLng = 39.2220;
-            const mapsUrl = `https://www.google.com/maps?q=${elazigLat},${elazigLng}`;
-            window.open(mapsUrl, '_blank');
+            const currentContent = document.getElementById('fakulteler-content');
+            if (currentContent && currentContent.style.display === 'block') {
+                // Fırat Üniversitesi konumu
+                window.open('https://maps.google.com/maps?q=38.6803,39.2007', '_blank');
+            } else {
+                // Elazığ şehir merkezi konumu
+                window.open('https://maps.google.com/maps?q=38.6743,39.2228', '_blank');
+            }
         }
 
         // Функция для раскрытия/скрытия дополнительной информации
