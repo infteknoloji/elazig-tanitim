@@ -2754,6 +2754,23 @@
 
         function showContent(section) {
             const d = contentData[currentLang];
+            
+            // Önce tüm içerikleri gizle
+            document.querySelectorAll('.icerik-bolum').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // Fakülte içeriğini özellikle gizle
+            const fakultelerContent = document.getElementById('fakulteler-content');
+            if (fakultelerContent) {
+                fakultelerContent.style.display = 'none';
+            }
+            
+            // İçerik alanını temizle
+            const icerikDiv = document.getElementById('icerik');
+            icerikDiv.innerHTML = '';
+            
+            // Yeni içeriği belirle ve göster
             let content = '';
             if(section === 'hakkinda') {
                 content = d.hakkinda;
@@ -2766,9 +2783,12 @@
             } else if(section === 'tur360') {
                 content = d.tur360;
             }
-            icerik.innerHTML = content;
-            icerik.dataset.section = section;
-            icerik.scrollTop = 0;
+            
+            // Sadece seçilen içeriği göster
+            if (content) {
+                icerikDiv.innerHTML = content;
+                icerikDiv.style.display = 'block';
+            }
         }
 
         function showElazigLocation() {
@@ -2946,34 +2966,63 @@
         }
 
         function toggleContent(contentType) {
-            // Tüm içerikleri gizle
-            document.querySelectorAll('.icerik, .fakulteler-menu').forEach(el => el.style.display = 'none');
+            // Önce tüm içerikleri gizle
+            document.querySelectorAll('.icerik-bolum, .icerik').forEach(el => {
+                el.style.display = 'none';
+            });
             
-            // Seçilen içeriği göster
+            // Ana içerik alanını göster
+            const mainContent = document.getElementById('icerik');
+            if (mainContent) {
+                mainContent.style.display = 'block';
+            }
+            
             if (contentType === 'fakulteler') {
-                document.getElementById('fakulteler-content').style.display = 'block';
-            } else {
-                // Diğer içerikler için mevcut mantık
-                const content = document.getElementById(contentType + '-content');
-                if (content) {
-                    content.style.display = 'block';
+                // Fakülteler menüsünü göster
+                const fakultelerContent = document.getElementById('fakulteler-content');
+                const fakultelerMenu = document.querySelector('.fakulteler-menu');
+                
+                if (fakultelerContent) {
+                    fakultelerContent.style.display = 'block';
                 }
+                if (fakultelerMenu) {
+                    fakultelerMenu.style.display = 'block';
+                }
+                
+                // Diğer içerikleri gizle
+                document.getElementById('icerik').innerHTML = '';
+            } else {
+                // Fakülte menüsünü ve içeriğini gizle
+                document.querySelectorAll('.fakulteler-menu, .fakulte-bolumler').forEach(el => {
+                    el.style.display = 'none';
+                    el.classList.remove('active');
+                });
+                
+                // Seçilen içeriği göster
+                showContent(contentType);
             }
         }
 
         function toggleBolumler(element) {
             const bolumler = element.querySelector('.fakulte-bolumler');
-            const allBolumler = document.querySelectorAll('.fakulte-bolumler');
+            if (!bolumler) return;
             
-            // Diğer tüm açık bölümleri kapat
-            allBolumler.forEach(item => {
-                if (item !== bolumler && item.classList.contains('active')) {
+            // Diğer tüm bölümleri kapat
+            document.querySelectorAll('.fakulte-bolumler').forEach(item => {
+                if (item !== bolumler) {
+                    item.style.display = 'none';
                     item.classList.remove('active');
                 }
             });
             
             // Seçilen bölümü aç/kapat
-            bolumler.classList.toggle('active');
+            if (bolumler.classList.contains('active')) {
+                bolumler.style.display = 'none';
+                bolumler.classList.remove('active');
+            } else {
+                bolumler.style.display = 'block';
+                bolumler.classList.add('active');
+            }
         }
     </script>
 </body>
