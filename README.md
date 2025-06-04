@@ -1,25 +1,26 @@
 # 🌍 ELAZIĞ TANITIM PROJESİ
 
-Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır. Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları ve konum bilgisini inceleyebilecektir.
+Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır.  
+Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları, konum bilgilerini ve dijital gezi rehberini inceleyebilecektir.
 
 ---
 
 ## 🌐 Çok Dilli Destek
 
-Web sitesinde artık İngilizce, Arapça, Rusça ve Almanca dillerinde içerik görüntülenebilmektedir.
+Web sitesinde Türkçe, İngilizce, Arapça, Rusça ve Almanca dillerinde içerik görüntülenebilmektedir.
 
 ---
 
 ## 👥 TAKIM BİLGİLERİ / FİN-TECH
 
-- Fırat Yunus Yaşaroğlu  
-  [GitHub Profili](https://github.com/firatysrgl)
+**Fırat Yunus Yaşaroğlu**  
+GitHub: [https://github.com/firatysrgl](https://github.com/firatysrgl)
 
-- İlayda Memiş  
-  [GitHub Profili](https://github.com/ilaydamemiss)
+**İlayda Memiş**  
+GitHub: [https://github.com/ilaydamemiss](https://github.com/ilaydamemiss)
 
-- Nuhser Atala  
-  [GitHub Profili](https://github.com/atalanuhser)
+**Nuhser Atala**  
+GitHub: [https://github.com/atalanuhser](https://github.com/atalanuhser)
 
 ---
 
@@ -30,7 +31,8 @@ Web sitesinde artık İngilizce, Arapça, Rusça ve Almanca dillerinde içerik g
 - Doğal güzellikler ve tarihi mekanlar  
 - Fotoğraf Galerisi  
 - Konum Bilgisi  
-- 360 Sanal Tur Gezileri  
+- 360° Sanal Tur Gezileri  
+- Dijital Rehber (Önerilen Gezi Rotası)  
 - Çok dilli içerik desteği (TR / EN / AR / RU / DE)
 
 ---
@@ -50,51 +52,51 @@ Web sitesinde artık İngilizce, Arapça, Rusça ve Almanca dillerinde içerik g
 
 ## 🚀 YAYIN
 
-- Proje geliştirme aşamasındadır.  
-- Vercel üzerinden yayınlanmaktadır.  
-- 🔗 [Canlı Yayın Linki](https://elazig-tanitim.vercel.app/)
+Proje geliştirme aşamasındadır.  
+Vercel üzerinden yayınlanmaktadır.  
+
+🔗 **Canlı Yayın Linki:** [https://elazig-tanitim.vercel.app/](https://elazig-tanitim.vercel.app/)
 
 ---
 
 ## ✅ GÖREV DAĞILIMI
 
-Fırat Yunus Yaşaroğlu  
+**Fırat Yunus Yaşaroğlu**  
 - Proje planının hazırlanması  
 - Sayfa yapılarının tasarlanması  
 - Git & GitHub entegrasyonu  
 - README dosyasının güncellenmesi  
-- 360 Sanal Tur Gezilerini Düzenleme  
+- 360 Sanal Tur Gezilerini düzenleme  
 
-İlayda Memiş  
+**İlayda Memiş**  
 - Arayüz taslağının oluşturulması  
 - Fotoğraf ve medya dosyalarının düzenlenmesi  
+- Fotoğraf galerisine yeni fotoğrafların yüklenmesi  
+- Galeri ileri/geri navigasyon tuşlarının eklenmesi  
+- Fırat Üniversitesi menüsünün eklenmesi  
+- Dijital Rehber modülünün hazırlanması  
 - Kullanıcı senaryosu dosyasının hazırlanması  
-- Fırat Üniversitesi menüsünün eklenmesi ✅  
-- Fotoğraf galerisine yeni fotoğrafların yüklenmesi ✅  
-- Galeri ileri/geri navigasyon tuşlarının eklenmesi ✅
 
-Nuhser Atala  
+**Nuhser Atala**  
 - Gereksinim analizi dosyasının hazırlanması  
 - Proje planı dosyasının yüklenmesi  
-- Dil Desteklerini sağlama  
-
----
-
-## 🔨 YAPILACAKLAR
-
-- Arayüz geliştirmeye devam edilecek  
-- Hata Düzeltmeleri Yapılacak  
+- Dil desteklerinin sağlanması
 
 ---
 
 ## 📅 GÜNCELLEMELER
 
-- Fırat Üniversitesi menüsü eklendi ✅  
-- Fotoğraf galerisine yeni fotoğraflar yüklendi ✅  
-- Galeride ileri/geri navigasyon tuşları eklendi ✅  
-- 360 sanal geziler eklendi  
-- İngilizce, Arapça, Rusça ve Almanca dil desteği eklendi ✅  
-- Vercel bağlantısı yapıldı  
+- Fotoğraf galerisine yeni fotoğraflar yüklendi  
+- Galeriye ileri/geri navigasyon tuşları eklendi  
+- Fırat Üniversitesi menüsü siteye eklendi  
+- Dijital Rehber özelliği aktif hale getirildi  
+- 360° sanal geziler eklendi  
+- İngilizce, Arapça, Rusça ve Almanca dil desteği sağlandı  
+- Vercel üzerinden yayına alındı  
 - Konum bilgisi eklendi  
-- Mobil uyumluluk sağlandı
+- Mobil uyumluluk geliştirildi  
+
+---
+
+
 
