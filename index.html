@@ -677,6 +677,97 @@
         .sticky-footer a:hover {
             color: #ff6b6b;
         }
+        
+        /* Dijital Rehber Stili */
+        .dijital-rehber-btn {
+            position: fixed;
+            bottom: 50px;
+            right: 30px;
+            background: linear-gradient(45deg, #2196f3, #0d47a1);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .dijital-rehber-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #1976d2, #0a3d8f);
+        }
+
+        .dijital-rehber-modal {
+            display: none;
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            background: rgba(25,35,50,0.95);
+            padding: 20px;
+            border-radius: 12px;
+            width: 300px;
+            color: white;
+            z-index: 999;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dijital-rehber-modal.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dijital-rehber-modal h3 {
+            font-size: 1.1rem;
+            margin: 0 0 15px 0;
+            color: #2196f3;
+            letter-spacing: 0.5px;
+        }
+
+        .rota-gun {
+            background: rgba(255,255,255,0.05);
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .rota-gun:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(5px);
+        }
+
+        .rota-gun h4 {
+            margin: 0 0 8px 0;
+            color: #2196f3;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rota-gun h4::before {
+            content: '📍';
+        }
+
+        .rota-gun p {
+            margin: 0;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -688,6 +779,29 @@
         <option value="ar">العربية</option>
     </select>
     <div class="overlay"></div>
+    
+    <!-- Dijital Rehber Butonu -->
+    <button class="dijital-rehber-btn" onclick="toggleRehber()">
+        🗺️ Dijital Rehber
+    </button>
+
+    <!-- Dijital Rehber Modal -->
+    <div class="dijital-rehber-modal" id="rehberModal">
+        <h3 style="margin-top:0">Önerilen Gezi Rotası</h3>
+        <div class="rota-gun">
+            <h4>1. Gün - Harput Turu</h4>
+            <p>Harput Kalesi, Ulu Cami, Buzluk Mağarası ve tarihi çarşı gezisi</p>
+        </div>
+        <div class="rota-gun">
+            <h4>2. Gün - Keban Barajı</h4>
+            <p>Keban Barajı manzarası, balık restoranları ve tekne turu</p>
+        </div>
+        <div class="rota-gun">
+            <h4>3. Gün - Hazar Gölü</h4>
+            <p>Hazar Gölü plajları, su sporları ve gün batımı keyfi</p>
+        </div>
+    </div>
+
     <div class="giris" id="giris">
         <div class="header">
             <span class="pin">📍</span>
@@ -2815,6 +2929,11 @@
                 bolumler.style.display = 'block';
                 bolumler.classList.add('active');
             }
+        }
+
+        function toggleRehber() {
+            const modal = document.getElementById('rehberModal');
+            modal.classList.toggle('active');
         }
     </script>
 </body>
