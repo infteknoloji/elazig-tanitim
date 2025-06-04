@@ -1,111 +1,98 @@
-🌍 ELAZIĞ TANITIM PROJESİ
+# 🌍 ELAZIĞ TANITIM PROJESİ
 
-+ Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır. Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları ve konum bilgisini inceleyebilecektir.
+Bu proje, Elazığ ilinin kültürel, tarihi ve doğal güzelliklerini tanıtmak amacıyla hazırlanmıştır. Web sitesi üzerinden kullanıcılar Elazığ hakkında genel bilgilere ulaşabilecek ve şehre dair fotoğrafları ve konum bilgisini inceleyebilecektir.
 
-🌐 Çok Dilli Destek
+---
 
-+ Web sitesinde artık İngilizce, Arapça, Rusça ve Almanca dillerinde içerik görüntülenebilmektedir.
+## 🌐 Çok Dilli Destek
 
-👥 TAKIM BİLGİLERİ / FİN-TECH
+Web sitesinde artık İngilizce, Arapça, Rusça ve Almanca dillerinde içerik görüntülenebilmektedir.
 
-+ Fırat Yunus Yaşaroğlu
-  GitHub Profili: https://github.com/firatysrgl
+---
 
-+ İlayda Memiş
-  GitHub Profili: https://github.com/ilaydamemiss
+## 👥 TAKIM BİLGİLERİ / FİN-TECH
 
-+ Nuhser Atala
-  GitHub Profili: https://github.com/atalanuhser
+- Fırat Yunus Yaşaroğlu  
+  [GitHub Profili](https://github.com/firatysrgl)
 
-📁  PROJE İÇERİĞİ
+- İlayda Memiş  
+  [GitHub Profili](https://github.com/ilaydamemiss)
 
-+ Elazığ hakkında genel bilgiler
+- Nuhser Atala  
+  [GitHub Profili](https://github.com/atalanuhser)
 
-+ İlçeler ve öne çıkan yerler
+---
 
-+ Doğal güzellikler ve tarihi mekanlar
+## 📁 PROJE İÇERİĞİ
 
-+ Fotoğraf Galerisi
+- Elazığ hakkında genel bilgiler  
+- İlçeler ve öne çıkan yerler  
+- Doğal güzellikler ve tarihi mekanlar  
+- Fotoğraf Galerisi  
+- Konum Bilgisi  
+- 360 Sanal Tur Gezileri  
+- Çok dilli içerik desteği (TR / EN / AR / RU / DE)
 
-+ Konum Bilgisi
+---
 
-+ 360 Sanal Tur Gezileri
+## 🔧 KULLANILAN TEKNOLOJİLER
 
-+ Çok dilli içerik desteği (TR / EN / AR / RU / DE)
+- HTML  
+- CSS  
+- JavaScript  
+- Visual Studio Code  
+- Git & GitHub  
+- Vercel  
+- Cursor  
+- ChatGPT
 
-🔧 KULLANILAN TEKNOLOJİLER
+---
 
-+ HTML
+## 🚀 YAYIN
 
-+ CSS
+- Proje geliştirme aşamasındadır.  
+- Vercel üzerinden yayınlanmaktadır.  
+- 🔗 [Canlı Yayın Linki](https://elazig-tanitim.vercel.app/)
 
-+ JavaScript
+---
 
-+ Visual Studio Code
+## ✅ GÖREV DAĞILIMI
 
-+ Git & GitHub
+Fırat Yunus Yaşaroğlu  
+- Proje planının hazırlanması  
+- Sayfa yapılarının tasarlanması  
+- Git & GitHub entegrasyonu  
+- README dosyasının güncellenmesi  
+- 360 Sanal Tur Gezilerini Düzenleme  
 
-+ Vercel
+İlayda Memiş  
+- Arayüz taslağının oluşturulması  
+- Fotoğraf ve medya dosyalarının düzenlenmesi  
+- Kullanıcı senaryosu dosyasının hazırlanması  
+- Fırat Üniversitesi menüsünün eklenmesi ✅  
+- Fotoğraf galerisine yeni fotoğrafların yüklenmesi ✅  
+- Galeri ileri/geri navigasyon tuşlarının eklenmesi ✅
 
-+ Cursor
+Nuhser Atala  
+- Gereksinim analizi dosyasının hazırlanması  
+- Proje planı dosyasının yüklenmesi  
+- Dil Desteklerini sağlama  
 
-+ ChatGPT
+---
 
-🚀 YAYIN
+## 🔨 YAPILACAKLAR
 
-+ Proje geliştirme aşamasındadır.
-+ Vercel üzerinden yayınlanmaktadır.
+- Arayüz geliştirmeye devam edilecek  
+- Hata Düzeltmeleri Yapılacak  
 
-🔗 Canlı Yayın Linki: https://elazig-tanitim.vercel.app/
+---
 
-✅ GÖREV DAĞILIMI 
+## 📅 GÜNCELLEME
 
-Fırat Yunus Yaşaroğlu:
-
-+ Proje planının hazırlanması
-
-+ Sayfa yapılarının tasarlanması
-
-+ Git & GitHub entegrasyonu
-
-+ README dosyasının güncellenmesi
-
-+ 360 Sanal Tur Gezilerini Düzenleme 
-
-İlayda Memiş:
-
-+ Arayüz taslağının oluşturulması
-
-+ Fotoğraf ve medya dosyalarının düzenlenmesi
-
-+ Kullanıcı senaryosu dosyasının hazırlanması
-
-Nuhser Atala:
-
-+ Gereksinim analizi dosyasının hazırlanması
-
-+ Proje planı dosyasının yüklenmesi 
-
-+ Dil Desteklerini sağlama 
-
-🔨 YAPILACAKLAR
-
-+ Arayüz geliştirmeye devam edilecek
-
-+ Hata Düzeltmeleri Yapılacak
-
-📅 GÜNCELLEME
-
-+ Fotoğraf Galerisine Fotoğraflar Yüklendi
-
-+ 360 sanal geziler eklendi
-
-+ İngilizce, Arapça, Rusça ve Almanca dil desteği eklendi ✅
-
-+ Vercel bağlantısı yapıldı
-
-+ Konum bilgisi eklendi
-
-+ Mobil uyumluluk sağlandı
-
+- Fotoğraf Galerisine Fotoğraflar Yüklendi  
+- 360 sanal geziler eklendi  
+- İngilizce, Arapça, Rusça ve Almanca dil desteği eklendi ✅  
+- Vercel bağlantısı yapıldı  
+- Konum bilgisi eklendi  
+- Mobil uyumluluk sağlandı
 
