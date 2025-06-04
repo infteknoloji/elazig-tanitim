@@ -87,9 +87,11 @@ Nuhser Atala
 
 ---
 
-## 📅 GÜNCELLEME
+## 📅 GÜNCELLEMELER
 
-- Fotoğraf Galerisine Fotoğraflar Yüklendi  
+- Fırat Üniversitesi menüsü eklendi ✅  
+- Fotoğraf galerisine yeni fotoğraflar yüklendi ✅  
+- Galeride ileri/geri navigasyon tuşları eklendi ✅  
 - 360 sanal geziler eklendi  
 - İngilizce, Arapça, Rusça ve Almanca dil desteği eklendi ✅  
 - Vercel bağlantısı yapıldı  
