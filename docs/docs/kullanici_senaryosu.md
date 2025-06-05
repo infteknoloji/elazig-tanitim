@@ -1,26 +1,40 @@
 # 👤 Kullanıcı Senaryoları
 
-## Senaryo 1 – Turist Ayşe Elazığ’da gezi planı yapıyor
-
-Ayşe, Elazığ’a ilk kez gelecek bir üniversite öğrencisidir. Elazığ’da gezilecek yerleri araştırmak ister.  
-Google’da “Elazığ gezilecek yerler” yazar ve FİN-Tech grubunun geliştirdiği tanıtım web sitesine ulaşır.
-
-**Adımlar:**
-1. Ana sayfaya girer, üst menüden “Gezilecek Yerler” sekmesine tıklar.  
-2. Harput, Hazar Gölü, Buzluk Mağarası gibi yerleri listeler hâlinde görür.  
-3. Harput’a tıklar ve detaylı açıklamaları okur, fotoğraflara göz atar.  
-4. Not alıp gezi planı yapar.
+Bu bölümde, Elazığ Tanıtım Web Sitesi'nin farklı kullanıcı tipleriyle nasıl etkileşime geçtiği örnek senaryolarla açıklanmıştır.
 
 ---
 
-## Senaryo 2 – Zeynep sunum yapacak, bilgi arıyor
+## 🧳 Senaryo 1 – Turist Ayşe Elazığ’da Gezi Planı Yapıyor
 
-Zeynep, okulda Elazığ ile ilgili bir sunum hazırlamaktadır.  
-Bilgileri derli toplu ve sade biçimde sunan bir site arar.
+**Kullanıcı Profili:**  
+Ayşe, Elazığ’a ilk kez gidecek olan bir üniversite öğrencisi. Kültürel yerleri gezmek istiyor.
+
+**Senaryo:**  
+Ayşe, Google’da “Elazığ gezilecek yerler” araması yapar ve tanıtım sitesine ulaşır.
 
 **Adımlar:**
-1. Elazığ Tanıtım Web Sitesi’ne girer.  
-2. “Elazığ Hakkında” sayfasına tıklar.  
-3. Şehrin tarihçesini, nüfusunu, kültürel değerlerini inceler.  
-4. Galeri kısmından görseller indirerek sunumuna ekler.  
-5. Web sitesinin düzenli yapısı sayesinde kısa sürede sunumunu tamamlar.
+1. Ana sayfaya giriş yapar.  
+2. Üst menüden “Gezilecek Yerler” bölümüne tıklar.  
+3. Harput Kalesi, Hazar Gölü, Buzluk Mağarası gibi yerlerin kartlarını inceler.  
+4. Harput Kalesi sayfasına tıklar, detayları ve görselleri görüntüler.  
+5. Gezi planı hazırlarken notlar alır.
+
+---
+
+## 🎓 Senaryo 2 – Öğrenci Zeynep Okul Sunumu Hazırlıyor
+
+**Kullanıcı Profili:**  
+Zeynep, Elazığ hakkında okulda sunum yapması gereken bir lise öğrencisidir.
+
+**Senaryo:**  
+Sunumu için sade ve güvenilir kaynaklar ararken tanıtım sitesini keşfeder.
+
+**Adımlar:**
+1. Ana sayfaya giriş yapar.  
+2. Menüden “Elazığ Hakkında” bölümünü seçer.  
+3. Şehrin tarihi, nüfusu ve kültürel değerleri hakkında bilgi okur.  
+4. Galeri bölümünden görselleri indirir.  
+5. Kısa sürede sunumunu tamamlayarak teslim eder.
+
+---
+
