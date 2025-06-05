@@ -772,6 +772,87 @@
             margin: 0;
             line-height: 1.4;
         }
+
+        .historical-places {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 15px;
+        }
+
+        .place-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .place-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .place-info {
+            flex: 1;
+            padding: 10px;
+            order: 1;
+        }
+
+        .place-image {
+            flex: 0 0 250px;
+            height: 180px;
+            border-radius: 8px;
+            overflow: hidden;
+            order: 2;
+        }
+
+        .place-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .place-card:hover .place-image img {
+            transform: scale(1.05);
+        }
+
+        .place-info h3 {
+            color: #e53935;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+
+        .place-info p {
+            color: #fff;
+            line-height: 1.5;
+            text-align: justify;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .place-card {
+                flex-direction: column;
+            }
+
+            .place-info {
+                order: 2;
+            }
+
+            .place-image {
+                order: 1;
+                width: 100%;
+                height: 160px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1309,22 +1390,89 @@
                     <li><b>Ağın:</b> Keban Baraj Gölü kıyısında doğal güzellikler, Ağın Yaylaları, Tarihi Yerleşimler</li>
                 </ul>
                 <p>Her ilçe, kendine has lezzetleri ve misafirperver insanlarıyla ziyaretçilerini bekliyor. İlçelerde geleneksel el sanatları, yöresel mutfak ve folklorik değerler yaşatılmaktadır.</p>`,
-                dogal: `<h2>Doğal Güzellikler ve Tarihi Mekanlar</h2>
-                <p>Elazığ, hem doğal güzellikleri hem de tarihi mekanlarıyla büyüleyici bir şehirdir:</p>
-                <ul style="text-align:left; max-width:600px; margin: 0 auto;">
-                    <li><b>Harput Kalesi:</b> Şehrin simgesi olan kale, muhteşem bir manzaraya sahiptir. Tarihi surları ve kuleleriyle ziyaretçilerini bekler.</li>
-                    <li><b>Buzluk Mağarası:</b> Yazın serin, kışın sıcak olan ilginç bir mağara. Doğal klima özelliğiyle dikkat çeker.</li>
-                    <li><b>Hazar Gölü:</b> Türkiye'nin en temiz göllerinden biri, plajları ve su sporlarıyla ünlü. Göl çevresinde piknik alanları ve yürüyüş parkurları bulunur.</li>
-                    <li><b>Hazarbaba Kayak Merkezi:</b> Kış turizmi için önemli bir merkez. Modern tesisleri ve pistleriyle kayakseverlere hizmet verir.</li>
-                    <li><b>Palu Kalesi ve Köprüsü:</b> Tarihi dokusu ve doğal güzellikleriyle öne çıkar.</li>
-                    <li><b>Golan Kaplıcaları:</b> Şifalı sularıyla bilinen doğal bir kaplıca. Termal turizm için önemli bir merkezdir.</li>
-                    <li><b>Keban Barajı:</b> Türkiye'nin en büyük barajlarından biri, çevresi piknik ve balıkçılık için uygundur. Baraj gölünde su sporları yapılabilir.</li>
-                    <li><b>Çırçır Şelalesi:</b> Elazığ'ın doğal güzelliklerinden biri olan şelale, muhteşem manzarası ve serin havasıyla ziyaretçilerini bekliyor. Doğa yürüyüşü ve piknik için ideal bir mekan.</li>
-                    <li><b>Elazığ Kapalı Çarşısı:</b> Şehrin merkezinde bulunan tarihi çarşı, geleneksel el sanatları, yöresel ürünler ve hediyelik eşyaların satıldığı önemli bir alışveriş merkezidir. Tarihi dokusu ve canlı atmosferiyle ziyaretçilerini bekliyor.</li>
-                    <li><b>Elazığ Kent Müzesi:</b> Şehrin kültürel mirasını, tarihini ve günlük yaşamını yansıtan modern bir müze. Elazığ'ın sosyal, ekonomik ve kültürel gelişimini interaktif sergilerle anlatıyor.</li>
-                    <li><b>Cip Mesire Alanı:</b> Şehrin doğal güzelliklerinden biri olan mesire alanı, piknik alanları, yürüyüş parkurları ve muhteşem manzarasıyla ziyaretçilerine huzurlu bir ortam sunuyor. Doğa ile iç içe vakit geçirmek için ideal bir mekan.</li>
-                </ul>
-                <p>Elazığ, doğa ve tarih tutkunları için keşfedilmeyi bekleyen birçok güzelliğe ev sahipliği yapar. Her mevsim farklı güzellikler sunan şehir, ziyaretçilerine unutulmaz deneyimler yaşatır.</p>`,
+                dogal: `<h2>Tarihi Güzellikler ve Doğal Mekanlar</h2>
+                <p>Elazığ, tarihi ve doğal güzellikleriyle büyüleyici bir şehirdir:</p>
+                <div class="historical-places">
+                    <div class="place-card">
+                        <div class="place-info">
+                            <h3>Harput Kalesi</h3>
+                            <p>Şehrin sembolü olan Harput Kalesi, muhteşem bir manzara sunar. Tarihi surları ve kuleleriyle ziyaretçilerini karşılar. M.Ö. 2000 yıllarına dayanan tarihi ile kale, Urartular, Bizanslılar, Selçuklular ve Osmanlılar gibi birçok medeniyete ev sahipliği yapmıştır. Kalenin en dikkat çekici özelliklerinden biri, şehre hakim konumu ve stratejik önemidir.</p>
+                        </div>
+                        <div class="place-image">
+                            <img src="images/harput8.jpg" alt="Harput Kalesi ve Türk Bayrağı" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="place-card">
+                        <div class="place-info">
+                            <h3>Buzluk Mağarası</h3>
+                            <p>Yazın serin, kışın ılık olan ilginç bir mağaradır. Doğal klima özelliği ile ünlüdür. Harput'ta bulunan mağara, yaz aylarında buz oluşumu ile dikkat çeker. Yaklaşık 50 metre derinliğe sahip olan mağara, yöre halkı tarafından yüzyıllardır doğal buzdolabı olarak kullanılmaktadır.</p>
+                        </div>
+                        <div class="place-image">
+                            <img src="images/buzluk1.jpg" alt="Buzluk Mağarası" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="place-card">
+                        <div class="place-info">
+                            <h3>Palu Kalesi ve Köprüsü</h3>
+                            <p>Tarihi dokusu ve doğal güzellikleriyle öne çıkar. Palu ilçesinde bulunan kale, Urartu döneminden kalma olup, stratejik konumu ile dikkat çeker. Murat Nehri üzerinde bulunan tarihi Palu Köprüsü ise bölgenin en önemli tarihi yapılarından biridir.</p>
+                        </div>
+                        <div class="place-image">
+                            <img src="images/palu1.jpg" alt="Palu Kalesi ve Köprüsü" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="place-card">
+                        <div class="place-info">
+                            <h3>Elazığ Kapalı Çarşı</h3>
+                            <p>Şehir merkezinde yer alan bu tarihi çarşı, geleneksel el sanatları, yerel ürünler ve hediyelik eşyaların satıldığı önemli bir alışveriş merkezidir. Tarihi dokusu ve canlı atmosferi ile ziyaretçilerini karşılar. Çarşı, yöresel lezzetlerin, bakır işlemeciliğinin ve el sanatlarının en güzel örneklerini sunar.</p>
+                        </div>
+                        <div class="place-image">
+                            <img src="images/carsi1.jpg" alt="Elazığ Kapalı Çarşı" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="place-card">
+                        <div class="place-info">
+                            <h3>Elazığ Kent Müzesi</h3>
+                            <p>Şehrin kültürel mirasını, tarihini ve günlük yaşamını yansıtan modern bir müzedir. İnteraktif sergiler aracılığıyla Elazığ'ın sosyal, ekonomik ve kültürel gelişiminin hikayesini anlatır. Müzede, şehrin geçmişten günümüze değişimini gösteren eserler ve belgeler sergilenmektedir.</p>
+                        </div>
+                        <div class="place-image">
+                            <img src="images/muze1.jpg" alt="Elazığ Kent Müzesi" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="place-card">
+                        <div class="place-info">
+                            <h3>Hazar Gölü</h3>
+                            <p>Türkiye'nin en temiz göllerinden biri olan Hazar Gölü, muhteşem plajları ve su sporları imkanlarıyla ünlüdür. Göl çevresinde piknik alanları ve yürüyüş parkurları bulunur. 86 kilometrekarelik yüzölçümü ile bölgenin en büyük doğal göllerinden biridir. Berrak suları, kumsalları ve çevresindeki mesire alanlarıyla hem yerli hem de yabancı turistlerin ilgisini çekmektedir.</p>
+                        </div>
+                        <div class="place-image">
+                            <img src="images/gol1.jpg" alt="Hazar Gölü" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="place-card">
+                        <div class="place-info">
+                            <h3>Hazarbaba Kayak Merkezi</h3>
+                            <p>Kış turizmi için önemli bir merkez olan Hazarbaba Kayak Merkezi, modern tesisleri ve pistleriyle kayakseverlere hizmet vermektedir. 2347 metre yüksekliğindeki Hazarbaba Dağı'nda bulunan merkez, farklı zorluk seviyelerinde pistlere sahiptir. Kayak sezonu boyunca karla kaplı kalan pistler, hem profesyonel kayakçılar hem de yeni başlayanlar için ideal koşullar sunmaktadır. Telesiyej sistemi ve konaklama imkanlarıyla tam donanımlı bir kış sporları merkezidir.</p>
+                        </div>
+                        <div class="place-image">
+                            <img src="images/kayak1.jpg" alt="Hazarbaba Kayak Merkezi" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="place-card">
+                        <div class="place-info">
+                            <h3>Golan Kaplıcaları</h3>
+                            <p>Elazığ'ın önemli termal turizm merkezlerinden biri olan Golan Kaplıcaları, şifalı sularıyla ünlüdür. Romatizmal hastalıklar, cilt hastalıkları ve kas-iskelet sistemi rahatsızlıklarının tedavisinde faydalı olan kaplıcalar, modern tesisleriyle ziyaretçilerine hizmet vermektedir. Doğal güzellikleri ve termal suyu ile hem şifa arayanlar hem de dinlenmek isteyenler için ideal bir destinasyondur.</p>
+                        </div>
+                        <div class="place-image">
+                            <img src="images/golan2.jpg" alt="Golan Kaplıcaları" loading="lazy">
+                        </div>
+                    </div>
+                </div>`,
                 galeri: `<h2>Fotoğraf Galerisi</h2>
                 <div class="gallery-container">
                     <div class="gallery-collection" onclick="toggleCollection(this)">
@@ -1671,12 +1819,12 @@
                     <li><b>Palu Castle & Bridge:</b> Stands out with its historical texture and natural beauties.</li>
                     <li><b>Golan Hot Springs:</b> A natural spa known for its healing waters. An important center for thermal tourism.</li>
                     <li><b>Keban Dam:</b> One of Turkey's largest dams, suitable for picnics and fishing. Water sports can be enjoyed in the dam lake.</li>
-                    <li><b>Çırçır Waterfall:</b> One of Elazığ's natural beauties, the waterfall awaits visitors with its magnificent view and cool air. An ideal place for nature walks and picnics.</li>
-                    <li><b>Elazığ Covered Bazaar:</b> Located in the city center, this historical bazaar is an important shopping center where traditional handicrafts, local products, and souvenirs are sold. It welcomes visitors with its historical texture and lively atmosphere.</li>
-                    <li><b>Elazığ City Museum:</b> A modern museum reflecting the city's cultural heritage, history, and daily life. It tells the story of Elazığ's social, economic, and cultural development through interactive exhibitions.</li>
-                    <li><b>Cip Picnic Area:</b> One of the city's natural beauties, this picnic area offers visitors a peaceful environment with picnic areas, walking trails, and magnificent views. An ideal place to spend time in nature.</li>
+                    <li><b>Çırçır Şelalesi:</b> Elazığ'ın doğal güzelliklerinden biri olan şelale, muhteşem manzarası ve serin havasıyla ziyaretçilerini bekliyor. Doğa yürüyüşü ve piknik için ideal bir mekan.</li>
+                    <li><b>Elazığ Kapalı Çarşısı:</b> Şehrin merkezinde bulunan tarihi çarşı, geleneksel el sanatları, yöresel ürünler ve hediyelik eşyaların satıldığı önemli bir alışveriş merkezidir. Tarihi dokusu ve canlı atmosferiyle ziyaretçilerini bekliyor.</li>
+                    <li><b>Elazığ Kent Müzesi:</b> Şehrin kültürel mirasını, tarihini ve günlük yaşamını yansıtan modern bir müze. Elazığ'ın sosyal, ekonomik ve kültürel gelişiminin interaktif sergilerle anlatıyor.</li>
+                    <li><b>Cip Mesire Alanı:</b> Şehrin doğal güzelliklerinden biri olan mesire alanı, piknik alanları, yürüyüş parkurları ve muhteşem manzarasıyla ziyaretçilerine huzurlu bir ortam sunuyor. Doğa ile iç içe vakit geçirmek için ideal bir mekan.</li>
                 </ul>
-                <p>Elazığ hosts many beauties waiting to be discovered for nature and history enthusiasts. The city, which offers different beauties in every season, provides unforgettable experiences for its visitors.</p>`,
+                <p>Elazığ, doğa ve tarih tutkunları için keşfedilmeyi bekleyen birçok güzelliğe ev sahipliği yapar. Her mevsim farklı güzellikler sunan şehir, ziyaretçilerine unutulmaz deneyimler yaşatır.</p>`,
                 galeri: `<h2>Photo Gallery</h2>
                 <div class="gallery-container">
                     <div class="gallery-collection" onclick="toggleCollection(this)">
