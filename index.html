@@ -904,7 +904,7 @@
             <button id="btnDogal" onclick="showContent('dogal')">Doğal Güzellikler ve Tarihi Mekanlar</button>
             <button id="btnGaleri" onclick="showContent('galeri')">Fotoğraf Galerisi</button>
             <button id="btnTur360" onclick="showContent('tur360')">360° Sanal Tur</button>
-            <button onclick="toggleContent('fakulteler')">Fırat Üniversitesi</button>
+            <button id="btnFirat" onclick="toggleContent('fakulteler')">Fırat Üniversitesi</button>
         </div>
         <button class="location-btn" id="btnKonum" onclick="showElazigLocation()">📍 Konumu Göster</button>
         <button class="dijital-rehber-btn" onclick="toggleRehber()">🗺️ Dijital Rehber</button>
@@ -1736,28 +1736,66 @@
                         </div>
                         <div class="collection-grid">
                             <div class="gallery-item" onclick="openLightbox(37)">
-                                <img src="images/firat5.jpg" alt="Фиратский университет" loading="lazy">
-                                <div class="gallery-caption">Фиратский университет</div>
+                                <img src="images/firat5.jpg" alt="Fırat Üniversitesi" loading="lazy">
+                                <div class="gallery-caption">Fırat Üniversitesi</div>
                             </div>
                             <div class="gallery-item" onclick="openLightbox(38)">
-                                <img src="images/firat6.jpg" alt="Фиратский университет" loading="lazy">
-                                <div class="gallery-caption">Фиратский университет</div>
+                                <img src="images/firat6.jpg" alt="Fırat Üniversitesi" loading="lazy">
+                                <div class="gallery-caption">Fırat Üniversitesi</div>
                             </div>
                             <div class="gallery-item" onclick="openLightbox(39)">
-                                <img src="images/firat7.jpg" alt="Фиратский университет" loading="lazy">
-                                <div class="gallery-caption">Фиратский университет</div>
+                                <img src="images/firat7.jpg" alt="Fırat Üniversitesi" loading="lazy">
+                                <div class="gallery-caption">Fırat Üniversitesi</div>
                             </div>
                             <div class="gallery-item" onclick="openLightbox(40)">
-                                <img src="images/firat8.jpg" alt="Фиратский университет" loading="lazy">
-                                <div class="gallery-caption">Фиратский университет</div>
+                                <img src="images/firat8.jpg" alt="Fırat Üniversitesi" loading="lazy">
+                                <div class="gallery-caption">Fırat Üniversitesi</div>
                             </div>
                             <div class="gallery-item" onclick="openLightbox(41)">
-                                <img src="images/firat9.jpg" alt="Фиратский университет" loading="lazy">
-                                <div class="gallery-caption">Фиратский университет</div>
+                                <img src="images/firat9.jpg" alt="Fırat Üniversitesi" loading="lazy">
+                                <div class="gallery-caption">Fırat Üniversitesi</div>
                             </div>
                             <div class="gallery-item" onclick="openLightbox(42)">
-                                <img src="images/firat10.jpg" alt="Фиратский университет" loading="lazy">
-                                <div class="gallery-caption">Фиратский университет</div>
+                                <img src="images/firat10.jpg" alt="Fırat Üniversitesi" loading="lazy">
+                                <div class="gallery-caption">Fırat Üniversitesi</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Cip Mesire Alanı</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(33)">
+                            <img src="images/cip1.jpg" alt="Cip Mesire Alanı" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(33)">
+                                <img src="images/cip1.jpg" alt="Cip Mesire Alanı" loading="lazy">
+                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(34)">
+                                <img src="images/cip2.jpg" alt="Cip Mesire Alanı" loading="lazy">
+                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(35)">
+                                <img src="images/cip3.jpg" alt="Cip Mesire Alanı" loading="lazy">
+                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(36)">
+                                <img src="images/cip4.jpg" alt="Cip Mesire Alanı" loading="lazy">
+                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Elazığ Kent Müzesi</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(43)">
+                            <img src="images/muze1.jpg" alt="Elazığ Kent Müzesi" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(43)">
+                                <img src="images/muze1.jpg" alt="Elazığ Kent Müzesi" loading="lazy">
+                                <div class="gallery-caption">Elazığ Kent Müzesi</div>
                             </div>
                         </div>
                     </div>
@@ -1904,12 +1942,12 @@
                     <li><b>Palu Castle & Bridge:</b> Stands out with its historical texture and natural beauties.</li>
                     <li><b>Golan Hot Springs:</b> A natural spa known for its healing waters. An important center for thermal tourism.</li>
                     <li><b>Keban Dam:</b> One of Turkey's largest dams, suitable for picnics and fishing. Water sports can be enjoyed in the dam lake.</li>
-                    <li><b>Çırçır Şelalesi:</b> Elazığ'ın doğal güzelliklerinden biri olan şelale, muhteşem manzarası ve serin havasıyla ziyaretçilerini bekliyor. Doğa yürüyüşü ve piknik için ideal bir mekan.</li>
-                    <li><b>Elazığ Kapalı Çarşısı:</b> Şehrin merkezinde bulunan tarihi çarşı, geleneksel el sanatları, yöresel ürünler ve hediyelik eşyaların satıldığı önemli bir alışveriş merkezidir. Tarihi dokusu ve canlı atmosferiyle ziyaretçilerini bekliyor.</li>
-                    <li><b>Elazığ Kent Müzesi:</b> Şehrin kültürel mirasını, tarihini ve günlük yaşamını yansıtan modern bir müze. Elazığ'ın sosyal, ekonomik ve kültürel gelişiminin interaktif sergilerle anlatıyor.</li>
-                    <li><b>Cip Mesire Alanı:</b> Şehrin doğal güzelliklerinden biri olan mesire alanı, piknik alanları, yürüyüş parkurları ve muhteşem manzarasıyla ziyaretçilerine huzurlu bir ortam sunuyor. Doğa ile iç içe vakit geçirmek için ideal bir mekan.</li>
+                    <li><b>Çırçır Waterfall:</b> One of Elazığ's natural beauties, the waterfall awaits visitors with its magnificent view and cool air. An ideal place for hiking and picnicking.</li>
+                    <li><b>Elazığ Covered Bazaar:</b> Located in the city center, this historic bazaar is an important shopping center where traditional handicrafts, local products and souvenirs are sold. It welcomes visitors with its historic texture and lively atmosphere.</li>
+                    <li><b>Elazığ City Museum:</b> A modern museum reflecting the cultural heritage, history and daily life of the city. It tells the story of Elazığ's social, economic and cultural development through interactive exhibitions.</li>
+                    <li><b>Cip Picnic Area:</b> One of the city's natural beauties, this picnic area offers visitors a peaceful environment with picnic areas, walking trails and magnificent views. An ideal place to spend time in nature.</li>
                 </ul>
-                <p>Elazığ, doğa ve tarih tutkunları için keşfedilmeyi bekleyen birçok güzelliğe ev sahipliği yapar. Her mevsim farklı güzellikler sunan şehir, ziyaretçilerine unutulmaz deneyimler yaşatır.</p>`,
+                <p>Elazığ hosts many beauties waiting to be discovered by nature and history enthusiasts. The city, which offers different beauties in every season, provides unforgettable experiences for its visitors.</p>`,
                 galeri: `<h2>Photo Gallery</h2>
                 <div class="gallery-container">
                     <div class="gallery-collection" onclick="toggleCollection(this)">
@@ -2128,24 +2166,70 @@
                     <div class="gallery-collection" onclick="toggleCollection(this)">
                         <h3 class="collection-title">Cip Picnic Area</h3>
                         <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(33)">
-                            <img src="images/cip1.jpg" alt="Cip Mesire Alanı" loading="lazy">
+                            <img src="images/cip1.jpg" alt="Cip Picnic Area" loading="lazy">
                         </div>
                         <div class="collection-grid">
                             <div class="gallery-item" onclick="openLightbox(33)">
-                                <img src="images/cip1.jpg" alt="Cip Mesire Alanı" loading="lazy">
-                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                                <img src="images/cip1.jpg" alt="Cip Picnic Area" loading="lazy">
+                                <div class="gallery-caption">Cip Picnic Area</div>
                             </div>
                             <div class="gallery-item" onclick="openLightbox(34)">
-                                <img src="images/cip2.jpg" alt="Cip Mesire Alanı" loading="lazy">
-                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                                <img src="images/cip2.jpg" alt="Cip Picnic Area" loading="lazy">
+                                <div class="gallery-caption">Cip Picnic Area</div>
                             </div>
                             <div class="gallery-item" onclick="openLightbox(35)">
-                                <img src="images/cip3.jpg" alt="Cip Mesire Alanı" loading="lazy">
-                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                                <img src="images/cip3.jpg" alt="Cip Picnic Area" loading="lazy">
+                                <div class="gallery-caption">Cip Picnic Area</div>
                             </div>
                             <div class="gallery-item" onclick="openLightbox(36)">
-                                <img src="images/cip4.jpg" alt="Cip Mesire Alanı" loading="lazy">
-                                <div class="gallery-caption">Cip Mesire Alanı</div>
+                                <img src="images/cip4.jpg" alt="Cip Picnic Area" loading="lazy">
+                                <div class="gallery-caption">Cip Picnic Area</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Fırat University</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(37)">
+                            <img src="images/firat5.jpg" alt="Fırat University" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(37)">
+                                <img src="images/firat5.jpg" alt="Fırat University" loading="lazy">
+                                <div class="gallery-caption">Fırat University</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(38)">
+                                <img src="images/firat6.jpg" alt="Fırat University" loading="lazy">
+                                <div class="gallery-caption">Fırat University</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(39)">
+                                <img src="images/firat7.jpg" alt="Fırat University" loading="lazy">
+                                <div class="gallery-caption">Fırat University</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(40)">
+                                <img src="images/firat8.jpg" alt="Fırat University" loading="lazy">
+                                <div class="gallery-caption">Fırat University</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(41)">
+                                <img src="images/firat9.jpg" alt="Fırat University" loading="lazy">
+                                <div class="gallery-caption">Fırat University</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(42)">
+                                <img src="images/firat10.jpg" alt="Fırat University" loading="lazy">
+                                <div class="gallery-caption">Fırat University</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Elazığ City Museum</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(43)">
+                            <img src="images/muze1.jpg" alt="Elazığ City Museum" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(43)">
+                                <img src="images/muze1.jpg" alt="Elazığ City Museum" loading="lazy">
+                                <div class="gallery-caption">Elazığ City Museum</div>
                             </div>
                         </div>
                     </div>
@@ -2560,15 +2644,15 @@
                 btnTur360: "360° Virtuelle Tour",
                 btnFirat: "Fırat Universität",
                 btnRehber: "🗺️ Digitaler Reiseführer",
-                btnDahaFazla: "Mehr Informationen",
+                btnDahaFazla: "Weitere Informationen",
                 footerText: "© 2025 Elazığ Tourismus-Website | FIN-TECH",
                 rehberTitle: "Empfohlene Reiseroute",
-                rehberDay1: "Tag 1 - Harput Tour",
-                rehberDay1Desc: "Harput Burg, Große Moschee, Eishöhle und historischer Basar Tour",
-                rehberDay2: "Tag 2 - Keban Staudamm",
-                rehberDay2Desc: "Keban Staudamm Aussicht, Fischrestaurants und Bootstour",
-                rehberDay3: "Tag 3 - Hazar See",
-                rehberDay3Desc: "Hazar See Strände, Wassersport und Sonnenuntergang",
+                rehberDay1: "Tag 1 - Harput-Tour",
+                rehberDay1Desc: "Harput-Burg, Große Moschee, Eishöhle und historischer Basar-Tour",
+                rehberDay2: "Tag 2 - Keban-Staudamm",
+                rehberDay2Desc: "Keban-Staudamm Aussicht, Fischrestaurants und Bootstour",
+                rehberDay3: "Tag 3 - Hazar-See",
+                rehberDay3Desc: "Hazar-See Strände, Wassersport und Sonnenuntergang",
                 welcomeTitle: "Willkommen!",
                 welcomeText: "Wählen Sie einen Abschnitt oben, um die Schönheiten von Elazığ zu entdecken.",
                 hakkinda: `<h2>Über Elazığ</h2>
@@ -2621,11 +2705,12 @@
                     <li><b>Palu-Burg & Brücke:</b> Zeichnet sich durch ihre historische Textur und natürliche Schönheiten aus.</li>
                     <li><b>Golan-Heißquellen:</b> Ein natürliches Spa bekannt für seine heilenden Gewässer. Ein wichtiges Zentrum für Thermal-Tourismus.</li>
                     <li><b>Keban-Staudamm:</b> Einer der größten Staudämme der Türkei, geeignet für Picknicks und Angeln. Wassersport kann im Stausee genossen werden.</li>
-                    <li><b>Çırçır Wasserfall:</b> Eine der natürlichen Schönheiten von Elazığ, der Wasserfall erwartet Besucher mit seiner prächtigen Aussicht und kühlen Luft. An idealer Ort zum Wandern und Picknicken.</li>
-                    <li><b>Elazığ Covered Bazaar:</b> Im Stadtzentrum gelegen, ist dieser historische Basar ein wichtiges Einkaufszentrum, wo traditionelles Handwerk, lokale Produkte und Souvenirs verkauft werden. Begrüßt Besucher mit seiner historischen Textur und lebendigen Atmosphäre.</li>
+                    <li><b>Çırçır Wasserfall:</b> Eine der natürlichen Schönheiten von Elazığ, der Wasserfall erwartet Besucher mit seiner prächtigen Aussicht und kühler Luft. Ein idealer Ort zum Wandern und Picknicken.</li>
+                    <li><b>Elazığ Gedeckter Basar:</b> Im Stadtzentrum gelegen, ist dieser historische Basar ein wichtiges Einkaufszentrum, wo traditionelles Handwerk, lokale Produkte und Souvenirs verkauft werden. Begrüßt Besucher mit seiner historischen Textur und lebendigen Atmosphäre.</li>
                     <li><b>Elazığ Stadtmuseum:</b> Ein modernes Museum, das das kulturelle Erbe, die Geschichte und das tägliche Leben der Stadt widerspiegelt. Erzählt die Geschichte der sozialen, wirtschaftlichen und kulturellen Entwicklung von Elazığ durch interaktive Ausstellungen.</li>
-                    <li><b>Cip Picnic Area:</b> Eine der natürlichen Schönheiten der Stadt, dieser Picknickplatz bietet Besuchern eine friedliche Umgebung mit Picknickplätzen, Wanderwegen und prächtiger Aussicht. Ein idealer Ort, um Zeit in der Natur zu verbringen.</li>
-                </ul>`,
+                    <li><b>Cip Picknickplatz:</b> Eine der natürlichen Schönheiten der Stadt, dieser Picknickplatz bietet Besuchern eine friedliche Umgebung mit Picknickplätzen, Wanderwegen und prächtiger Aussicht. Ein idealer Ort, um Zeit in der Natur zu verbringen.</li>
+                </ul>
+                <p>Elazığ beherbergt viele Schönheiten, die darauf warten, von Natur- und Geschichtsliebhabern entdeckt zu werden. Die Stadt, die in jeder Jahreszeit verschiedene Schönheiten bietet, verschafft ihren Besuchern unvergessliche Erlebnisse.</p>`,
                 galeri: `<h2>Fotogalerie</h2>
                 <div class="gallery-container">
                     <div class="gallery-collection" onclick="toggleCollection(this)">
@@ -2865,6 +2950,52 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Fırat Universität</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(37)">
+                            <img src="images/firat5.jpg" alt="Fırat Universität" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(37)">
+                                <img src="images/firat5.jpg" alt="Fırat Universität" loading="lazy">
+                                <div class="gallery-caption">Fırat Universität</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(38)">
+                                <img src="images/firat6.jpg" alt="Fırat Universität" loading="lazy">
+                                <div class="gallery-caption">Fırat Universität</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(39)">
+                                <img src="images/firat7.jpg" alt="Fırat Universität" loading="lazy">
+                                <div class="gallery-caption">Fırat Universität</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(40)">
+                                <img src="images/firat8.jpg" alt="Fırat Universität" loading="lazy">
+                                <div class="gallery-caption">Fırat Universität</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(41)">
+                                <img src="images/firat9.jpg" alt="Fırat Universität" loading="lazy">
+                                <div class="gallery-caption">Fırat Universität</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(42)">
+                                <img src="images/firat10.jpg" alt="Fırat Universität" loading="lazy">
+                                <div class="gallery-caption">Fırat Universität</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Elazığ Stadtmuseum</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(43)">
+                            <img src="images/muze1.jpg" alt="Elazığ Stadtmuseum" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(43)">
+                                <img src="images/muze1.jpg" alt="Elazığ Stadtmuseum" loading="lazy">
+                                <div class="gallery-caption">Elazığ Stadtmuseum</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Lightbox HTML -->
@@ -3020,7 +3151,8 @@
                     <li><b>Крытый базар Элазыг:</b> Расположенный в центре города, этот исторический базар является важным торговым центром, где продаются традиционные ремесла, местные продукты и сувениры. Встречает посетителей своей исторической текстурой и живой атмосферой.</li>
                     <li><b>Городской музей Элазыг:</b> Современный музей, отражающий культурное наследие, историю и повседневную жизнь города. Рассказывает историю социального, экономического и культурного развития Элазыг через интерактивные выставки.</li>
                     <li><b>Зона отдыха Джип:</b> Одна из природных красот города, эта зона отдыха предлагает посетителям спокойную среду с зонами для пикника, пешеходными тропами и великолепными видами. Идеальное место для времяпрепровождения на природе.</li>
-                </ul>`,
+                </ul>
+                <p>Элазыг принимает множество красот, ждущих открытия любителями природы и истории. Город, предлагающий различные красоты в каждом сезоне, дарит своим посетителям незабываемые впечатления.</p>`,
                 galeri: `<h2>Фотогалерея</h2>
                 <div class="gallery-container">
                     <div class="gallery-collection" onclick="toggleCollection(this)">
@@ -3237,6 +3369,31 @@
                     </div>
 
                     <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Зона отдыха Джип</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(33)">
+                            <img src="images/cip1.jpg" alt="Зона отдыха Джип" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(33)">
+                                <img src="images/cip1.jpg" alt="Зона отдыха Джип" loading="lazy">
+                                <div class="gallery-caption">Зона отдыха Джип</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(34)">
+                                <img src="images/cip2.jpg" alt="Зона отдыха Джип" loading="lazy">
+                                <div class="gallery-caption">Зона отдыха Джип</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(35)">
+                                <img src="images/cip3.jpg" alt="Зона отдыха Джип" loading="lazy">
+                                <div class="gallery-caption">Зона отдыха Джип</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(36)">
+                                <img src="images/cip4.jpg" alt="Зона отдыха Джип" loading="lazy">
+                                <div class="gallery-caption">Зона отдыха Джип</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
                         <h3 class="collection-title">Фиратский университет</h3>
                         <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(37)">
                             <img src="images/firat5.jpg" alt="Фиратский университет" loading="lazy">
@@ -3265,6 +3422,19 @@
                             <div class="gallery-item" onclick="openLightbox(42)">
                                 <img src="images/firat10.jpg" alt="Фиратский университет" loading="lazy">
                                 <div class="gallery-caption">Фиратский университет</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">Городской музей Элазыг</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(43)">
+                            <img src="images/muze1.jpg" alt="Городской музей Элазыг" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(43)">
+                                <img src="images/muze1.jpg" alt="Городской музей Элазыг" loading="lazy">
+                                <div class="gallery-caption">Городской музей Элазыг</div>
                             </div>
                         </div>
                     </div>
@@ -3419,10 +3589,10 @@
                     <li><b>سد كيبان:</b> أحد أكبر السدود في تركيا، مناسب للنزهات وصيد الأسماك. يمكن ممارسة الرياضات المائية في بحيرة السد.</li>
                     <li><b>شلال تشيرتشير:</b> واحدة من جماليات ألازيغ الطبيعية، ينتظر الشلال الزوار بإطلالته الرائعة وهواءه البارد. مكان مثالي للمشي والنزهات.</li>
                     <li><b>البازار المسقوف:</b> يقع في مركز المدينة، هذا البازار التاريخي هو مركز تسوق مهم حيث تباع الحرف التقليدية والمنتجات المحلية والهدايا التذكارية. يرحب بالزوار بنسيجه التاريخي وأجوائه النابضة بالحياة.</li>
-                    <li><b>متحف المدينة:</b> متحف حديث يعكس التراث الثقافي والتاريخ والحياة اليومية للمدينة. يروي قصة التطور الاجتماعي والاقتصادي والثقافي لألازيغ من خلال المعارض التفاعلية.</li>
-                    <li><b>المسجد الكبير:</b> مبنى ديني مهم من فترة السلاجقة، يقع في هاربوت التاريخية.</li>
+                    <li><b>متحف مدينة ألازيغ:</b> متحف حديث يعكس التراث الثقافي والتاريخ والحياة اليومية للمدينة. يروي قصة التطور الاجتماعي والاقتصادي والثقافي لألازيغ من خلال المعارض التفاعلية.</li>
                     <li><b>منطقة جيب للنزهات:</b> واحدة من جماليات المدينة الطبيعية، تقدم منطقة النزهات هذه للزوار بيئة هادئة مع مناطق للنزهات ومسارات للمشي وإطلالات رائعة. مكان مثالي لقضاء الوقت في الطبيعة.</li>
-                </ul>`,
+                </ul>
+                <p>تستضيف ألازيغ العديد من الجمال الذي ينتظر اكتشافه من قبل عشاق الطبيعة والتاريخ. المدينة التي تقدم جمال مختلف في كل موسم، تمنح زوارها تجارب لا تُنسى.</p>`,
                 galeri: `<h2>معرض الصور</h2>
                 <div class="gallery-container">
                     <div class="gallery-collection" onclick="toggleCollection(this)">
@@ -3653,6 +3823,52 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">جامعة فرات</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(37)">
+                            <img src="images/firat5.jpg" alt="جامعة فرات" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(37)">
+                                <img src="images/firat5.jpg" alt="جامعة فرات" loading="lazy">
+                                <div class="gallery-caption">جامعة فرات</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(38)">
+                                <img src="images/firat6.jpg" alt="جامعة فرات" loading="lazy">
+                                <div class="gallery-caption">جامعة فرات</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(39)">
+                                <img src="images/firat7.jpg" alt="جامعة فرات" loading="lazy">
+                                <div class="gallery-caption">جامعة فرات</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(40)">
+                                <img src="images/firat8.jpg" alt="جامعة فرات" loading="lazy">
+                                <div class="gallery-caption">جامعة فرات</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(41)">
+                                <img src="images/firat9.jpg" alt="جامعة فرات" loading="lazy">
+                                <div class="gallery-caption">جامعة فرات</div>
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(42)">
+                                <img src="images/firat10.jpg" alt="جامعة فرات" loading="lazy">
+                                <div class="gallery-caption">جامعة فرات</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-collection" onclick="toggleCollection(this)">
+                        <h3 class="collection-title">متحف مدينة ألازيغ</h3>
+                        <div class="collection-cover" onclick="event.stopPropagation(); openLightbox(43)">
+                            <img src="images/muze1.jpg" alt="متحف مدينة ألازيغ" loading="lazy">
+                        </div>
+                        <div class="collection-grid">
+                            <div class="gallery-item" onclick="openLightbox(43)">
+                                <img src="images/muze1.jpg" alt="متحف مدينة ألازيغ" loading="lazy">
+                                <div class="gallery-caption">متحف مدينة ألازيغ</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Lightbox HTML -->
                 <div class="lightbox" id="lightbox">
@@ -3734,32 +3950,47 @@
 
         let currentLang = 'tr'; // Varsayılan dil Türkçe
 
-        // Динамический выбор языка
-        document.getElementById('langSelect').addEventListener('change', function() {
-            currentLang = this.value;
-            updateLanguage();
-        });
-
         function updateLanguage() {
-            const d = contentData[currentLang];
-            
-            // Ana sayfa elementleri
-            document.getElementById('mainTitle').textContent = d.mainTitle;
-            document.getElementById('mainSlogan').textContent = d.mainSlogan;
-            document.getElementById('mainSub').textContent = d.mainSub;
-            document.getElementById('btnHakkinda').textContent = d.btnHakkinda;
-            document.getElementById('btnIlceler').textContent = d.btnIlceler;
-            document.getElementById('btnDogal').textContent = d.btnDogal;
-            document.getElementById('btnGaleri').textContent = d.btnGaleri;
-            document.getElementById('btnKonum').textContent = d.btnKonum;
-            document.getElementById('btnTur360').textContent = d.btnTur360;
-            document.getElementById('welcomeTitle').textContent = d.welcomeTitle;
-            document.getElementById('welcomeText').textContent = d.welcomeText;
-            
-            // Fırat Üniversitesi butonunu güncelle
-            const firatBtn = document.querySelector('button[onclick="toggleContent(\'fakulteler\')"]');
+            console.log('Dil güncelleniyor, mevcut dil:', currentLang);
+            try {
+                const d = contentData[currentLang];
+                console.log('Dil verileri:', d ? 'Bulundu' : 'Bulunamadı');
+                
+                // Ana sayfa elementlerini güvenli şekilde güncelle
+                const elements = [
+                    { id: 'mainTitle', text: d.mainTitle },
+                    { id: 'mainSlogan', text: d.mainSlogan },
+                    { id: 'mainSub', text: d.mainSub },
+                    { id: 'btnHakkinda', text: d.btnHakkinda },
+                    { id: 'btnIlceler', text: d.btnIlceler },
+                    { id: 'btnDogal', text: d.btnDogal },
+                    { id: 'btnGaleri', text: d.btnGaleri },
+                    { id: 'btnKonum', text: d.btnKonum },
+                    { id: 'btnTur360', text: d.btnTur360 },
+                    { id: 'welcomeTitle', text: d.welcomeTitle },
+                    { id: 'welcomeText', text: d.welcomeText }
+                ];
+                
+                elements.forEach(({ id, text }) => {
+                    try {
+                        const element = document.getElementById(id);
+                        if (element && text) {
+                            element.textContent = text;
+                            console.log(`${id} güncellendi:`, text);
+                        } else if (!element) {
+                            console.warn(`Element bulunamadı: ${id}`);
+                        }
+                    } catch (error) {
+                        console.error(`${id} güncellenirken hata:`, error);
+                    }
+                });
+                
+                // Fırat Üniversitesi butonunu güncelle
+            const firatBtn = document.getElementById('btnFirat');
+            console.log('Fırat butonu bulundu mu?', !!firatBtn);
             if (firatBtn) {
                 firatBtn.textContent = d.btnFirat;
+                console.log('Fırat butonu güncellendi:', d.btnFirat);
             }
             
             // Dijital Rehber butonlarını güncelle (hem sabit hem de mobil)
@@ -3796,35 +4027,55 @@
             // Menü butonlarını güncelle
             updateMenuButtons();
             
-            // Eğer şu anda bir içerik gösteriliyorsa, dil değişikliğine göre güncelle
-            const currentContent = document.getElementById('icerik');
-            if (currentContent && currentContent.innerHTML.trim() !== '') {
-                // Eğer fakülteler açıksa güncelle
-                const fakultelerMenu = document.querySelector('.fakulteler-menu');
-                if (fakultelerMenu && fakultelerMenu.style.display === 'block') {
-                    toggleContent('fakulteler');
+                // Eğer şu anda bir içerik gösteriliyorsa, dil değişikliğine göre güncelle
+                const currentContent = document.getElementById('icerik');
+                if (currentContent && currentContent.innerHTML.trim() !== '') {
+                    // Eğer fakülteler açıksa güncelle
+                    const fakultelerMenu = document.querySelector('.fakulteler-menu');
+                    if (fakultelerMenu && fakultelerMenu.style.display === 'block') {
+                        toggleContent('fakulteler');
+                    }
+                    
+                    // Galeri açıksa başlıkları güncelle
+                    const galleryContainer = document.querySelector('.gallery-container');
+                    if (galleryContainer) {
+                        updateGalleryTitles();
+                    }
                 }
+            } catch (error) {
+                console.error('updateLanguage fonksiyonunda hata:', error);
             }
         }
         
         // Menü butonlarını güncelleyen yardımcı fonksiyon
         function updateMenuButtons() {
             const d = contentData[currentLang];
+            console.log('updateMenuButtons çağrıldı, dil:', currentLang);
             
             // Ana menü butonları
-            const menuButtons = document.querySelectorAll('.menu button');
-            if (menuButtons.length >= 5) {
-                menuButtons[0].textContent = d.btnHakkinda;
-                menuButtons[1].textContent = d.btnIlceler; 
-                menuButtons[2].textContent = d.btnDogal;
-                menuButtons[3].textContent = d.btnGaleri;
-                menuButtons[4].textContent = d.btnTur360;
-            }
-            
-            // Konum butonu
-            const locationBtn = document.querySelector('.location-btn');
-            if (locationBtn) {
-                locationBtn.textContent = d.btnKonum;
+            try {
+                document.getElementById('btnHakkinda').textContent = d.btnHakkinda;
+                document.getElementById('btnIlceler').textContent = d.btnIlceler;
+                document.getElementById('btnDogal').textContent = d.btnDogal;
+                document.getElementById('btnGaleri').textContent = d.btnGaleri;
+                document.getElementById('btnTur360').textContent = d.btnTur360;
+                
+                const firatBtn = document.getElementById('btnFirat');
+                console.log('btnFirat elementi:', firatBtn, 'çeviri:', d.btnFirat);
+                if (firatBtn) {
+                    firatBtn.textContent = d.btnFirat;
+                    console.log('Fırat butonu updateMenuButtons ile güncellendi');
+                } else {
+                    console.error('btnFirat elementi bulunamadı!');
+                }
+                
+                // Konum butonu
+                const locationBtn = document.getElementById('btnKonum');
+                if (locationBtn) {
+                    locationBtn.textContent = d.btnKonum;
+                }
+            } catch (error) {
+                console.error('Menü butonları güncellenirken hata:', error);
             }
         }
 
@@ -3841,43 +4092,83 @@
         });
 
         function showContent(section) {
-            const d = contentData[currentLang];
-            
-            // Önce tüm içerikleri gizle
-            document.querySelectorAll('.icerik-bolum').forEach(el => {
-                el.style.display = 'none';
-            });
-            
-            // Fakülte içeriğini özellikle gizle
-            const fakultelerContent = document.getElementById('fakulteler-content');
-            if (fakultelerContent) {
-                fakultelerContent.style.display = 'none';
-            }
-            
-            // İçerik alanını temizle
-            const icerikDiv = document.getElementById('icerik');
-            icerikDiv.innerHTML = '';
-            
-            // Yeni içeriği belirle ve göster
-            let content = '';
-            if(section === 'hakkinda') {
-                content = d.hakkinda;
-            } else if(section === 'ilceler') {
-                content = d.ilceler;
-            } else if(section === 'dogal') {
-                content = d.dogal;
-            } else if(section === 'galeri') {
-                content = d.galeri;
-            } else if(section === 'tur360') {
-                content = d.tur360;
-            } else if(section === 'firat' || section === 'fakulteler') {
-                content = d.firatUniversitesi || d.hakkinda;
-            }
-            
-            // Sadece seçilen içeriği göster
-            if (content) {
-                icerikDiv.innerHTML = content;
-                icerikDiv.style.display = 'block';
+            console.log('showContent çağrıldı, bölüm:', section, 'dil:', currentLang);
+            try {
+                const d = contentData[currentLang];
+                if (!d) {
+                    console.error('Dil verileri bulunamadı:', currentLang);
+                    return;
+                }
+                
+                // Önce tüm içerikleri gizle
+                document.querySelectorAll('.icerik-bolum').forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                // Fakülte içeriğini özellikle gizle
+                const fakultelerContent = document.getElementById('fakulteler-content');
+                if (fakultelerContent) {
+                    fakultelerContent.style.display = 'none';
+                }
+                
+                // İçerik alanını temizle
+                const icerikDiv = document.getElementById('icerik');
+                if (!icerikDiv) {
+                    console.error('İçerik alanı bulunamadı!');
+                    return;
+                }
+                
+                icerikDiv.innerHTML = '';
+                
+                // Yeni içeriği belirle ve göster
+                let content = '';
+                switch(section) {
+                    case 'hakkinda':
+                        content = d.hakkinda;
+                        break;
+                    case 'ilceler':
+                        content = d.ilceler;
+                        break;
+                    case 'dogal':
+                        content = d.dogal;
+                        break;
+                    case 'galeri':
+                        content = d.galeri;
+                        break;
+                    case 'tur360':
+                        content = d.tur360;
+                        break;
+                    case 'firat':
+                    case 'fakulteler':
+                        content = d.firatUniversitesi || d.hakkinda;
+                        break;
+                    default:
+                        console.warn('Bilinmeyen bölüm:', section);
+                        content = d.hakkinda;
+                }
+                
+                // Sadece seçilen içeriği göster
+                if (content) {
+                    icerikDiv.innerHTML = content;
+                    icerikDiv.style.display = 'block';
+                    console.log('İçerik güncellendi:', section);
+                    
+                    // Galeri açıldığında başlıkları güncelle
+                    if (section === 'galeri') {
+                        setTimeout(() => {
+                            try {
+                                updateGalleryTitles();
+                                console.log('Galeri başlıkları güncellendi');
+                            } catch (error) {
+                                console.error('Galeri başlıkları güncellenirken hata:', error);
+                            }
+                        }, 100);
+                    }
+                } else {
+                    console.warn('İçerik bulunamadı:', section);
+                }
+            } catch (error) {
+                console.error('showContent fonksiyonunda hata:', error);
             }
         }
 
@@ -3900,13 +4191,67 @@
             }
         }
 
-        // Sayfa ilk yüklendiğinde dil güncellemesi yap
-        updateLanguage();
-        
-        // Sayfa yüklendiğinde de dil güncellemesi yap
+        // Sayfa yüklendiğinde dil güncellemesi yap
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM hazır, dil güncelleniyor...');
             updateLanguage();
+            
+            // Dil seçici event listener'ını ekle
+            const langSelect = document.getElementById('langSelect');
+            if (langSelect) {
+                langSelect.addEventListener('change', function() {
+                    try {
+                        const oldLang = currentLang;
+                        currentLang = this.value;
+                        console.log('Dil değiştirildi:', oldLang, '->', currentLang);
+                        
+                        // Mevcut menü durumunu kontrol et
+                        const icerikDiv = document.getElementById('icerik');
+                        const isMenuOpen = icerikDiv && icerikDiv.style.display !== 'none' && icerikDiv.innerHTML.trim() !== '';
+                        
+                        if (isMenuOpen) {
+                            console.log('Menü açık, içerik güncelleniyor...');
+                        }
+                        
+                        updateLanguage();
+                        console.log('Dil güncelleme tamamlandı');
+                    } catch (error) {
+                        console.error('Dil değişimi sırasında hata:', error);
+                        // Hata durumunda eski dile geri dön
+                        this.value = currentLang;
+                    }
+                });
+                console.log('Dil seçici event listener eklendi');
+            } else {
+                console.error('langSelect elementi bulunamadı!');
+            }
         });
+
+        // Galeri başlıklarını güncelleme fonksiyonu
+        function updateGalleryTitles() {
+            const collectionTitles = [
+                { tr: 'Harput Kalesi', en: 'Harput Castle', de: 'Harput-Burg', ru: 'Крепость Харпут', ar: 'قلعة هاربوت' },
+                { tr: 'Buzluk Mağarası', en: 'Buzluk Cave', de: 'Buzluk-Höhle', ru: 'Пещера Бузлук', ar: 'كهف بوزلوك' },
+                { tr: 'Hazar Gölü', en: 'Lake Hazar', de: 'Hazar-See', ru: 'Озеро Хазар', ar: 'بحيرة هزار' },
+                { tr: 'Hazarbaba Kayak Merkezi', en: 'Hazarbaba Ski Center', de: 'Hazarbaba Skizentrum', ru: 'Горнолыжный центр Хазарбаба', ar: 'مركز هزاربابا للتزلج' },
+                { tr: 'Çırçır Şelalesi', en: 'Çırçır Waterfall', de: 'Çırçır Wasserfall', ru: 'Водопад Чирчир', ar: 'شلال تشيرتشير' },
+                { tr: 'Palu Köprüsü', en: 'Palu Bridge', de: 'Palu-Brücke', ru: 'Мост Палу', ar: 'جسر بالو' },
+                { tr: 'Golan', en: 'Golan', de: 'Golan', ru: 'Голан', ar: 'غولان' },
+                { tr: 'Keban Barajı', en: 'Keban Dam', de: 'Keban-Staudamm', ru: 'Плотина Кебан', ar: 'سد كيبان' },
+                { tr: 'Kapalı Çarşı', en: 'Covered Bazaar', de: 'Gedeckter Basar', ru: 'Крытый базар', ar: 'البازار المسقوف' },
+                { tr: 'Cip Mesire Alanı', en: 'Cip Picnic Area', de: 'Cip Picknickplatz', ru: 'Зона отдыха Джип', ar: 'منطقة جيب للنزهات' },
+                { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Fırat Universität', ru: 'Фиратский университет', ar: 'جامعة فرات' },
+                { tr: 'Elazığ Kent Müzesi', en: 'Elazığ City Museum', de: 'Elazığ Stadtmuseum', ru: 'Городской музей Элазыг', ar: 'متحف مدينة ألازيغ' }
+            ];
+
+            const titles = document.querySelectorAll('.collection-title');
+            
+            titles.forEach((title, index) => {
+                if (collectionTitles[index] && collectionTitles[index][currentLang]) {
+                    title.textContent = collectionTitles[index][currentLang];
+                }
+            });
+        }
 
         // Функция для открытия/закрытия галереи
         let currentImageIndex = 0;
@@ -3960,16 +4305,14 @@
             { src: 'images/cip3.jpg', collection: 'cip', captions: { tr: 'Cip Mesire Alanı', en: 'Cip Picnic Area', de: 'Cip Picknickplatz', ru: 'Зона отдыха Джип', ar: 'منطقة جيب للنزهات' } },
             { src: 'images/cip4.jpg', collection: 'cip', captions: { tr: 'Cip Mesire Alanı', en: 'Cip Picnic Area', de: 'Cip Picknickplatz', ru: 'Зона отдыха Джип', ar: 'منطقة جيب للنزهات' } },
             // Fırat Üniversitesi koleksiyonu
-            { src: 'images/firat1.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi Kampüsü', en: 'Firat University Campus', de: 'Firat-Universität Campus', ru: 'Кампус университета Фырат', ar: 'حرم جامعة الفرات' } },
-            { src: 'images/firat2.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi Merkez Kütüphane', en: 'Firat University Central Library', de: 'Firat-Universität Zentralbibliothek', ru: 'Центральная библиотека университета Фырат', ar: 'المكتبة المركزية لجامعة الفرات' } },
-            { src: 'images/firat3.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi Rektörlük Binası', en: 'Firat University Rectorate Building', de: 'Firat-Universität Rektoratsgebäude', ru: 'Здание ректората университета Фырат', ar: 'مبنى رئاسة جامعة الفرات' } },
-            { src: 'images/firat4.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi Mühendislik Fakültesi', en: 'Firat University Engineering Faculty', de: 'Firat-Universität Fakultät für Ingenieurwissenschaften', ru: 'Инженерный факультет университета Фырат', ar: 'كلية الهندسة في جامعة الفرات' } },
-            { src: 'images/firat5.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Firat-Universität', ru: 'Фиратский университет', ar: 'فيراتيكي يونيفرسيتي' } },
-            { src: 'images/firat6.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Firat-Universität', ru: 'Фиратский университет', ar: 'فيراتيكي يونيفرسيتي' } },
-            { src: 'images/firat7.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Firat-Universität', ru: 'Фиратский университет', ar: 'فيراتيكي يونيفرسيتي' } },
-            { src: 'images/firat8.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Firat-Universität', ru: 'Фиратский университет', ar: 'فيراتيكي يونيفرسيتي' } },
-            { src: 'images/firat9.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Firat-Universität', ru: 'Фиратский университет', ar: 'فيراتيكي يونيفرسيتي' } },
-            { src: 'images/firat10.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Firat-Universität', ru: 'Фиратский университет', ar: 'فيراتيكي يونيفرسيتي' } }
+            { src: 'images/firat5.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Fırat Universität', ru: 'Фиратский университет', ar: 'جامعة فرات' } },
+            { src: 'images/firat6.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Fırat Universität', ru: 'Фиратский университет', ar: 'جامعة فرات' } },
+            { src: 'images/firat7.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Fırat Universität', ru: 'Фиратский университет', ar: 'جامعة فرات' } },
+            { src: 'images/firat8.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Fırat Universität', ru: 'Фиратский университет', ar: 'جامعة فرات' } },
+            { src: 'images/firat9.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Fırat Universität', ru: 'Фиратский университет', ar: 'جامعة فرات' } },
+            { src: 'images/firat10.jpg', collection: 'firat', captions: { tr: 'Fırat Üniversitesi', en: 'Fırat University', de: 'Fırat Universität', ru: 'Фиратский университет', ar: 'جامعة فرات' } },
+            // Kent Müzesi koleksiyonu
+            { src: 'images/muze1.jpg', collection: 'muze', captions: { tr: 'Elazığ Kent Müzesi', en: 'Elazığ City Museum', de: 'Elazığ Stadtmuseum', ru: 'Городской музей Элазыг', ar: 'متحف مدينة ألازيغ' } }
         ];
 
         let currentCollectionIndexes = [];
