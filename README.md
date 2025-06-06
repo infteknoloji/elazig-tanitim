@@ -29,7 +29,8 @@ GitHub: [https://github.com/atalanuhser](https://github.com/atalanuhser)
 - Elazığ hakkında genel bilgiler  
 - İlçeler ve öne çıkan yerler  
 - Doğal güzellikler ve tarihi mekanlar  
-- Fotoğraf Galerisi  
+- Fotoğraf Galerisi 
+- Fırat Üniversitesi  
 - Konum Bilgisi  
 - 360° Sanal Tur Gezileri  
 - Dijital Rehber (Önerilen Gezi Rotası)  
@@ -55,7 +56,7 @@ GitHub: [https://github.com/atalanuhser](https://github.com/atalanuhser)
 Proje geliştirme aşamasındadır.  
 Vercel üzerinden yayınlanmaktadır.  
 
-🔗 **Canlı Yayın Linki:** [https://elazig-tanitim.vercel.app/](https://elazig-tanitim.vercel.app/)
+🔗 **Canlı Yayın Linki:** https://elazig-tanitim.vercel.app/
 
 ---
 
@@ -63,29 +64,35 @@ Vercel üzerinden yayınlanmaktadır.
 
 **Fırat Yunus Yaşaroğlu**  
 - Proje planının hazırlanması  
-- Sayfa yapılarının tasarlanması  
+- Sayfa yapılarının tasarlanması
+- Sayfa yapılarının oluşturulması    
 - Git & GitHub entegrasyonu  
-- README dosyasının güncellenmesi  
-- 360 Sanal Tur Gezilerini düzenleme  
+- README dosyasının oluşturulması & güncellenmesi  
+- 360 Sanal Tur Gezilerini düzenlenmesi 
+- vercel entegrasyonu 
+- Genel Kontrollerin sağlanması  
 
 **İlayda Memiş**  
 - Arayüz taslağının oluşturulması  
-- Fotoğraf ve medya dosyalarının düzenlenmesi  
-- Fotoğraf galerisine yeni fotoğrafların yüklenmesi  
+- Fotoğraf ve medya dosyalarının düzenlenmesi   
 - Galeri ileri/geri navigasyon tuşlarının eklenmesi  
 - Fırat Üniversitesi menüsünün eklenmesi  
 - Dijital Rehber modülünün hazırlanması  
-- Kullanıcı senaryosu dosyasının hazırlanması  
+- Kullanıcı senaryosu dosyasının hazırlanması & Güncellenmesi  
 
 **Nuhser Atala**  
-- Gereksinim analizi dosyasının hazırlanması  
-- Proje planı dosyasının yüklenmesi  
+- Gereksinim analizi dosyasının hazırlanması & Güncellenmesi  
+- Proje planı dosyasının yüklenmesi 
 - Dil desteklerinin sağlanması
+- Dil optimizasyonun sağlanması & Güncllenmesi 
+- Mobil Uyumluluk optimizasyonu 
+- Hata Kontrolleri 
 
 ---
 
 ## 📅 GÜNCELLEMELER
-
+- Son Güncelleme hataları giderildi 
+- Arayüz geliştirilip güncellenmeye devam ediyor 
 - Fotoğraf galerisine yeni fotoğraflar yüklendi  
 - Galeriye ileri/geri navigasyon tuşları eklendi  
 - Fırat Üniversitesi menüsü siteye eklendi  
@@ -94,7 +101,7 @@ Vercel üzerinden yayınlanmaktadır.
 - İngilizce, Arapça, Rusça ve Almanca dil desteği sağlandı  
 - Vercel üzerinden yayına alındı  
 - Konum bilgisi eklendi  
-- Mobil uyumluluk geliştirildi  
+- Mobil uyumluluk güncellemeleri yapıldı 
 
 ---
 
