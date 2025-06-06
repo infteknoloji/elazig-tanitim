@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Elazığ Tanıtım</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico:wght@400&family=Roboto:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <style>
-        * { box-sizing: border-box; }
+        * { 
+            box-sizing: border-box;
+            /* Mobil cihazlarda seçimi devre dışı bırak */
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+        }
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
+            /* Mobil scroll optimizasyonu */
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
         }
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             color: #fff;
             background: url('harput_kalesi.jpg') no-repeat center center/cover;
             min-height: 100vh;
             position: relative;
+            /* Performans için GPU acceleration */
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
         }
         .overlay {
             position: fixed;
@@ -36,7 +47,7 @@
             color: #fff;
             border: 1px solid rgba(255,255,255,0.2);
             font-size: 1rem;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
@@ -80,7 +91,7 @@
             color: #e53935;
         }
         .header .title {
-            font-family: 'Pacifico', cursive;
+            font-family: 'Pacifico', 'Comic Sans MS', cursive, fantasy;
             font-size: 2.2rem;
             color: #fff;
             text-shadow: 2px 2px 8px #000;
@@ -97,19 +108,19 @@
         }
         .footer-text .main {
             font-size: 2rem;
-            font-family: 'Pacifico', cursive;
+            font-family: 'Pacifico', 'Comic Sans MS', cursive, fantasy;
             margin-bottom: 10px;
             display: block;
             text-shadow: 2px 2px 8px #000;
         }
         .footer-text .sub {
             font-size: 1.3rem;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             text-shadow: 2px 2px 8px #000;
         }
         .footer-text .company {
             font-size: 1rem;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             text-shadow: 2px 2px 8px #000;
             margin-top: 15px;
             opacity: 0.8;
@@ -131,6 +142,7 @@
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 20px 0 20px 0;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             visibility: hidden;
         }
         .ana-sayfa.active {
@@ -253,35 +265,263 @@
             padding: 18px;
             animation: fadeIn 0.5s ease;
         }
+        /* Mobil optimize edici genel kurallar */
+        @media (hover: none) and (pointer: coarse) {
+            /* Touch cihazlar için hover efektlerini devre dışı bırak */
+            .menu button:hover,
+            .location-btn:hover,
+            .daha-fazla-btn:hover,
+            .gallery-collection:hover,
+            .gallery-item:hover {
+                transform: none;
+            }
+            
+            /* Touch hedeflerini büyüt */
+            .menu button,
+            .location-btn,
+            .daha-fazla-btn {
+                min-height: 48px;
+                padding: 15px 20px;
+            }
+        }
+
+        /* Tablet görünüm (768px - 1024px) */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .gallery-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .collection-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 12px;
+            }
+            
+            .menu {
+                gap: 15px;
+            }
+            
+            .menu button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobil görünüm (768px ve altı) */
         @media (max-width: 768px) {
+            /* Dil seçici */
+            .lang-select {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            /* Ana başlık ve logo */
+            .header {
+                margin-top: 40px;
+                padding: 0 10px;
+            }
+            
+            .header .pin {
+                font-size: 2rem;
+            }
+            
+            .header .title {
+                font-size: 1.4rem;
+                margin-left: 8px;
+            }
+            
+            /* Footer */
+            .footer-text {
+                margin-bottom: 100px;
+                padding: 0 15px;
+            }
+            
+            .footer-text .main {
+                font-size: 1.2rem;
+            }
+            
+            .footer-text .sub {
+                font-size: 1.1rem;
+            }
+            
+            .footer-text .company {
+                font-size: 0.9rem;
+            }
+            
+            /* Menü */
             .menu {
                 flex-direction: column;
                 align-items: center;
+                margin-top: 40px;
+                gap: 12px;
+                padding: 0 15px;
             }
+            
             .menu button, .location-btn {
-                width: 90%;
-                max-width: 300px;
+                width: 100%;
+                max-width: 320px;
+                min-height: 50px;
+                padding: 15px 20px;
+                font-size: 1.1rem;
+                border-radius: 12px;
             }
-            .ekstra-bilgi, .ekstra-bilgi.active {
-                max-width: 98vw;
-                font-size: 1rem;
-                padding: 10px 5px;
+            
+            .location-btn {
+                margin-top: 20px;
             }
-            .daha-fazla-btn {
-                width: 90%;
-                max-width: 300px;
-                font-size: 1rem;
-                padding: 10px 0;
-            }
-            .header .title {
-                font-size: 1.5rem;
-            }
-            .footer-text .main {
-                font-size: 1.3rem;
-            }
+            
+            /* İçerik alanı */
             .icerik {
-                max-width: 98vw;
-                padding: 0 5px 20px 5px;
+                max-width: 95vw;
+                padding: 15px 10px 20px 10px;
+                margin-top: 30px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            
+            .ekstra-bilgi, .ekstra-bilgi.active {
+                max-width: 100%;
+                font-size: 0.95rem;
+                padding: 15px 10px;
+                margin: 15px 0;
+            }
+            
+            .daha-fazla-btn {
+                width: 100%;
+                max-width: 280px;
+                font-size: 1rem;
+                padding: 15px 20px;
+                margin: 20px auto 0 auto;
+                min-height: 50px;
+            }
+            
+            /* Galeri */
+            .gallery-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 15px 10px;
+            }
+            
+            .gallery-collection {
+                padding: 15px;
+                border-radius: 12px;
+            }
+            
+            .collection-title {
+                font-size: 1.3rem;
+                margin-bottom: 15px;
+            }
+            
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .gallery-item {
+                border-radius: 8px;
+            }
+            
+            .gallery-caption {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        }
+
+        /* Küçük mobil (480px ve altı) */
+        @media (max-width: 480px) {
+            .header .pin {
+                font-size: 1.8rem;
+            }
+            
+            .header .title {
+                font-size: 1.2rem;
+                margin-left: 6px;
+            }
+            
+            .footer-text .main {
+                font-size: 1.1rem;
+            }
+            
+            .footer-text .sub {
+                font-size: 1rem;
+            }
+            
+            .menu {
+                gap: 10px;
+                padding: 0 10px;
+            }
+            
+            .menu button, .location-btn {
+                font-size: 1rem;
+                padding: 12px 16px;
+                min-height: 48px;
+            }
+            
+            .icerik {
+                padding: 12px 8px 16px 8px;
+                margin: 20px 5px;
+            }
+            
+            .collection-title {
+                font-size: 1.1rem;
+            }
+            
+            .collection-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .gallery-caption {
+                font-size: 0.8rem;
+                padding: 8px;
+            }
+            
+            /* Lightbox mobil optimizasyonu */
+            .lightbox-content {
+                max-width: 95%;
+                max-height: 80vh;
+            }
+            
+            .lightbox-close {
+                top: -30px;
+                font-size: 1.5rem;
+                padding: 8px;
+            }
+            
+            .lightbox-caption {
+                bottom: -30px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Landscape orientation küçük ekranlar için */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .header {
+                margin-top: 20px;
+            }
+            
+            .footer-text {
+                margin-bottom: 60px;
+            }
+            
+            .menu {
+                margin-top: 30px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .menu button {
+                margin: 5px;
+                font-size: 0.9rem;
+                padding: 10px 15px;
+            }
+            
+            .icerik {
+                margin-top: 20px;
             }
         }
         .iframe-wrapper {
@@ -322,10 +562,34 @@
                 flex-direction: column;
                 gap: 16px;
                 align-items: center;
+                padding: 0 10px;
             }
             .tour360-item {
-                max-width: 98vw;
-                padding: 10px;
+                max-width: 95vw;
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .iframe-wrapper {
+                border-radius: 12px;
+            }
+        }
+        
+        /* Tour360 için mobil optimizasyonu */
+        @media (max-width: 480px) {
+            .tour360-container {
+                gap: 12px;
+                padding: 0 5px;
+            }
+            
+            .tour360-item {
+                padding: 12px;
+                border-radius: 10px;
+            }
+            
+            .tour360-item h3 {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
             }
         }
         .gallery-container {
@@ -355,7 +619,7 @@
             font-size: 1.5rem;
             margin-bottom: 20px;
             text-align: center;
-            font-family: 'Pacifico', cursive;
+            font-family: 'Pacifico', 'Comic Sans MS', cursive, fantasy;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
@@ -838,19 +1102,172 @@
             font-size: 0.95rem;
         }
 
+        /* Fakülteler menüsü mobil optimizasyonu */
         @media (max-width: 768px) {
+            .fakulteler-menu {
+                width: 95%;
+                margin: 20px auto;
+                padding: 15px;
+            }
+            
+            .universite-bilgi {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .universite-bilgi h3 {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .universite-bilgi p {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+            }
+            
+            .fakulteler-liste {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .fakulte-item {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+            
+            .fakulte-bolumler {
+                margin-top: 8px;
+                padding: 8px;
+                font-size: 0.85rem;
+            }
+            
+            /* Dijital Rehber mobil optimizasyonu */
+            .dijital-rehber-btn {
+                bottom: 80px;
+                right: 15px;
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .dijital-rehber-modal {
+                bottom: 140px;
+                right: 15px;
+                left: 15px;
+                width: auto;
+                max-width: calc(100vw - 30px);
+            }
+            
+            .rota-gun {
+                padding: 10px 12px;
+                margin: 6px 0;
+            }
+            
+            .rota-gun h4 {
+                font-size: 0.9rem;
+            }
+            
+            .rota-gun p {
+                font-size: 0.85rem;
+            }
+            
+            /* Historical places mobil optimizasyonu */
             .place-card {
                 flex-direction: column;
+                padding: 12px;
+                gap: 12px;
             }
 
             .place-info {
                 order: 2;
+                padding: 5px;
             }
 
             .place-image {
                 order: 1;
                 width: 100%;
                 height: 160px;
+                flex: none;
+            }
+            
+            .place-info h3 {
+                font-size: 1.1rem;
+                margin-bottom: 8px;
+            }
+            
+            .place-info p {
+                font-size: 0.9rem;
+            }
+            
+            /* Sticky footer mobil optimizasyonu */
+            .sticky-footer {
+                padding: 12px 10px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Küçük mobil (480px ve altı) için ek optimizasyonlar */
+        @media (max-width: 480px) {
+            .fakulteler-menu {
+                width: 98%;
+                padding: 12px;
+                margin: 15px auto;
+            }
+            
+            .universite-bilgi {
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+            
+            .universite-bilgi h3 {
+                font-size: 1.1rem;
+            }
+            
+            .universite-bilgi p,
+            .universite-bilgi li {
+                font-size: 0.9rem;
+            }
+            
+            .fakulte-item {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .fakulte-bolumler {
+                padding: 6px;
+                font-size: 0.8rem;
+            }
+            
+            .dijital-rehber-btn {
+                bottom: 70px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .dijital-rehber-modal {
+                bottom: 130px;
+                right: 10px;
+                left: 10px;
+                padding: 15px;
+            }
+            
+            .dijital-rehber-modal h3 {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+            
+            .place-card {
+                padding: 10px;
+                gap: 10px;
+            }
+            
+            .place-image {
+                height: 140px;
+            }
+            
+            .sticky-footer {
+                padding: 10px 8px;
+                font-size: 0.75rem;
             }
         }
     </style>
