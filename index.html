@@ -4,8 +4,40 @@
     <meta charset="UTF-8">
     <title>Elazığ Tanıtım</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    
+    <!-- Performance optimizations -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#1e283c">
+    
+    <!-- Critical resource hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="harput_kalesi.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Pacifico:wght@400&family=Roboto:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//www.google.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Critical CSS inline, non-critical deferred -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico:wght@400&family=Roboto:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Pacifico:wght@400&family=Roboto:wght@400;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Critical CSS için font-display optimization -->
     <style>
+        /* Font fallback ve font-display optimizasyonu */
+        @font-face {
+            font-family: 'Roboto-fallback';
+            src: local('Arial'), local('Helvetica');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Pacifico-fallback'; 
+            src: local('Comic Sans MS'), local('cursive');
+            font-display: swap;
+        }
         * { 
             box-sizing: border-box;
             /* Mobil cihazlarda seçimi devre dışı bırak */
@@ -29,6 +61,83 @@
             /* Performans için GPU acceleration */
             transform: translateZ(0);
             -webkit-backface-visibility: hidden;
+            /* Image rendering optimization */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        
+        /* Performance optimizations */
+        .performance-optimized {
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+        
+        /* Lazy loading placeholder */
+        .lazy-placeholder {
+            background: linear-gradient(90deg, #f0f0f0 25%, transparent 37%, #f0f0f0 63%);
+            background-size: 400% 100%;
+            animation: loading 1.4s ease-in-out infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 100% 50%; }
+            100% { background-position: -100% 50%; }
+        }
+        
+        /* Font loading optimization */
+        .fonts-loaded {
+            font-display: swap;
+        }
+        
+        .fonts-loaded .header .title,
+        .fonts-loaded .footer-text .main,
+        .fonts-loaded .collection-title {
+            font-family: 'Pacifico', 'Comic Sans MS', cursive, fantasy;
+        }
+        
+        /* Image loading states */
+        img.lazy-placeholder {
+            filter: blur(5px);
+            transition: filter 0.3s ease;
+        }
+        
+        img.loaded {
+            filter: none;
+        }
+        
+        /* Performance optimized animations */
+        .performance-optimized {
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+        
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* CPU-friendly animations */
+        @keyframes optimizedFadeIn {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 20px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .optimized-animation {
+            animation: optimizedFadeIn 0.3s ease-out forwards;
         }
         .overlay {
             position: fixed;
@@ -1752,6 +1861,116 @@
             }
         });
 
+        // Performance monitoring ve optimizasyon
+        if ('performance' in window) {
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    const perfData = performance.getEntriesByType('navigation')[0];
+                    console.log('🚀 Page Load Time:', Math.round(perfData.loadEventEnd - perfData.fetchStart), 'ms');
+                    console.log('📊 DOM Content Loaded:', Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart), 'ms');
+                    console.log('🎨 First Paint:', Math.round(performance.getEntriesByType('paint')[0]?.startTime || 0), 'ms');
+                }, 0);
+            });
+        }
+        
+        // Intersection Observer for lazy loading images
+        const observerOptions = {
+            root: null,
+            rootMargin: '50px',
+            threshold: 0.1
+        };
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        // WebP desteği kontrolü
+                        const supportsWebP = (function() {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = 1;
+                            canvas.height = 1;
+                            return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+                        })();
+                        
+                        const src = img.dataset.src;
+                        if (supportsWebP && src.includes('.jpg')) {
+                            img.src = src.replace('.jpg', '.webp');
+                        } else {
+                            img.src = src;
+                        }
+                        
+                        img.classList.remove('lazy-placeholder');
+                        img.onload = () => img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        // Throttle function for scroll performance
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+        
+        // Debounce function for resize/input events
+        function debounce(func, wait, immediate) {
+            let timeout;
+            return function() {
+                const context = this, args = arguments;
+                const later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                const callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        }
+        
+        // Memory cleanup function
+        function cleanupMemory() {
+            // Remove event listeners from removed elements
+            const removedElements = document.querySelectorAll('[data-removed="true"]');
+            removedElements.forEach(el => {
+                el.removeEventListener && el.removeEventListener();
+                el.remove();
+            });
+        }
+        
+        // Optimize animations with RAF
+        function optimizedAnimate(element, property, target, duration = 300) {
+            const start = parseFloat(getComputedStyle(element)[property]) || 0;
+            const change = target - start;
+            const startTime = performance.now();
+            
+            function animate(currentTime) {
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                
+                // Easing function (easeOutCubic)
+                const easedProgress = 1 - Math.pow(1 - progress, 3);
+                
+                element.style[property] = (start + change * easedProgress) + 'px';
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
         // Dil içerikleri
         const contentData = {
             tr: {
@@ -4373,6 +4592,18 @@
                 const d = contentData[currentLang];
                 console.log('Dil verileri:', d ? 'Bulundu' : 'Bulunamadı');
                 
+                // Türkçe olmayan dillerde fakülteler menüsünü gizle
+                if (currentLang !== 'tr') {
+                    const fakultelerContent = document.getElementById('fakulteler-content');
+                    const fakultelerMenu = document.querySelector('.fakulteler-menu');
+                    if (fakultelerContent) {
+                        fakultelerContent.style.display = 'none';
+                    }
+                    if (fakultelerMenu) {
+                        fakultelerMenu.style.display = 'none';
+                    }
+                }
+                
                 // Ana sayfa elementlerini güvenli şekilde güncelle
                 const elements = [
                     { id: 'mainTitle', text: d.mainTitle },
@@ -4447,15 +4678,23 @@
                 // Eğer şu anda bir içerik gösteriliyorsa, dil değişikliğine göre güncelle
                 const currentContent = document.getElementById('icerik');
                 if (currentContent && currentContent.innerHTML.trim() !== '') {
-                    // Eğer fakülteler açıksa güncelle
+                    // Fırat Üniversitesi menüsü açık mı kontrol et
+                    const fakultelerContent = document.getElementById('fakulteler-content');
                     const fakultelerMenu = document.querySelector('.fakulteler-menu');
-                    if (fakultelerMenu && fakultelerMenu.style.display === 'block') {
+                    const isFiratOpen = (fakultelerContent && fakultelerContent.style.display === 'block') || 
+                                       (fakultelerMenu && fakultelerMenu.style.display === 'block') ||
+                                       currentContent.innerHTML.includes('Fırat Üniversitesi') ||
+                                       currentContent.innerHTML.includes('Fırat University') ||
+                                       currentContent.innerHTML.includes('جامعة فرات');
+                    
+                    if (isFiratOpen) {
+                        console.log('Fırat Üniversitesi açık, dil değişikliği için güncelleniyor');
                         toggleContent('fakulteler');
                     }
                     
                     // Galeri açıksa başlıkları güncelle
                     const galleryContainer = document.querySelector('.gallery-container');
-                    if (galleryContainer) {
+                    if (galleryContainer && currentContent.innerHTML.includes('gallery-container')) {
                         updateGalleryTitles();
                     }
                 }
@@ -4608,40 +4847,126 @@
             }
         }
 
-        // Sayfa yüklendiğinde dil güncellemesi yap
+        // Optimized DOMContentLoaded with performance monitoring
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM hazır, dil güncelleniyor...');
+            const startTime = performance.now();
+            console.log('🚀 DOM hazır, optimizasyonlar başlatılıyor...');
+            
+            // Initialize lazy loading for all images
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            lazyImages.forEach(img => {
+                img.classList.add('lazy-placeholder');
+                img.dataset.src = img.src;
+                img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InJnYmEoMCwwLDAsLjEpIi8+PC9zdmc+';
+                imageObserver.observe(img);
+            });
+            
+            // Optimize font loading
+            if ('fonts' in document) {
+                document.fonts.ready.then(() => {
+                    console.log('✅ Fonts loaded');
+                    document.body.classList.add('fonts-loaded');
+                });
+            }
+            
+            // Initialize language system
             updateLanguage();
             
-            // Dil seçici event listener'ını ekle
+            // Optimized language selector with debouncing
             const langSelect = document.getElementById('langSelect');
             if (langSelect) {
-                langSelect.addEventListener('change', function() {
+                const debouncedLanguageChange = debounce(function() {
                     try {
                         const oldLang = currentLang;
                         currentLang = this.value;
-                        console.log('Dil değiştirildi:', oldLang, '->', currentLang);
+                        console.log('🌐 Dil değiştirildi:', oldLang, '->', currentLang);
                         
-                        // Mevcut menü durumunu kontrol et
-                        const icerikDiv = document.getElementById('icerik');
-                        const isMenuOpen = icerikDiv && icerikDiv.style.display !== 'none' && icerikDiv.innerHTML.trim() !== '';
-                        
-                        if (isMenuOpen) {
-                            console.log('Menü açık, içerik güncelleniyor...');
-                        }
-                        
-                        updateLanguage();
-                        console.log('Dil güncelleme tamamlandı');
+                        // Performance optimization: batch DOM updates
+                        requestAnimationFrame(() => {
+                            updateLanguage();
+                            console.log('✅ Dil güncelleme tamamlandı');
+                        });
                     } catch (error) {
-                        console.error('Dil değişimi sırasında hata:', error);
-                        // Hata durumunda eski dile geri dön
+                        console.error('❌ Dil değişimi sırasında hata:', error);
                         this.value = currentLang;
                     }
-                });
-                console.log('Dil seçici event listener eklendi');
+                }, 150);
+                
+                langSelect.addEventListener('change', debouncedLanguageChange);
+                console.log('🎛️ Dil seçici event listener eklendi');
             } else {
-                console.error('langSelect elementi bulunamadı!');
+                console.error('❌ langSelect elementi bulunamadı!');
             }
+            
+            // Optimize scroll events
+            let ticking = false;
+            const optimizedScrollHandler = function() {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        // Scroll-based optimizations here
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            };
+            
+            window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+            
+            // Performance cleanup on page unload
+            window.addEventListener('beforeunload', () => {
+                cleanupMemory();
+                imageObserver.disconnect();
+            });
+            
+            // Add performance class to critical elements
+            const criticalElements = document.querySelectorAll('.menu button, .gallery-item, .place-card');
+            criticalElements.forEach(el => {
+                el.classList.add('performance-optimized');
+            });
+            
+            // Initialize Service Worker (if available)
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(registration => {
+                            console.log('🔧 SW registered:', registration.scope);
+                        })
+                        .catch(error => {
+                            console.log('🔧 SW registration failed:', error);
+                        });
+                });
+            }
+            
+            // Optimize iframes
+            const iframes = document.querySelectorAll('iframe');
+            iframes.forEach(iframe => {
+                iframe.loading = 'lazy';
+                iframe.setAttribute('importance', 'low');
+            });
+            
+            // Prefetch likely next actions
+            setTimeout(() => {
+                const menuButtons = document.querySelectorAll('.menu button');
+                menuButtons.forEach(btn => {
+                    btn.addEventListener('mouseenter', () => {
+                        // Prefetch content when user hovers
+                        if (btn.id === 'btnGaleri') {
+                            const galleryImages = document.querySelectorAll('[src*="images/"]');
+                            galleryImages.forEach(img => {
+                                if (!img.complete) {
+                                    const link = document.createElement('link');
+                                    link.rel = 'prefetch';
+                                    link.href = img.src;
+                                    document.head.appendChild(link);
+                                }
+                            });
+                        }
+                    }, { once: true });
+                });
+            }, 2000);
+            
+            const endTime = performance.now();
+            console.log(`🏁 DOM optimizasyonları tamamlandı: ${Math.round(endTime - startTime)}ms`);
         });
 
         // Galeri başlıklarını güncelleme fonksiyonu
@@ -4836,10 +5161,22 @@
         }
 
         function toggleContent(contentType) {
+            console.log('toggleContent çağrıldı:', contentType, 'dil:', currentLang);
+            
             // Önce tüm içerikleri gizle
             document.querySelectorAll('.icerik-bolum, .icerik').forEach(el => {
                 el.style.display = 'none';
             });
+            
+            // Türkçe fakülteler menüsünü her zaman gizle (sadece türkçe olduğunda tekrar gösterilecek)
+            const fakultelerContent = document.getElementById('fakulteler-content');
+            const fakultelerMenu = document.querySelector('.fakulteler-menu');
+            if (fakultelerContent) {
+                fakultelerContent.style.display = 'none';
+            }
+            if (fakultelerMenu) {
+                fakultelerMenu.style.display = 'none';
+            }
             
             // Ana içerik alanını göster
             const mainContent = document.getElementById('icerik');
@@ -4849,42 +5186,49 @@
             
             if (contentType === 'fakulteler') {
                 const d = contentData[currentLang];
+                console.log('Fırat Üniversitesi içeriği yükleniyor, dil:', currentLang);
+                
+                // Önce içerik alanını temizle
+                document.getElementById('icerik').innerHTML = '';
                 
                 // Seçilen dil için uygun içeriği göster
                 if (currentLang === 'tr') {
-                    // Türkçe için HTML tabanlı fakülteler menüsünü göster
-                    const fakultelerContent = document.getElementById('fakulteler-content');
-                    const fakultelerMenu = document.querySelector('.fakulteler-menu');
-                    
+                    // SADECE Türkçe için HTML tabanlı fakülteler menüsünü göster
+                    console.log('Türkçe fakülteler menüsü gösteriliyor');
                     if (fakultelerContent) {
                         fakultelerContent.style.display = 'block';
                     }
                     if (fakultelerMenu) {
                         fakultelerMenu.style.display = 'block';
                     }
-                    
-                    document.getElementById('icerik').innerHTML = '';
-                } else if (d.firatUniversitesi) {
-                    // Diğer diller için özel içerik varsa onu göster
-                    document.getElementById('icerik').innerHTML = d.firatUniversitesi;
                 } else {
-                    // İçerik yoksa geçici olarak temel bilgi göster
-                    let preparingMessage;
-                    switch(currentLang) {
-                        case 'en': preparingMessage = `This section is being prepared in ${currentLang.toUpperCase()}.`; break;
-                        case 'de': preparingMessage = `Dieser Abschnitt wird in ${currentLang.toUpperCase()} vorbereitet.`; break;
-                        case 'ru': preparingMessage = `Этот раздел готовится на ${currentLang.toUpperCase()}.`; break;
-                        case 'ar': preparingMessage = `يتم إعداد هذا القسم باللغة ${currentLang.toUpperCase()}.`; break;
-                        default: preparingMessage = `Bu bölüm ${currentLang.toUpperCase()} dilinde hazırlanmaktadır.`;
+                    // Türkçe OLMAYAN tüm diller için sadece o dilin çevirisini göster
+                    console.log('Diğer dil içeriği gösteriliyor:', currentLang);
+                    
+                    if (d.firatUniversitesi) {
+                        // O dil için özel içerik varsa onu göster
+                        document.getElementById('icerik').innerHTML = d.firatUniversitesi;
+                        console.log('Dil için özel içerik yüklendi');
+                    } else {
+                        // İçerik yoksa geçici olarak temel bilgi göster
+                        let preparingMessage;
+                        switch(currentLang) {
+                            case 'en': preparingMessage = `This section is being prepared in English.`; break;
+                            case 'de': preparingMessage = `Dieser Abschnitt wird auf Deutsch vorbereitet.`; break;
+                            case 'ru': preparingMessage = `Этот раздел готовится на русском языке.`; break;
+                            case 'ar': preparingMessage = `يتم إعداد هذا القسم باللغة العربية.`; break;
+                            default: preparingMessage = `Bu bölüm ${currentLang.toUpperCase()} dilinde hazırlanmaktadır.`;
+                        }
+                        document.getElementById('icerik').innerHTML = `
+                            <h2>${d.btnFirat}</h2>
+                            <p>${d.welcomeText}</p>
+                            <p><em>${preparingMessage}</em></p>
+                        `;
+                        console.log('Geçici mesaj gösteriliyor');
                     }
-                    document.getElementById('icerik').innerHTML = `
-                        <h2>${d.btnFirat}</h2>
-                        <p>${d.welcomeText}</p>
-                        <p>${preparingMessage}</p>
-                    `;
                 }
             } else {
-                // Fakülte menüsünü ve içeriğini gizle
+                // Diğer menüler için fakülte içeriklerini gizle
                 document.querySelectorAll('.fakulteler-menu, .fakulte-bolumler').forEach(el => {
                     el.style.display = 'none';
                     el.classList.remove('active');
